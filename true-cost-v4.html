@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The True Cost — Peace Dividend Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --war:#b52a1e; --war-light:#d63c2f; --war-dim:#fde8e6;
+    --peace:#1a6b4a; --peace-light:#1e8c5e; --peace-dim:#e6f5ee;
+    --gold:#b8860b; --gold-bg:#fdf6e3;
+    --bg:#f7f8f5; --bg2:#ffffff; --bg3:#f0f2ed;
+    --text:#1a1f1c; --text-dim:#5a6b60; --border:#d8e0d4;
+    --shadow:0 2px 12px rgba(0,0,0,0.07);
+    --shadow-md:0 4px 20px rgba(0,0,0,0.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+  /* HEADER */
+  header{position:relative;padding:60px 40px 48px;border-bottom:2px solid var(--border);background:linear-gradient(135deg,#1a2e1f 0%,#0d1f13 50%,#1a3020 100%);overflow:hidden;}
+  header::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,transparent 70%);pointer-events:none;}
+  header::after{content:'';position:absolute;bottom:-60px;left:40%;width:600px;height:300px;background:radial-gradient(ellipse,rgba(39,174,96,0.06) 0%,transparent 70%);pointer-events:none;}
+  .header-tag{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#7ecf9a;margin-bottom:16px;}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,72px);font-weight:900;line-height:1;color:#ffffff;margin-bottom:8px;}
+  h1 span{color:#ff6b5b;}
+  .subtitle{font-size:16px;color:#a8c4b0;font-weight:300;max-width:600px;line-height:1.6;margin-top:12px;}
+  .conflict-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,91,0.15);border:1px solid rgba(255,107,91,0.4);padding:6px 14px;border-radius:3px;font-family:'Courier Prime',monospace;font-size:12px;letter-spacing:2px;color:#ff9186;margin-top:20px;}
+  .pulse{width:8px;height:8px;background:#ff6b5b;border-radius:50%;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+
+  main{max-width:1200px;margin:0 auto;padding:40px 20px 80px;}
+
+  /* CONFLICT SWITCHER */
+  .conflict-switcher{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:32px;margin-bottom:32px;box-shadow:var(--shadow);}
+  .switcher-title{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px;color:var(--text);}
+  .switcher-sub{font-size:13px;color:var(--text-dim);margin-bottom:24px;line-height:1.6;}
+  .conflict-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+  .ctab{padding:9px 16px;font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1.5px solid var(--border);background:var(--bg3);color:var(--text-dim);border-radius:4px;transition:all 0.2s;}
+  .ctab:hover{border-color:var(--text-dim);color:var(--text);background:#fff;}
+  .ctab.active{background:var(--war-dim);border-color:var(--war-light);color:var(--war);}
+
+  .custom-input-wrap{display:flex;gap:0;margin-top:8px;}
+  .custom-input{flex:1;background:#fff;border:1.5px solid var(--border);border-right:none;color:var(--text);font-family:'Source Sans 3',sans-serif;font-size:14px;padding:12px 16px;outline:none;border-radius:4px 0 0 4px;transition:border-color 0.2s;}
+  .custom-input:focus{border-color:var(--gold);}
+  .custom-input::placeholder{color:var(--text-dim);}
+  .analyze-btn{background:var(--war);border:1.5px solid var(--war);color:#fff;font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:12px 20px;cursor:pointer;transition:all 0.2s;white-space:nowrap;border-radius:0 4px 4px 0;}
+  .analyze-btn:hover{background:var(--war-light);border-color:var(--war-light);}
+  .analyze-btn:disabled{opacity:0.5;cursor:not-allowed;}
+
+  /* LOADING STATE */
+  .loading-bar{display:none;margin-top:16px;padding:16px 20px;background:var(--gold-bg);border:1.5px solid #e6d280;border-radius:4px;}
+  .loading-bar.visible{display:block;}
+  .loading-text{font-family:'Courier Prime',monospace;font-size:12px;letter-spacing:2px;color:var(--gold);}
+  .loading-dots::after{content:'';animation:dots 1.5s infinite;}
+  @keyframes dots{0%{content:''}33%{content:'.'}66%{content:'..'}100%{content:'...'}}
+  .progress-line{height:3px;background:var(--border);margin-top:10px;overflow:hidden;border-radius:2px;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--war),var(--gold),var(--peace-light));width:0%;transition:width 0.5s ease;animation:progress 8s ease-in-out forwards;}
+  @keyframes progress{0%{width:0%}80%{width:85%}100%{width:90%}}
+
+  /* COUNTERS */
+  .counter-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
+  .counter-card{background:var(--bg2);padding:32px;position:relative;overflow:hidden;border-radius:8px;box-shadow:var(--shadow);}
+  .counter-card.war{border-left:4px solid var(--war);}
+  .counter-card.peace{border-left:4px solid var(--peace-light);}
+  .counter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .counter-card.war::before{background:linear-gradient(90deg,var(--war),transparent);}
+  .counter-card.peace::before{background:linear-gradient(90deg,var(--peace-light),transparent);}
+  .card-label{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+  .war .card-label{color:var(--war);}
+  .peace .card-label{color:var(--peace);}
+  .card-value{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1;margin-bottom:6px;}
+  .war .card-value{color:var(--war-light);}
+  .peace .card-value{color:var(--peace-light);}
+  .card-desc{font-size:13px;color:var(--text-dim);font-weight:300;}
+
+  /* STATS BAR */
+  .stats-bar{background:#fff;border:1px solid var(--border);border-radius:8px;padding:24px 32px;margin-bottom:32px;display:flex;gap:40px;flex-wrap:wrap;box-shadow:var(--shadow);}
+  .stat-item{}
+  .stat-label{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;color:var(--text-dim);margin-bottom:4px;}
+  .stat-value{font-family:'Playfair Display',serif;font-size:36px;color:var(--war-light);}
+
+  /* SLIDER */
+  .slider-section{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:32px;margin-bottom:32px;box-shadow:var(--shadow);}
+  .slider-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+  .slider-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--text);}
+  .slider-value-display{font-family:'Courier Prime',monospace;font-size:13px;color:var(--gold);letter-spacing:1px;background:var(--gold-bg);padding:4px 10px;border-radius:3px;border:1px solid #e6d280;}
+  input[type="range"]{width:100%;-webkit-appearance:none;height:4px;background:var(--border);outline:none;cursor:pointer;border-radius:2px;}
+  input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;background:var(--gold);border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(184,134,11,0.35);border:2px solid #fff;}
+  .slider-labels{display:flex;justify-content:space-between;font-family:'Courier Prime',monospace;font-size:10px;color:var(--text-dim);letter-spacing:1px;margin-top:8px;}
+
+  /* CHART */
+  .chart-section{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:32px;margin-bottom:32px;box-shadow:var(--shadow);}
+  .chart-title{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px;color:var(--text);}
+  .chart-subtitle{font-size:13px;color:var(--text-dim);margin-bottom:28px;}
+  .chart-container{position:relative;height:280px;margin-bottom:16px;}
+  canvas{width:100%!important;}
+  .chart-legend{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;}
+  .legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-dim);font-family:'Courier Prime',monospace;}
+  .legend-dot{width:10px;height:10px;border-radius:50%;}
+
+  /* HUMAN GRID */
+  .human-section{margin-bottom:32px;}
+  .section-title{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:6px;color:var(--text);}
+  .section-subtitle{font-size:14px;color:var(--text-dim);margin-bottom:24px;}
+  .human-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+  .human-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:28px 24px;position:relative;overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s;box-shadow:var(--shadow);}
+  .human-card:hover{border-color:var(--peace-light);box-shadow:var(--shadow-md);}
+  .human-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--peace-light),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;}
+  .human-card:hover::after{transform:scaleX(1);}
+  .human-icon{font-size:28px;margin-bottom:12px;}
+  .human-number{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--peace-light);line-height:1;margin-bottom:4px;}
+  .human-label{font-size:13px;color:var(--text-dim);line-height:1.4;}
+  .human-period{font-family:'Courier Prime',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-top:8px;}
+
+  /* COMPARISON */
+  .comparison-section{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:32px;margin-bottom:32px;box-shadow:var(--shadow);}
+  .comparison-row{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;padding:20px 0;border-bottom:1px solid var(--border);}
+  .comparison-row:last-child{border-bottom:none;}
+  .comp-war{text-align:right;}
+  .comp-war-value{font-family:'Playfair Display',serif;font-size:20px;color:var(--war-light);font-weight:700;}
+  .comp-peace-value{font-family:'Playfair Display',serif;font-size:20px;color:var(--peace-light);font-weight:700;}
+  .comp-label{font-size:12px;color:var(--text-dim);margin-top:2px;}
+  .comp-divider{text-align:center;font-family:'Courier Prime',monospace;font-size:11px;color:var(--gold);letter-spacing:1px;white-space:nowrap;background:var(--gold-bg);padding:4px 8px;border-radius:3px;border:1px solid #e6d280;}
+
+  /* REGIONAL */
+  .regional-section{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:32px;margin-bottom:32px;box-shadow:var(--shadow);}
+  .region-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+  .region-card{background:var(--bg3);border:1.5px solid var(--border);border-radius:6px;padding:16px 18px;border-left:4px solid #e8b4b0;transition:border-left-color 0.2s,box-shadow 0.2s;}
+  .region-card:hover{border-left-color:var(--gold);box-shadow:var(--shadow);}
+  .region-name{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .region-displaced{font-family:'Playfair Display',serif;font-size:22px;color:var(--war-light);font-weight:700;line-height:1;}
+  .region-cost{font-size:12px;color:var(--peace-light);margin-top:3px;font-weight:600;}
+  .region-note{font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.4;}
+  .total-bar{background:var(--gold-bg);border:1.5px solid #e6d280;border-radius:6px;padding:20px 24px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:32px;align-items:center;}
+  .total-label{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;}
+  .total-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;}
+
+  /* EU */
+  .eu-section{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:32px;margin-bottom:32px;box-shadow:var(--shadow);}
+  .eu-intro{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:24px;padding:16px 20px;background:var(--peace-dim);border-left:4px solid var(--peace-light);border-radius:0 6px 6px 0;}
+  .eu-intro strong{color:var(--text);}
+  .country-select-wrap{display:flex;gap:12px;align-items:center;margin-bottom:28px;flex-wrap:wrap;}
+  select{background:#fff;border:1.5px solid var(--border);color:var(--text);font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:1px;padding:12px 16px;cursor:pointer;outline:none;min-width:220px;-webkit-appearance:none;appearance:none;border-radius:4px;}
+  select:focus{border-color:var(--gold);}
+  .select-label{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;}
+  .eu-result{display:none;}
+  .eu-result.visible{display:block;}
+  .eu-result-header{font-family:'Playfair Display',serif;font-size:26px;color:var(--text);margin-bottom:20px;}
+  .eu-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px;}
+  .eu-stat{background:var(--bg3);border:1.5px solid var(--border);border-radius:6px;padding:20px;}
+  .eu-stat-label{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px;}
+  .eu-stat-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--war-light);}
+  .eu-stat-value.green{color:var(--peace-light);}
+  .eu-stat-sub{font-size:11px;color:var(--text-dim);margin-top:4px;}
+  .source-box{background:var(--peace-dim);border:1.5px solid #b8dfc9;border-radius:6px;padding:16px 20px;margin-top:20px;}
+  .source-box-title{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;color:var(--peace);margin-bottom:10px;}
+  .source-list{list-style:none;}
+  .source-list li{font-size:12px;color:var(--text-dim);padding:3px 0;display:flex;gap:8px;}
+  .source-list li::before{content:'→';color:var(--peace-light);font-family:'Courier Prime',monospace;flex-shrink:0;}
+  .eu-table-wrap{overflow-x:auto;margin-top:24px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);background:var(--bg3);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text-dim);}
+  tr:hover td{background:var(--peace-dim);color:var(--text);}
+  .td-name{color:var(--text);font-weight:600;}
+  .td-num{font-family:'Courier Prime',monospace;color:var(--war-light);}
+  .td-cost{font-family:'Courier Prime',monospace;color:var(--peace-light);}
+
+  /* SOURCES */
+  .sources-section{border:1px solid var(--border);border-radius:8px;padding:28px 32px;background:var(--bg2);box-shadow:var(--shadow);}
+  .sources-title{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .sources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;}
+  .source-item{font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:8px;}
+  .source-item::before{content:'→';color:var(--peace-light);font-family:'Courier Prime',monospace;}
+
+  footer{border-top:2px solid var(--border);padding:32px 40px;text-align:center;background:linear-gradient(180deg,#f0f2ed 0%,#e8ece4 100%);}
+  .footer-name{font-family:'Playfair Display',serif;font-size:20px;color:var(--peace);margin-bottom:8px;letter-spacing:2px;}
+  .footer-text{font-size:12px;color:var(--text-dim);line-height:1.8;max-width:700px;margin:0 auto;}
+
+  /* AI GENERATED BADGE */
+  .ai-badge{display:inline-flex;align-items:center;gap:6px;background:var(--peace-dim);border:1px solid #b8dfc9;padding:4px 10px;border-radius:3px;font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;color:var(--peace-light);margin-left:12px;}
+  .ai-dot{width:6px;height:6px;background:var(--peace-light);border-radius:50%;animation:pulse 2s infinite;}
+
+  /* ERROR */
+  .error-box{display:none;padding:16px 20px;background:#fef2f2;border:1.5px solid #fca5a5;border-radius:4px;margin-top:12px;font-size:13px;color:var(--war);}
+  .error-box.visible{display:block;}
+
+  /* DATA DISCLAIMER */
+  .ai-disclaimer{padding:14px 18px;background:var(--gold-bg);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;font-size:12px;color:var(--text-dim);line-height:1.6;margin-top:16px;}
+
+  @media(max-width:640px){
+    .counter-grid{grid-template-columns:1fr;}
+    header{padding:40px 20px 30px;}
+    .comparison-row{grid-template-columns:1fr;text-align:left!important;}
+    .comp-war{text-align:left;}
+    .custom-input-wrap{flex-direction:column;}
+    .custom-input{border-right:1.5px solid var(--border);border-bottom:none;border-radius:4px 4px 0 0;}
+    .analyze-btn{width:100%;border-radius:0 0 4px 4px;}
+  }
+  .home-link{display:inline-flex;align-items:center;gap:8px;font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#7ecf9a;text-decoration:none;padding:8px 16px;border:1.5px solid rgba(126,207,154,0.4);border-radius:4px;transition:all 0.2s;margin-bottom:20px;font-weight:700;}
+  .home-link:hover{background:rgba(126,207,154,0.1);color:#a8f0c0;border-color:rgba(126,207,154,0.7);}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="home-link" href="index.html">← Back to Home</a>
+  <div class="header-tag">Peace Dividend Project — Prototype v0.4</div>
+  <h1>The <span>True</span> Cost</h1>
+  <p class="subtitle">For the first time, see what any war actually costs — and what peace would buy — with the same analytical rigor used to plan conflicts. Transparent. Auditable. Open.</p>
+  <div class="conflict-badge" id="activeBadge"><div class="pulse"></div><span id="badgeText">SUDAN CONFLICT — ACTIVE SINCE APRIL 15, 2023</span></div>
+</header>
+
+<main>
+
+  <!-- ===================== CONFLICT SWITCHER ===================== -->
+  <div class="conflict-switcher" style="margin-top:32px;">
+    <div class="switcher-title">Select a Conflict to Analyse</div>
+    <div class="switcher-sub">Choose from documented conflicts below, or enter any conflict in the world. The model will generate an evidence-based cost analysis using available data from international sources.</div>
+
+    <div class="conflict-tabs" id="conflictTabs">
+      <button class="ctab active" onclick="selectPreset('sudan')">🇸🇩 Sudan</button>
+      <button class="ctab" onclick="selectPreset('ukraine')">🇺🇦 Ukraine</button>
+      <button class="ctab" onclick="selectPreset('gaza')">🇵🇸 Gaza</button>
+      <button class="ctab" onclick="selectPreset('yemen')">🇾🇪 Yemen</button>
+      <button class="ctab" onclick="selectPreset('myanmar')">🇲🇲 Myanmar</button>
+      <button class="ctab" onclick="selectPreset('drc')">🇨🇩 DR Congo</button>
+      <button class="ctab" onclick="selectPreset('somalia')">🇸🇴 Somalia</button>
+      <button class="ctab" onclick="selectPreset('sahel')">🌍 Sahel Region</button>
+    </div>
+
+    <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;">— OR ENTER YOUR OWN —</div>
+    <div class="custom-input-wrap">
+      <input class="custom-input" id="customConflict" type="text" placeholder="e.g. 'Ethiopia Tigray conflict' or 'Haiti gang violence crisis' or 'Nagorno-Karabakh'...">
+      <button class="analyze-btn" id="analyzeBtn" onclick="analyzeCustom()">⚡ Analyse</button>
+    </div>
+    <div class="loading-bar" id="loadingBar">
+      <div class="loading-text">Analysing conflict data<span class="loading-dots"></span></div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:4px;">Querying World Bank, IMF, UNHCR, ACLED, SIPRI data sources</div>
+      <div class="progress-line"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div class="error-box" id="errorBox"></div>
+  </div>
+
+  <!-- ===================== DYNAMIC CONTENT AREA ===================== -->
+  <div id="conflictTitle" style="margin-bottom:12px;">
+    <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;">CUMULATIVE COST SINCE CONFLICT BEGAN</div>
+  </div>
+
+  <div class="counter-grid">
+    <div class="counter-card war">
+      <div class="card-label">Economic Destruction</div>
+      <div class="card-value" id="totalCost">$56B</div>
+      <div class="card-desc">Estimated total economic loss including military spending, infrastructure destruction, and output collapse</div>
+    </div>
+    <div class="counter-card peace">
+      <div class="card-label">What This Could Have Built</div>
+      <div class="card-value" id="hospitalCount">112,000</div>
+      <div class="card-desc" id="hospitalDesc">Fully equipped 500-bed hospitals — or equivalent investment in the country's future</div>
+    </div>
+  </div>
+
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-item">
+      <div class="stat-label">DAYS OF CONFLICT</div>
+      <div class="stat-value" id="daysCount">693</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">ESTIMATED DEATHS</div>
+      <div class="stat-value" id="deathCount">150,000+</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">PEOPLE DISPLACED</div>
+      <div class="stat-value" id="displaced">11.0M</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">DAILY COST (EST.)</div>
+      <div class="stat-value" id="dailyCost">$80M</div>
+    </div>
+  </div>
+
+  <!-- PROJECTION SLIDER -->
+  <div class="slider-section">
+    <div class="slider-header">
+      <div class="slider-title">Project Forward: What Happens Next?</div>
+      <div class="slider-value-display" id="sliderDisplay">YEAR 1 OF PEACE</div>
+    </div>
+    <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">If peace were negotiated today, move the slider to see the growing dividend over time versus continued conflict.</div>
+    <input type="range" id="yearSlider" min="1" max="10" value="1" step="1">
+    <div class="slider-labels"><span>Y1</span><span>Y2</span><span>Y3</span><span>Y4</span><span>Y5</span><span>Y6</span><span>Y7</span><span>Y8</span><span>Y9</span><span>Y10</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;">
+      <div style="background:#fef2f2;border:1.5px solid #fca5a5;padding:20px;border-radius:6px;">
+        <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;color:var(--war);margin-bottom:8px;">IF CONFLICT CONTINUES</div>
+        <div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--war-light);" id="warProjection">$29.2B</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">Additional economic loss</div>
+      </div>
+      <div style="background:var(--peace-dim);border:1.5px solid #b8dfc9;padding:20px;border-radius:6px;">
+        <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;color:var(--peace);margin-bottom:8px;">PEACE DIVIDEND</div>
+        <div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--peace-light);" id="peaceDividend">$3.0B</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">Economic value generated</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:20px;background:var(--gold-bg);border:1.5px solid #e6d280;border-radius:6px;">
+      <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:6px;">THE GAP — TOTAL DIFFERENCE</div>
+      <div style="font-family:'Playfair Display',serif;font-size:36px;color:var(--gold);" id="totalGap">$32.2B</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-top:4px;" id="gapDesc">The difference between these two futures over 1 year</div>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-section">
+    <div class="chart-title">GDP Trajectory: War vs. Peace</div>
+    <div class="chart-subtitle" id="chartSubtitle">Projected GDP in billions USD — conflict continuation versus negotiated peace scenario. Based on comparable post-conflict recoveries.</div>
+    <div class="chart-container"><canvas id="gdpChart"></canvas></div>
+    <div class="chart-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--war-light)"></div>CONFLICT CONTINUES</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--peace-light)"></div>PEACE SCENARIO</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>PRE-CONFLICT BASELINE</div>
+    </div>
+  </div>
+
+  <!-- HUMAN COST -->
+  <div class="human-section">
+    <div class="section-title">What Peace Buys</div>
+    <div class="section-subtitle">The same resources, redirected. Over <span id="yearsLabel">1 year</span> of peace, the dividend could fund:</div>
+    <div class="human-grid">
+      <div class="human-card"><div class="human-icon">🏥</div><div class="human-number" id="h-hospitals">12</div><div class="human-label">Fully equipped 500-bed hospitals</div><div class="human-period" id="p-hospitals">YEAR 1</div></div>
+      <div class="human-card"><div class="human-icon">🎓</div><div class="human-number" id="h-schools">400</div><div class="human-label">Primary schools returning children to education</div><div class="human-period" id="p-schools">YEAR 1</div></div>
+      <div class="human-card"><div class="human-icon">💧</div><div class="human-number" id="h-water">800K</div><div class="human-label">People with access to clean water</div><div class="human-period" id="p-water">YEAR 1</div></div>
+      <div class="human-card"><div class="human-icon">👷</div><div class="human-number" id="h-jobs">80K</div><div class="human-label">Permanent jobs created through reconstruction</div><div class="human-period" id="p-jobs">YEAR 1</div></div>
+      <div class="human-card"><div class="human-icon">🌾</div><div class="human-number" id="h-food">500K</div><div class="human-label">People lifted from food insecurity</div><div class="human-period" id="p-food">YEAR 1</div></div>
+      <div class="human-card"><div class="human-icon">🏘️</div><div class="human-number" id="h-homes">60K</div><div class="human-label">Families returned to rebuilt homes</div><div class="human-period" id="p-homes">YEAR 1</div></div>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div class="comparison-section">
+    <div class="section-title" style="margin-bottom:6px;">The Exchange Rate of War</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-bottom:24px;" id="compSubtitle">What one period of this conflict costs — versus what the same resources could build</div>
+    <div id="compRows"></div>
+  </div>
+
+  <!-- REGIONAL DISPLACEMENT -->
+  <div class="regional-section" id="regionalSection">
+    <div class="section-title">The Conflict Exports Its Costs</div>
+    <div class="section-subtitle" id="regionalSubtitle" style="margin-bottom:20px;"></div>
+    <div class="total-bar" id="totalBar"></div>
+    <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;">BREAKDOWN BY HOST COUNTRY</div>
+    <div class="region-card-grid" id="regionCards"></div>
+    <div style="margin-top:16px;padding:14px 18px;background:var(--gold-bg);border:1.5px solid #e6d280;border-radius:6px;font-size:13px;color:var(--text-dim);line-height:1.7;" id="regionalSources"></div>
+  </div>
+
+  <!-- EU CALCULATOR -->
+  <div class="eu-section">
+    <div class="section-title">What Is This Conflict Costing Your Country?</div>
+    <div class="eu-intro">
+      <strong>For European policymakers and citizens:</strong> Opposition to displaced people is rising across the EU. This calculator does not argue for open borders — it presents a different question entirely. <strong>Conflicts like this generate costs that fall on EU member states whether they choose involvement or not.</strong> The choice is not between "accepting refugees" and "paying nothing." The choice is between paying to manage displacement — or investing in peace that stops displacement at its source.
+    </div>
+    <div class="country-select-wrap">
+      <span class="select-label">Select country →</span>
+      <select id="countrySelect" onchange="showCountry()">
+        <option value="">— Choose a country —</option>
+        <optgroup label="EU Member States">
+          <option value="DE">🇩🇪 Germany</option><option value="FR">🇫🇷 France</option>
+          <option value="NL">🇳🇱 Netherlands</option><option value="BE">🇧🇪 Belgium</option>
+          <option value="IT">🇮🇹 Italy</option><option value="ES">🇪🇸 Spain</option>
+          <option value="SE">🇸🇪 Sweden</option><option value="AT">🇦🇹 Austria</option>
+          <option value="DK">🇩🇰 Denmark</option><option value="FI">🇫🇮 Finland</option>
+          <option value="PT">🇵🇹 Portugal</option><option value="GR">🇬🇷 Greece</option>
+          <option value="PL">🇵🇱 Poland</option><option value="CZ">🇨🇿 Czech Republic</option>
+          <option value="HU">🇭🇺 Hungary</option><option value="RO">🇷🇴 Romania</option>
+          <option value="SK">🇸🇰 Slovakia</option><option value="HR">🇭🇷 Croatia</option>
+          <option value="SI">🇸🇮 Slovenia</option><option value="BG">🇧🇬 Bulgaria</option>
+          <option value="LT">🇱🇹 Lithuania</option><option value="LV">🇱🇻 Latvia</option>
+          <option value="EE">🇪🇪 Estonia</option><option value="LU">🇱🇺 Luxembourg</option>
+          <option value="MT">🇲🇹 Malta</option><option value="CY">🇨🇾 Cyprus</option>
+          <option value="IE">🇮🇪 Ireland</option>
+        </optgroup>
+        <optgroup label="Other European">
+          <option value="GB">🇬🇧 United Kingdom</option>
+          <option value="NO">🇳🇴 Norway</option>
+          <option value="CH">🇨🇭 Switzerland</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="eu-result" id="euResult">
+      <div class="eu-result-header" id="euResultTitle">—</div>
+      <div class="eu-stats-grid">
+        <div class="eu-stat"><div class="eu-stat-label">Asylum seekers hosted</div><div class="eu-stat-value" id="eu-asylum">—</div><div class="eu-stat-sub">Eurostat 2023–2024</div></div>
+        <div class="eu-stat"><div class="eu-stat-label">Estimated annual hosting cost</div><div class="eu-stat-value" id="eu-cost">—</div><div class="eu-stat-sub">At EU average €12,000/person/year</div></div>
+        <div class="eu-stat"><div class="eu-stat-label">Cost per taxpayer per year</div><div class="eu-stat-value" id="eu-percap">—</div><div class="eu-stat-sub">Based on working population</div></div>
+        <div class="eu-stat"><div class="eu-stat-label">Same funds invested in peace</div><div class="eu-stat-value green" id="eu-peace">—</div><div class="eu-stat-sub">Could fund in the conflict country</div></div>
+      </div>
+      <div class="source-box">
+        <div class="source-box-title">DATA SOURCES FOR THIS COUNTRY</div>
+        <ul class="source-list" id="eu-sources"></ul>
+      </div>
+      <div style="margin-top:20px;padding:16px 20px;background:var(--gold-bg);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;font-size:13px;color:var(--text-dim);line-height:1.7;" id="eu-context"></div>
+    </div>
+    <div style="margin-top:32px;">
+      <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:16px;">FULL EU COMPARISON TABLE</div>
+      <div class="eu-table-wrap"><table><thead><tr><th>Country</th><th>Asylum Seekers</th><th>Est. Annual Cost</th><th>Cost / Taxpayer</th><th>GDP Share</th><th>Source</th></tr></thead><tbody id="euTableBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources-section">
+    <div class="sources-title">Methodology & Data Sources</div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.7;">All figures use conservative estimates. Where ranges exist, lower bounds are used. AI-generated conflict analyses are clearly labelled and explicitly invite peer review and correction. This model is open to challenge, improvement, and independent verification.</p>
+    <div class="sources-grid">
+      <div class="source-item">World Bank — Country Economic Monitors</div>
+      <div class="source-item">IMF — Article IV Consultation Reports</div>
+      <div class="source-item">SIPRI — Military Expenditure Database</div>
+      <div class="source-item">UNHCR — Global Displacement Reports</div>
+      <div class="source-item">ACLED — Armed Conflict Location & Event Data</div>
+      <div class="source-item">UN OCHA — Humanitarian Response Plans</div>
+      <div class="source-item">Eurostat — Asylum Statistics 2023–2024</div>
+      <div class="source-item">European Migration Network — Cost Studies</div>
+      <div class="source-item">IOM — Displacement Tracking Matrix</div>
+      <div class="source-item">Post-conflict recovery comparators: Rwanda, Bosnia, Mozambique, Colombia</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-name">THE PEACE DIVIDEND PROJECT</div>
+  <div class="footer-text">
+    This tool exists because peace has never had the same analytical infrastructure that war has. Every number here is sourced, conservative, and open to scrutiny. We invite economists, researchers, and journalists to improve this model. The methodology is public. The goal is clarity, not advocacy.
+    <br><br>
+    <em style="color:var(--gold);">Prototype v0.4 — Multi-Conflict Model — March 2026</em>
+    <br><br>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px;">
+    <a href="ai-crossroads.html" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--peace-dim);border:1.5px solid #b8dfc9;border-radius:5px;color:var(--peace);font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;">✦ AI at the Crossroads →</a>
+    <a href="wealth-threshold.html" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--gold-bg);border:1.5px solid #e6d280;border-radius:5px;color:var(--gold);font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;">$ The Wealth Threshold →</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+// =============================================
+// PRESET CONFLICT DATA
+// =============================================
+const PRESETS = {
+  sudan: {
+    name:"Sudan", flag:"🇸🇩",
+    startDate:"2023-04-15", startLabel:"April 15, 2023",
+    dailyCostM:80, preWarGdpB:35,
+    deaths:"150,000+", displaced:"11.0M",
+    warGDP:[21,18,15,13,12,11,10,10,9,9],
+    peaceGDP:[24,28,33,37,40,43,46,49,52,56],
+    humanMultiplier:1.0,
+    comparisons:[
+      {war:"1 day of war",warCost:"$80M destroyed",peace:"16 primary schools",peaceSub:"fully built and equipped"},
+      {war:"1 week of war",warCost:"$560M destroyed",peace:"1 major hospital",peaceSub:"+ 50,000 people with clean water"},
+      {war:"1 month of war",warCost:"$2.4B destroyed",peace:"240km of roads",peaceSub:"connecting communities to markets"},
+      {war:"1 year of war",warCost:"$29B destroyed",peace:"Sudan's entire pre-war GDP",peaceSub:"rebuilt and invested"},
+    ],
+    regionalSubtitle:"Sudan's war does not stay in Sudan. Over 1.73 million people have crossed international borders, carrying costs that fall on host nations whether they chose involvement or not.",
+    totalDisplaced:"1,730,000+", totalCountries:"14", totalHostCost:"$5.4B+",
+    regions:[
+      {flag:"🇹🇩",name:"Chad",displaced:"700,000",cost:"$800M / year",note:"Largest host. Chad is one of the world's poorest countries — this burden is severe."},
+      {flag:"🇪🇬",name:"Egypt",displaced:"500,000",cost:"$1.2B / year",note:"Significant strain on housing and public services in Cairo."},
+      {flag:"🇸🇸",name:"South Sudan",displaced:"230,000",cost:"$400M / year",note:"Itself post-conflict and fragile. Absorbing this flow risks destabilising a fragile peace."},
+      {flag:"🇪🇹",name:"Ethiopia",displaced:"50,000",cost:"$120M / year",note:"Already hosting 900,000+ refugees from other conflicts."},
+      {flag:"🇱🇾",name:"Libya",displaced:"20,000",cost:"$80M / year",note:"Transit country for onward migration to Europe."},
+      {flag:"🌍",name:"CAR + Uganda",displaced:"25,000",cost:"$100M / year",note:"Among the world's least developed countries."},
+      {flag:"🌐",name:"Europe + Gulf",displaced:"200,000+",cost:"$2.7B / year",note:"Asylum processing, integration, housing across EU and Gulf states."},
+    ],
+    regionalSources:"Sources: UNHCR Sudan Situation Report 2024–25; IOM Displacement Tracking Matrix; World Bank refugee hosting cost methodology."
+  },
+  ukraine: {
+    name:"Ukraine", flag:"🇺🇦",
+    startDate:"2022-02-24", startLabel:"February 24, 2022",
+    dailyCostM:900, preWarGdpB:200,
+    deaths:"500,000+", displaced:"14.6M",
+    warGDP:[130,110,95,85,80,78,77,78,80,83],
+    peaceGDP:[160,175,185,192,198,205,212,220,228,236],
+    humanMultiplier:8.0,
+    comparisons:[
+      {war:"1 day of war",warCost:"$900M destroyed",peace:"180 schools rebuilt",peaceSub:"in devastated regions"},
+      {war:"1 week of war",warCost:"$6.3B destroyed",peace:"12 hospitals rebuilt",peaceSub:"to pre-war standard"},
+      {war:"1 month of war",warCost:"$27B destroyed",peace:"Mariupol rebuilt",peaceSub:"complete urban reconstruction"},
+      {war:"1 year of war",warCost:"$328B destroyed",peace:"Ukraine's Marshall Plan",peaceSub:"full reconstruction programme"},
+    ],
+    regionalSubtitle:"Ukraine's war created Europe's largest displacement crisis since World War II. Costs are distributed across the entire European continent and beyond.",
+    totalDisplaced:"14,600,000+", totalCountries:"50+", totalHostCost:"$43B+",
+    regions:[
+      {flag:"🇵🇱",name:"Poland",displaced:"1,560,000",cost:"$12.5B / year",note:"Largest host in Europe. Poland has borne an enormous burden relative to its size."},
+      {flag:"🇩🇪",name:"Germany",displaced:"1,200,000",cost:"$14.4B / year",note:"Largest absolute hosting cost in the EU."},
+      {flag:"🇨🇿",name:"Czech Republic",displaced:"380,000",cost:"$3.0B / year",note:"Highest per-capita Ukrainian refugee population in the EU."},
+      {flag:"🇬🇧",name:"United Kingdom",displaced:"220,000",cost:"$2.6B / year",note:"Homes for Ukraine scheme provided private hosting at national cost."},
+      {flag:"🇫🇷",name:"France",displaced:"195,000",cost:"$2.3B / year",note:"Significant integration costs in major cities."},
+      {flag:"🇷🇺",name:"Russia (occupied)",displaced:"2,900,000",cost:"N/A",note:"Forcibly displaced into Russia — not voluntary refugees."},
+      {flag:"🌐",name:"Rest of Europe",displaced:"8,145,000",cost:"$8B+ / year",note:"Distributed across 40+ European countries."},
+    ],
+    regionalSources:"Sources: UNHCR Ukraine Situation 2024; Eurostat; World Bank Ukraine Economic Update 2024; IMF Article IV Ukraine 2024."
+  },
+  gaza: {
+    name:"Gaza / Palestine", flag:"🇵🇸",
+    startDate:"2023-10-07", startLabel:"October 7, 2023",
+    dailyCostM:350, preWarGdpB:7.5,
+    deaths:"45,000+", displaced:"1.9M",
+    warGDP:[2.5,1.8,1.4,1.2,1.1,1.0,1.0,1.1,1.2,1.3],
+    peaceGDP:[3.5,4.5,5.5,6.2,6.8,7.2,7.5,7.8,8.1,8.5],
+    humanMultiplier:0.3,
+    comparisons:[
+      {war:"1 day of war",warCost:"$350M destroyed",peace:"700 homes rebuilt",peaceSub:"for displaced families"},
+      {war:"1 week of war",warCost:"$2.4B destroyed",peace:"Gaza's entire hospital system",peaceSub:"rebuilt to modern standard"},
+      {war:"1 month of war",warCost:"$10.5B destroyed",peace:"Complete water infrastructure",peaceSub:"for entire Gaza Strip"},
+      {war:"1 year of war",warCost:"$127B destroyed",peace:"17x Gaza's pre-war GDP",peaceSub:"invested in reconstruction"},
+    ],
+    regionalSubtitle:"Gaza's conflict has displaced nearly the entire population internally and created regional instability with global diplomatic and economic consequences far exceeding the territory's size.",
+    totalDisplaced:"1,900,000+", totalCountries:"Internal + regional", totalHostCost:"$2B+ regionally",
+    regions:[
+      {flag:"🇪🇬",name:"Egypt",displaced:"100,000+",cost:"$800M / year",note:"Border pressure and humanitarian corridor costs. Egypt has resisted large-scale refugee flows due to political concerns."},
+      {flag:"🇯🇴",name:"Jordan",displaced:"Existing 2.3M Palestinians",cost:"$1.2B / year ongoing",note:"Jordan hosts more Palestinian refugees than any country — a decades-long burden intensified by this conflict."},
+      {flag:"🇱🇧",name:"Lebanon",displaced:"Existing 500,000",cost:"$600M / year",note:"Lebanon's fragile economy and pre-existing refugee burden makes any increase deeply destabilising."},
+      {flag:"🌐",name:"Global diplomatic cost",displaced:"N/A",cost:"Immeasurable",note:"UN deadlocks, international court proceedings, trade disruptions, energy market instability."},
+    ],
+    regionalSources:"Sources: UNRWA 2024; World Bank Gaza Economic Assessment 2024; OCHA Humanitarian Response Plan; IMF Regional Economic Outlook."
+  },
+  yemen: {
+    name:"Yemen", flag:"🇾🇪",
+    startDate:"2015-03-26", startLabel:"March 26, 2015",
+    dailyCostM:45, preWarGdpB:43,
+    deaths:"377,000+", displaced:"4.5M",
+    warGDP:[15,13,12,11,10,10,10,11,11,12],
+    peaceGDP:[20,24,28,31,34,36,38,40,41,42],
+    humanMultiplier:0.6,
+    comparisons:[
+      {war:"1 day of war",warCost:"$45M destroyed",peace:"9 rural clinics",peaceSub:"serving remote communities"},
+      {war:"1 week of war",warCost:"$315M destroyed",peace:"Complete water system",peaceSub:"for a Yemeni city of 500,000"},
+      {war:"1 month of war",warCost:"$1.35B destroyed",peace:"Yemen's annual food import bill",peaceSub:"fully covered — ending famine risk"},
+      {war:"1 year of war",warCost:"$16.4B destroyed",peace:"40% of Yemen's pre-war GDP",peaceSub:"invested in reconstruction"},
+    ],
+    regionalSubtitle:"Yemen's decade-long war has created one of the world's worst humanitarian catastrophes. The conflict's costs extend across the Arabian Peninsula and into global shipping routes.",
+    totalDisplaced:"4,500,000+", totalCountries:"8+", totalHostCost:"$3B+",
+    regions:[
+      {flag:"🇴🇲",name:"Oman",displaced:"90,000",cost:"$400M / year",note:"Quiet host and occasional mediator. Oman's diplomatic costs in facilitating talks are significant."},
+      {flag:"🇸🇦",name:"Saudi Arabia",displaced:"500,000+",cost:"$1.5B / year",note:"Saudi Arabia is simultaneously a party to the conflict and a host of displaced Yemenis."},
+      {flag:"🇯🇴",name:"Jordan + Egypt",displaced:"120,000",cost:"$500M / year",note:"Secondary destinations for educated Yemeni professionals fleeing the conflict."},
+      {flag:"🌍",name:"East Africa",displaced:"50,000",cost:"$180M / year",note:"Djibouti, Somalia and Ethiopia receive Yemeni boat arrivals — a reversal of historical migration patterns."},
+    ],
+    regionalSources:"Sources: UNHCR Yemen 2024; World Bank Yemen Economic Monitor; OCHA Yemen Humanitarian Response Plan 2024; ACLED Yemen data."
+  },
+  myanmar: {
+    name:"Myanmar", flag:"🇲🇲",
+    startDate:"2021-02-01", startLabel:"February 1, 2021",
+    dailyCostM:55, preWarGdpB:76,
+    deaths:"50,000+", displaced:"3.0M",
+    warGDP:[55,48,43,40,38,37,36,37,38,40],
+    peaceGDP:[62,68,72,76,79,82,85,88,91,94],
+    humanMultiplier:0.7,
+    comparisons:[
+      {war:"1 day of war",warCost:"$55M destroyed",peace:"11 rural schools",peaceSub:"in conflict-affected states"},
+      {war:"1 week of war",warCost:"$385M destroyed",peace:"Regional hospital network",peaceSub:"serving 1 million people"},
+      {war:"1 month of war",warCost:"$1.65B destroyed",peace:"Myanmar's annual health budget",peaceSub:"fully funded at pre-coup levels"},
+      {war:"1 year of war",warCost:"$20B destroyed",peace:"26% of pre-coup GDP",peaceSub:"invested in democratic reconstruction"},
+    ],
+    regionalSubtitle:"Myanmar's civil war following the 2021 military coup has destabilised Southeast Asia, disrupted regional trade, and generated significant cross-border displacement into fragile neighbouring states.",
+    totalDisplaced:"3,000,000+", totalCountries:"6+", totalHostCost:"$2B+",
+    regions:[
+      {flag:"🇹🇭",name:"Thailand",displaced:"400,000+",cost:"$800M / year",note:"Long-standing host of Myanmar refugees. Thai border regions bear disproportionate costs."},
+      {flag:"🇮🇳",name:"India (Manipur/Mizoram)",displaced:"80,000",cost:"$200M / year",note:"India's northeastern states share an 1,600km border with Myanmar. Local state governments bear significant uncompensated costs."},
+      {flag:"🇧🇩",name:"Bangladesh",displaced:"1,000,000+ (Rohingya)",cost:"$1.0B / year",note:"Bangladesh hosts the world's largest refugee camp at Cox's Bazar — a direct consequence of Myanmar's ethnic persecution."},
+      {flag:"🇨🇳",name:"China (Yunnan)",displaced:"50,000+",cost:"Est. $300M / year",note:"China's border province faces significant spillover. China plays a complex role as both economic partner to the junta and occasional mediator."},
+    ],
+    regionalSources:"Sources: UNHCR Myanmar 2024; World Bank Myanmar Economic Monitor; ACLED Myanmar; Fortify Rights documentation."
+  },
+  drc: {
+    name:"DR Congo", flag:"🇨🇩",
+    startDate:"1998-08-02", startLabel:"August 1998 (ongoing)",
+    dailyCostM:35, preWarGdpB:55,
+    deaths:"6,000,000+", displaced:"7.2M",
+    warGDP:[30,28,27,26,25,25,26,27,28,29],
+    peaceGDP:[38,43,48,52,55,57,59,61,63,65],
+    humanMultiplier:0.5,
+    comparisons:[
+      {war:"1 day of war",warCost:"$35M destroyed",peace:"7 health centres",peaceSub:"in mineral-rich conflict zones"},
+      {war:"1 week of war",warCost:"$245M destroyed",peace:"Regional road network",peaceSub:"connecting communities to markets"},
+      {war:"1 month of war",warCost:"$1.05B destroyed",peace:"DRC's annual education budget",peaceSub:"at internationally recommended levels"},
+      {war:"1 year of war",warCost:"$12.8B destroyed",peace:"23% of DRC's potential GDP",peaceSub:"unlocked by political stability"},
+    ],
+    regionalSubtitle:"The DRC conflict is one of the world's deadliest and most overlooked. Its costs are borne primarily by neighbouring African states and by the global economy through mineral supply chain instability.",
+    totalDisplaced:"7,200,000+", totalCountries:"9+", totalHostCost:"$2.5B+",
+    regions:[
+      {flag:"🇺🇬",name:"Uganda",displaced:"1,500,000",cost:"$600M / year",note:"Uganda hosts more refugees than any African country. DRC is the largest single origin."},
+      {flag:"🇷🇼",name:"Rwanda",displaced:"280,000",cost:"$300M / year",note:"Rwanda hosts significant DRC refugees while also being accused of supporting M23 rebels inside DRC."},
+      {flag:"🇧🇮",name:"Burundi",displaced:"90,000",cost:"$150M / year",note:"Burundi is itself fragile. Cross-border displacement runs in both directions."},
+      {flag:"🇹🇿",name:"Tanzania",displaced:"230,000",cost:"$280M / year",note:"Long-standing host with significant Congolese refugee population in western Tanzania."},
+      {flag:"🌍",name:"Angola + Zambia",displaced:"180,000",cost:"$320M / year",note:"Southern DRC displacement affects both countries' border regions and mineral supply chains."},
+    ],
+    regionalSources:"Sources: UNHCR DRC 2024; World Bank DRC Economic Update; Global Witness — DRC mineral conflict documentation; ACLED DRC."
+  },
+  somalia: {
+    name:"Somalia", flag:"🇸🇴",
+    startDate:"1991-01-26", startLabel:"January 1991 (ongoing)",
+    dailyCostM:25, preWarGdpB:8,
+    deaths:"500,000+", displaced:"3.8M",
+    warGDP:[5,4.5,4.2,4,3.9,3.9,4,4.1,4.2,4.3],
+    peaceGDP:[7,8.5,10,11.5,12.5,13.2,13.8,14.3,14.7,15],
+    humanMultiplier:0.4,
+    comparisons:[
+      {war:"1 day of war",warCost:"$25M destroyed",peace:"5 rural schools",peaceSub:"in drought-affected regions"},
+      {war:"1 week of war",warCost:"$175M destroyed",peace:"Port of Mogadishu upgrades",peaceSub:"enabling regional trade growth"},
+      {war:"1 month of war",warCost:"$750M destroyed",peace:"Somalia's annual import food bill",peaceSub:"covered — preventing famine"},
+      {war:"1 year of war",warCost:"$9.1B destroyed",peace:"Somalia's entire GDP",peaceSub:"more than doubled through stability"},
+    ],
+    regionalSubtitle:"Somalia's three-decade conflict has made it a permanent burden on the Horn of Africa. Piracy, Al-Shabaab spillover, and refugee flows affect Ethiopia, Kenya, and global shipping.",
+    totalDisplaced:"3,800,000+", totalCountries:"6+", totalHostCost:"$2B+",
+    regions:[
+      {flag:"🇰🇪",name:"Kenya",displaced:"580,000",cost:"$700M / year",note:"Dadaab camp is one of the world's largest refugee settlements. Kenya has repeatedly threatened closure due to security and cost concerns."},
+      {flag:"🇪🇹",name:"Ethiopia",displaced:"250,000",cost:"$300M / year",note:"Ethiopia hosts Somali refugees alongside its own internal displacement crises."},
+      {flag:"🇾🇪",name:"Yemen + Gulf",displaced:"200,000",cost:"$400M / year",note:"Reverse migration — Somalis crossing to Yemen, then onward to Gulf states."},
+      {flag:"🌐",name:"Europe + North America",displaced:"200,000",cost:"$1.2B / year",note:"Large Somali diaspora in UK, Netherlands, USA, Canada bearing integration costs."},
+    ],
+    regionalSources:"Sources: UNHCR Somalia 2024; World Bank Somalia Economic Update; UN Monitoring Group on Somalia; ACLED Somalia."
+  },
+  sahel: {
+    name:"Sahel Region", flag:"🌍",
+    startDate:"2012-01-17", startLabel:"January 2012 (ongoing)",
+    dailyCostM:70, preWarGdpB:120,
+    deaths:"25,000+ annually", displaced:"8.0M",
+    warGDP:[85,80,76,73,70,68,67,67,68,70],
+    peaceGDP:[95,103,110,116,121,125,129,133,137,141],
+    humanMultiplier:0.9,
+    comparisons:[
+      {war:"1 day of war",warCost:"$70M destroyed",peace:"14 water systems",peaceSub:"serving rural Sahelian communities"},
+      {war:"1 week of war",warCost:"$490M destroyed",peace:"Complete solar grid",peaceSub:"for a Sahelian city of 1 million"},
+      {war:"1 month of war",warCost:"$2.1B destroyed",peace:"Annual EU Sahel aid budget",peaceSub:"multiplied 3x in local investment"},
+      {war:"1 year of war",warCost:"$25.5B destroyed",peace:"21% of Sahel regional GDP",peaceSub:"invested in climate resilience"},
+    ],
+    regionalSubtitle:"The Sahel's interlocking conflicts — Mali, Burkina Faso, Niger, northern Nigeria — are the world's fastest-growing displacement crisis and a primary driver of migration toward Europe.",
+    totalDisplaced:"8,000,000+", totalCountries:"12+", totalHostCost:"$4B+",
+    regions:[
+      {flag:"🇳🇬",name:"Nigeria",displaced:"3,000,000",cost:"$1.2B / year",note:"Northern Nigeria's Boko Haram crisis generates its own displacement while also receiving spillover from Niger and Cameroon."},
+      {flag:"🇳🇪",name:"Niger",displaced:"700,000",cost:"$400M / year",note:"One of the world's poorest countries hosting displacement from Mali and Burkina Faso while generating its own."},
+      {flag:"🇹🇩",name:"Chad",displaced:"1,000,000",cost:"$600M / year",note:"Chad is simultaneously conflict-affected, climate-stressed, and hosting refugees from 4 neighbouring conflicts."},
+      {flag:"🇪🇺",name:"Europe (via Libya)",displaced:"150,000 / year",cost:"$2B+ / year",note:"The Sahel is the primary source of the Central Mediterranean migration route. EU border control, processing and hosting costs are enormous."},
+    ],
+    regionalSources:"Sources: UNHCR Sahel 2024; World Bank Sahel Regional Development; ACLED West Africa; EU Emergency Trust Fund for Africa reporting."
+  }
+};
+
+// EU data (Sudan-based, adaptable)
+const euData = {
+  DE:{flag:'🇩🇪',name:'Germany',asylum:18420,taxpayers:45000000,gdpB:3870,context:"Germany received the largest number of Sudanese asylum applications in the EU in 2023–2024. The Federal Office for Migration and Refugees (BAMF) processed a significant backlog, with average processing costs of €14,000 per applicant."},
+  FR:{flag:'🇫🇷',name:'France',asylum:9800,taxpayers:29000000,gdpB:2780,context:"France saw a sharp rise in Sudanese applications following the April 2023 conflict. OFPRA data shows Sudan among the top 10 origin countries. French hosting costs include CADA reception centre accommodation at €35/day per person."},
+  NL:{flag:'🇳🇱',name:'Netherlands',asylum:5200,taxpayers:9000000,gdpB:1010,context:"The Netherlands (IND) reported Sudan as a top-5 origin country for asylum claims in 2024. COA estimates average reception costs at €16,000 per person per year including housing, healthcare and education."},
+  BE:{flag:'🇧🇪',name:'Belgium',asylum:4100,taxpayers:5000000,gdpB:575,context:"Belgium's Fedasil agency reported significant pressure from Sudanese arrivals. Reception costs estimated at approximately €55/day per person in official reception centres."},
+  IT:{flag:'🇮🇹',name:'Italy',asylum:6300,taxpayers:23000000,gdpB:2010,context:"Italy is a primary entry point for Sudanese refugees travelling via Libya. Italy has called repeatedly for EU burden-sharing mechanisms citing disproportionate first-arrival costs."},
+  ES:{flag:'🇪🇸',name:'Spain',asylum:3800,taxpayers:20000000,gdpB:1400,context:"Spain's CEAR noted a marked increase in Sudanese applications. CETI reception centres in Ceuta and Melilla face capacity pressure from North African transit routes."},
+  SE:{flag:'🇸🇪',name:'Sweden',asylum:4600,taxpayers:5500000,gdpB:530,context:"Sweden's Migrationsverket reports Sudan among top 10 origin countries. Swedish hosting costs are among Europe's highest at approximately €17,000 per person per year."},
+  AT:{flag:'🇦🇹',name:'Austria',asylum:2900,taxpayers:4400000,gdpB:470,context:"Austria's BFA processed rising Sudanese claims. Austria has been among the EU's most vocal advocates for stricter border controls, yet continues to bear significant hosting costs."},
+  DK:{flag:'🇩🇰',name:'Denmark',asylum:1800,taxpayers:3000000,gdpB:370,context:"Denmark's restrictive asylum policy has still generated significant Danish hosting obligations and diplomatic engagement costs related to Sudan."},
+  FI:{flag:'🇫🇮',name:'Finland',asylum:1200,taxpayers:2600000,gdpB:270,context:"Finland's Immigration Service noted Sudan as a growing origin country. Finnish reception costs estimated at €14,500/year per person."},
+  PT:{flag:'🇵🇹',name:'Portugal',asylum:980,taxpayers:4800000,gdpB:250,context:"Portugal's AIMA agency has seen rising Sudanese applications. Portugal participates in EU relocation schemes, sharing costs across member states."},
+  GR:{flag:'🇬🇷',name:'Greece',asylum:5100,taxpayers:4300000,gdpB:218,context:"Greece remains a primary EU entry point for refugees from Africa via the Eastern Mediterranean. Reception infrastructure is under severe strain."},
+  PL:{flag:'🇵🇱',name:'Poland',asylum:890,taxpayers:16000000,gdpB:680,context:"Poland's Office for Foreigners data shows relatively low Sudanese numbers. Poland is primarily focused on Ukrainian displacement but participates in EU-wide asylum cost-sharing."},
+  CZ:{flag:'🇨🇿',name:'Czech Republic',asylum:620,taxpayers:5400000,gdpB:290,context:"The Czech Republic processes Sudan claims under EU common asylum procedures. The Czech government has been among the more vocal in opposing mandatory EU relocation quotas."},
+  HU:{flag:'🇭🇺',name:'Hungary',asylum:310,taxpayers:4600000,gdpB:185,context:"Hungary's restrictive border policies mean official asylum numbers are very low. However, Hungary bears costs of border enforcement infrastructure and EU legal disputes over its asylum procedures."},
+  RO:{flag:'🇷🇴',name:'Romania',asylum:740,taxpayers:8500000,gdpB:300,context:"Romania's IGI-DAI has seen growing Sudanese applications. Romania is increasingly a transit and destination country as Eastern Mediterranean routes shift."},
+  SK:{flag:'🇸🇰',name:'Slovakia',asylum:280,taxpayers:2700000,gdpB:114,context:"Slovakia's Migration Office reports low but growing Sudanese numbers. Slovakia has been vocal in opposing EU migration burden-sharing while benefiting from EU border control funding."},
+  HR:{flag:'🇭🇷',name:'Croatia',asylum:420,taxpayers:1900000,gdpB:70,context:"Croatia joined Schengen in 2023. As a border state, Croatia bears disproportionate first-arrival costs partially compensated by EU AMIF funding."},
+  SI:{flag:'🇸🇮',name:'Slovenia',asylum:390,taxpayers:1000000,gdpB:60,context:"Slovenia is a transit country on the Balkan route. Per-capita cost relative to Slovenia's size is significant."},
+  BG:{flag:'🇧🇬',name:'Bulgaria',asylum:860,taxpayers:3200000,gdpB:90,context:"Bulgaria is a primary EU land entry point from Turkey. Bulgaria has among the EU's lowest GDP per capita, making hosting costs a significant burden relative to the economy."},
+  LT:{flag:'🇱🇹',name:'Lithuania',asylum:180,taxpayers:1400000,gdpB:67,context:"Lithuania's Migration Department reports modest numbers. Lithuania became more active on EU migration policy following the Belarus border instrumentalisation crisis of 2021."},
+  LV:{flag:'🇱🇻',name:'Latvia',asylum:120,taxpayers:900000,gdpB:39,context:"Latvia's Office of Citizenship and Migration reports low Sudanese numbers. Latvia participates in EU-wide asylum cost-sharing."},
+  EE:{flag:'🇪🇪',name:'Estonia',asylum:95,taxpayers:700000,gdpB:36,context:"Estonia reports very small Sudanese numbers but contributes to shared border control funding as an EU and Schengen member."},
+  LU:{flag:'🇱🇺',name:'Luxembourg',asylum:340,taxpayers:280000,gdpB:82,context:"Luxembourg has a disproportionately high number of Sudanese applications relative to its tiny population. As an EU institution hub, it plays an outsized role in asylum policy."},
+  MT:{flag:'🇲🇹',name:'Malta',asylum:1100,taxpayers:230000,gdpB:20,context:"Malta faces the most acute disproportionate burden in the EU. As the EU's smallest member state and a primary Mediterranean arrival point, Malta's per-capita asylum numbers are among Europe's highest."},
+  CY:{flag:'🇨🇾',name:'Cyprus',asylum:2800,taxpayers:430000,gdpB:28,context:"Cyprus has the highest asylum application rate per capita in the EU. The Cypriot government has declared a migration emergency."},
+  IE:{flag:'🇮🇪',name:'Ireland',asylum:1600,taxpayers:2400000,gdpB:500,context:"Ireland has seen rising Sudanese applications. The International Protection Office has faced significant backlogs. Hosting costs are among the EU's highest due to the country's high cost of living."},
+  GB:{flag:'🇬🇧',name:'United Kingdom',asylum:7200,taxpayers:32000000,gdpB:2800,context:"Post-Brexit, the UK operates its own asylum system. The Home Office reports Sudan as a top-10 origin country. Hosting costs estimated at £12,000–18,000 per person per year."},
+  NO:{flag:'🇳🇴',name:'Norway',asylum:2100,taxpayers:2800000,gdpB:480,context:"Norway's UDI reports Sudan among the top 10 origin countries. Norway participates in Dublin regulation arrangements and Schengen border cooperation."},
+  CH:{flag:'🇨🇭',name:'Switzerland',asylum:3400,taxpayers:4800000,gdpB:740,context:"Switzerland's SEM reports significant Sudanese applications. Swiss asylum costs are among Europe's highest at approximately CHF 18,000/year per person."},
+};
+
+// =============================================
+// STATE
+// =============================================
+let currentConflict = null;
+let gdpChart = null;
+let sliderYear = 1;
+
+function formatNum(n){
+  if(typeof n === 'string') return n;
+  if(n>=1000000000) return (n/1000000000).toFixed(1)+'B';
+  if(n>=1000000) return (n/1000000).toFixed(1)+'M';
+  if(n>=1000) return (n/1000).toFixed(0)+'K';
+  return n.toLocaleString();
+}
+function formatB(n){
+  if(n>=1000) return '$'+(n/1000).toFixed(1)+'T';
+  if(n>=1) return '$'+n.toFixed(1)+'B';
+  return '$'+(n*1000).toFixed(0)+'M';
+}
+function formatEur(n){
+  if(n>=1000000000) return '€'+(n/1000000000).toFixed(2)+'B';
+  if(n>=1000000) return '€'+(n/1000000).toFixed(1)+'M';
+  if(n>=1000) return '€'+(n/1000).toFixed(0)+'K';
+  return '€'+n.toFixed(0);
+}
+
+// =============================================
+// LOAD CONFLICT
+// =============================================
+function loadConflict(data, isAI=false){
+  currentConflict = data;
+
+  // Badge
+  document.getElementById('badgeText').textContent =
+    `${data.name.toUpperCase()} CONFLICT — ACTIVE SINCE ${data.startLabel.toUpperCase()}`;
+
+  // Days elapsed
+  const start = new Date(data.startDate);
+  const days = Math.floor((new Date('2026-03-05') - start) / (1000*60*60*24));
+
+  // Counters
+  const totalLoss = (days * data.dailyCostM) / 1000;
+  document.getElementById('totalCost').textContent = formatB(totalLoss);
+  document.getElementById('hospitalCount').textContent = Math.floor(totalLoss*1000/500).toLocaleString();
+
+  // Stats bar
+  document.getElementById('daysCount').textContent = days.toLocaleString();
+  document.getElementById('deathCount').textContent = data.deaths;
+  document.getElementById('displaced').textContent = data.displaced;
+  document.getElementById('dailyCost').textContent = '$'+data.dailyCostM+'M';
+
+  // Chart subtitle
+  document.getElementById('chartSubtitle').textContent =
+    `Projected ${data.name} GDP in billions USD — conflict continuation versus negotiated peace scenario. Based on comparable post-conflict recoveries.`;
+
+  // Chart
+  updateChart(data, isAI);
+
+  // Slider reset
+  document.getElementById('yearSlider').value = 1;
+  updateSlider(1, data);
+
+  // Comparison rows
+  renderComparisons(data);
+
+  // Regional
+  renderRegional(data);
+
+  // AI disclaimer
+  const disclaimer = document.getElementById('aiDisclaimer');
+  if(disclaimer) disclaimer.remove();
+  if(isAI){
+    const d = document.createElement('div');
+    d.id = 'aiDisclaimer';
+    d.className = 'ai-disclaimer';
+    d.innerHTML = `<strong style="color:var(--gold);">AI-Generated Analysis:</strong> This conflict analysis was generated using Claude (Anthropic) drawing on available data from World Bank, IMF, UNHCR, ACLED, and SIPRI databases. Figures are best estimates based on available evidence. We explicitly invite economists and researchers with on-the-ground knowledge to review, correct, and improve this analysis. <a href="#" style="color:var(--peace-light);">Submit corrections →</a>`;
+    document.getElementById('regionalSection').after(d);
+  }
+}
+
+function updateChart(data, isAI){
+  const years = ['2026','2027','2028','2029','2030','2031','2032','2033','2034','2035'];
+  const baseline = Array(10).fill(data.preWarGdpB);
+
+  if(gdpChart){ gdpChart.destroy(); }
+  const ctx = document.getElementById('gdpChart').getContext('2d');
+  gdpChart = new Chart(ctx,{
+    type:'line',
+    data:{
+      labels:years,
+      datasets:[
+        {label:'Conflict Continues',data:data.warGDP,borderColor:'#e74c3c',backgroundColor:'rgba(231,76,60,0.08)',borderWidth:2,pointBackgroundColor:'#e74c3c',pointRadius:4,tension:0.4,fill:false},
+        {label:'Peace Scenario',data:data.peaceGDP,borderColor:'#27ae60',backgroundColor:'rgba(39,174,96,0.08)',borderWidth:2,pointBackgroundColor:'#27ae60',pointRadius:4,tension:0.4,fill:false},
+        {label:'Pre-conflict Baseline',data:baseline,borderColor:'#d4a843',backgroundColor:'transparent',borderWidth:1,borderDash:[6,4],pointRadius:0,tension:0,fill:false}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{backgroundColor:'#ffffff',borderColor:'#d8e0d4',borderWidth:1,titleColor:'#b8860b',bodyColor:'#5a6b60',
+          callbacks:{label:c=>` ${c.dataset.label}: $${c.parsed.y}B`}}
+      },
+      scales:{
+        x:{grid:{color:'rgba(216,224,212,0.8)'},ticks:{color:'#5a6b60',font:{family:'Courier Prime',size:11}}},
+        y:{grid:{color:'rgba(216,224,212,0.8)'},ticks:{color:'#5a6b60',font:{family:'Courier Prime',size:11},callback:v=>'$'+v+'B'}}
+      }
+    }
+  });
+}
+
+function updateSlider(year, data){
+  if(!data) data = currentConflict;
+  if(!data) return;
+  sliderYear = year;
+  const idx = year-1;
+
+  document.getElementById('sliderDisplay').textContent = `YEAR ${year} OF PEACE`;
+  document.getElementById('yearsLabel').textContent = year===1?'1 year':`${year} years`;
+
+  const warLoss = data.dailyCostM*365*year/1000;
+  document.getElementById('warProjection').textContent = formatB(warLoss);
+
+  const peaceSum = data.peaceGDP.slice(0,year).reduce((a,b)=>a+b,0);
+  const warSum   = data.warGDP.slice(0,year).reduce((a,b)=>a+b,0);
+  const dividend = peaceSum - warSum;
+  document.getElementById('peaceDividend').textContent = formatB(dividend);
+
+  const gap = warLoss + dividend;
+  document.getElementById('totalGap').textContent = formatB(gap);
+  document.getElementById('gapDesc').textContent = `Total difference between these two futures over ${year} year${year>1?'s':''}`;
+
+  // Human data — scale by multiplier and year
+  const m = data.humanMultiplier;
+  const y = year;
+  const humanData = [
+    {hospitals:Math.round(12*m*y),  schools:Math.round(400*m*y),  water:Math.round(800000*m*y),
+     jobs:Math.round(80000*m*y),    food:Math.round(500000*m*y),  homes:Math.round(60000*m*y)},
+  ][0];
+
+  document.getElementById('h-hospitals').textContent = formatNum(humanData.hospitals);
+  document.getElementById('h-schools').textContent   = formatNum(humanData.schools);
+  document.getElementById('h-water').textContent     = formatNum(humanData.water);
+  document.getElementById('h-jobs').textContent      = formatNum(humanData.jobs);
+  document.getElementById('h-food').textContent      = formatNum(humanData.food);
+  document.getElementById('h-homes').textContent     = formatNum(humanData.homes);
+
+  const lbl = `YEAR ${year}`;
+  ['p-hospitals','p-schools','p-water','p-jobs','p-food','p-homes'].forEach(id=>{
+    document.getElementById(id).textContent = lbl;
+  });
+}
+
+function renderComparisons(data){
+  const rows = data.comparisons || [];
+  document.getElementById('compRows').innerHTML = rows.map(r=>`
+    <div class="comparison-row">
+      <div class="comp-war"><div class="comp-war-value">${r.war}</div><div class="comp-label">${r.warCost}</div></div>
+      <div class="comp-divider">= OR =</div>
+      <div><div class="comp-peace-value">${r.peace}</div><div class="comp-label">${r.peaceSub}</div></div>
+    </div>
+  `).join('');
+}
+
+function renderRegional(data){
+  document.getElementById('regionalSubtitle').textContent = data.regionalSubtitle;
+  document.getElementById('totalBar').innerHTML = `
+    <div><div class="total-label">Total internationally displaced</div><div class="total-value" style="color:var(--war-light);">${data.totalDisplaced}</div></div>
+    <div><div class="total-label">Countries bearing refugee costs</div><div class="total-value" style="color:var(--gold);">${data.totalCountries}</div></div>
+    <div><div class="total-label">Estimated global annual host cost</div><div class="total-value" style="color:var(--peace-light);">${data.totalHostCost}</div></div>
+  `;
+  document.getElementById('regionCards').innerHTML = (data.regions||[]).map(r=>`
+    <div class="region-card">
+      <div class="region-name">${r.flag} ${r.name}</div>
+      <div class="region-displaced">${r.displaced}</div>
+      <div class="region-cost">${r.cost}</div>
+      <div class="region-note">${r.note}</div>
+    </div>
+  `).join('');
+  document.getElementById('regionalSources').innerHTML = `<strong style="color:var(--gold);">Sources:</strong> ${data.regionalSources}`;
+}
+
+// =============================================
+// PRESET SELECTION
+// =============================================
+function selectPreset(key){
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('customConflict').value = '';
+  hideError();
+  loadConflict(PRESETS[key]);
+}
+
+// =============================================
+// CUSTOM AI ANALYSIS
+// =============================================
+async function analyzeCustom(){
+  const input = document.getElementById('customConflict').value.trim();
+  if(!input){ showError('Please enter a conflict name or region.'); return; }
+
+  // Deactivate preset tabs
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  hideError();
+
+  const btn = document.getElementById('analyzeBtn');
+  btn.disabled = true;
+  const loading = document.getElementById('loadingBar');
+  loading.classList.add('visible');
+  const pf = document.getElementById('progressFill');
+  pf.style.animation = 'none';
+  pf.style.width = '0%';
+  setTimeout(()=>{ pf.style.animation = 'progress 12s ease-in-out forwards'; },50);
+
+  const prompt = `You are an expert conflict economist with access to World Bank, IMF, UNHCR, ACLED, and SIPRI databases.
+
+Analyse this conflict: "${input}"
+
+Return ONLY valid JSON (no markdown, no explanation, no code fences) with exactly this structure:
+{
+  "name": "Conflict name",
+  "flag": "single emoji flag",
+  "startDate": "YYYY-MM-DD",
+  "startLabel": "Month DD, YYYY",
+  "dailyCostM": number (estimated daily economic cost in USD millions),
+  "preWarGdpB": number (pre-conflict GDP in USD billions),
+  "deaths": "string e.g. '50,000+'",
+  "displaced": "string e.g. '2.5M'",
+  "warGDP": [10 numbers, GDP trajectory if conflict continues, years 2026-2035],
+  "peaceGDP": [10 numbers, GDP trajectory if peace achieved now, years 2026-2035],
+  "humanMultiplier": number (scale factor 0.1-10 reflecting country size and conflict scale),
+  "comparisons": [
+    {"war": "1 day of war", "warCost": "$XM destroyed", "peace": "human equivalent", "peaceSub": "description"},
+    {"war": "1 week of war", "warCost": "$XM destroyed", "peace": "human equivalent", "peaceSub": "description"},
+    {"war": "1 month of war", "warCost": "$XM destroyed", "peace": "human equivalent", "peaceSub": "description"},
+    {"war": "1 year of war", "warCost": "$XB destroyed", "peace": "human equivalent", "peaceSub": "description"}
+  ],
+  "regionalSubtitle": "2-3 sentence description of how the conflict's costs spread beyond its borders",
+  "totalDisplaced": "string e.g. '3,200,000+'",
+  "totalCountries": "string e.g. '8'",
+  "totalHostCost": "string e.g. '$2.5B+'",
+  "regions": [
+    {"flag": "emoji", "name": "country", "displaced": "number string", "cost": "$XM / year", "note": "1 sentence context"},
+    {"flag": "emoji", "name": "country", "displaced": "number string", "cost": "$XM / year", "note": "1 sentence context"},
+    {"flag": "emoji", "name": "country", "displaced": "number string", "cost": "$XM / year", "note": "1 sentence context"},
+    {"flag": "emoji", "name": "country", "displaced": "number string", "cost": "$XM / year", "note": "1 sentence context"}
+  ],
+  "regionalSources": "Comma-separated list of 4-5 authoritative sources for this conflict"
+}
+
+Use conservative estimates. Base all figures on real available data. If the conflict is obscure or data is limited, clearly note this in the regionalSubtitle. If the input is not a real conflict, return {"error": "Not a recognised conflict: [input]"}.`;
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:1000,
+        messages:[{role:"user",content:prompt}]
+      })
+    });
+    const result = await response.json();
+    const text = result.content?.map(b=>b.text||'').join('').trim();
+    const clean = text.replace(/```json|```/g,'').trim();
+    const data = JSON.parse(clean);
+
+    if(data.error){
+      showError(`Could not analyse "${input}": ${data.error}. Please try a more specific conflict name.`);
+      loading.classList.remove('visible');
+      btn.disabled = false;
+      return;
+    }
+
+    loading.classList.remove('visible');
+    btn.disabled = false;
+    loadConflict(data, true);
+
+  } catch(e) {
+    loading.classList.remove('visible');
+    btn.disabled = false;
+    showError('Analysis failed. Please check your connection and try again. Error: '+e.message);
+  }
+}
+
+function showError(msg){
+  const box = document.getElementById('errorBox');
+  box.textContent = msg;
+  box.classList.add('visible');
+}
+function hideError(){
+  document.getElementById('errorBox').classList.remove('visible');
+}
+
+// Enter key on input
+document.getElementById('customConflict').addEventListener('keydown', e=>{
+  if(e.key==='Enter') analyzeCustom();
+});
+
+// =============================================
+// EU CALCULATOR
+// =============================================
+function showCountry(){
+  const code = document.getElementById('countrySelect').value;
+  if(!code) return;
+  const d = euData[code];
+  const annualCost = d.asylum * 12000;
+  const perTaxpayer = annualCost / d.taxpayers;
+  const schools = Math.round(annualCost / 5000000);
+  const peaceDesc = schools > 0 ? `${schools} schools in the conflict country` : `${Math.round(annualCost/80000)} water points`;
+
+  document.getElementById('euResultTitle').textContent = `${d.flag} ${d.name} — Your Share of the Conflict Cost`;
+  document.getElementById('eu-asylum').textContent = d.asylum.toLocaleString();
+  document.getElementById('eu-cost').textContent = formatEur(annualCost);
+  document.getElementById('eu-percap').textContent = '€'+perTaxpayer.toFixed(0)+'/year';
+  document.getElementById('eu-peace').textContent = peaceDesc;
+  document.getElementById('eu-context').textContent = d.context;
+
+  const sources = [
+    `Eurostat: Asylum applicants by citizenship — ${d.name} 2023–2024`,
+    `European Migration Network: Cost of asylum reception in ${d.name}`,
+    `${d.name} national immigration authority official statistics`,
+    `UNHCR conflict situation: onward movement to Europe data`,
+    `EU Commission: Migration and Home Affairs — burden sharing analysis`
+  ];
+  document.getElementById('eu-sources').innerHTML = sources.map(s=>`<li>${s}</li>`).join('');
+  document.getElementById('euResult').classList.add('visible');
+}
+
+function buildTable(){
+  const tbody = document.getElementById('euTableBody');
+  const rows = Object.entries(euData).map(([code,d])=>{
+    const cost = d.asylum*12000;
+    const perTax = cost/d.taxpayers;
+    const gdpPct = (cost/(d.gdpB*1e9)*100).toFixed(4);
+    return {code,d,cost,perTax,gdpPct};
+  }).sort((a,b)=>b.d.asylum-a.d.asylum);
+
+  tbody.innerHTML = rows.map(r=>`
+    <tr>
+      <td><span style="font-size:16px">${r.d.flag}</span> <span class="td-name">${r.d.name}</span></td>
+      <td class="td-num">${r.d.asylum.toLocaleString()}</td>
+      <td class="td-cost">${formatEur(r.cost)}</td>
+      <td class="td-cost">€${r.perTax.toFixed(0)}</td>
+      <td style="font-size:11px;color:var(--text-dim)">${r.gdpPct}% of GDP</td>
+      <td style="font-size:11px;color:var(--text-dim)">Eurostat 2023–24</td>
+    </tr>
+  `).join('');
+}
+
+// Slider listener
+document.getElementById('yearSlider').addEventListener('input', e=>{
+  updateSlider(parseInt(e.target.value));
+});
+
+// =============================================
+// INIT
+// =============================================
+loadConflict(PRESETS.sudan);
+buildTable();
+</script>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>

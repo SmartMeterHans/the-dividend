@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Choice — The Plain Truth</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fefcf8;--bg2:#f3f0e8;--ink:#17150f;--ink2:#2e2a1e;--ink3:#5a5244;--green:#1a6b3c;--green2:#228b4f;--green-bg:#edf7f2;--blue:#0a4a7a;--blue-bg:#eef4fb;--red:#b52010;--red-bg:#fef4f2;--amber:#b5620a;--border:#ddd7c8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+nav{background:var(--ink);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Fraunces',serif;font-size:20px;color:#fff;text-decoration:none;font-weight:600;}
+.nav-logo span{color:#7ecba8;font-style:italic;}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#fff;text-decoration:none;transition:all 0.2s;padding:8px 16px;border:1.5px solid rgba(255,255,255,0.35);border-radius:4px;font-weight:600;}.nav-back:hover{background:rgba(255,255,255,0.12);}
+
+
+.hero{background:linear-gradient(135deg,#0a1a2e 0%,#0d2240 100%);padding:80px 48px 64px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,100,200,0.12),transparent 70%);}
+.hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(126,200,227,0.6);margin-bottom:20px;}
+h1{font-family:'Fraunces',serif;font-size:clamp(40px,7vw,80px);font-weight:900;color:#fff;line-height:0.97;margin-bottom:24px;letter-spacing:-1px;}
+h1 em{font-style:italic;color:#7ec8e3;}
+.hero-open{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,0.7);line-height:1.7;max-width:640px;font-weight:300;}
+.hero-open strong{color:#fff;font-weight:600;}
+
+.article{max-width:740px;margin:0 auto;padding:60px 40px 100px;}
+.drop-cap::first-letter{font-family:'Fraunces',serif;font-size:5.5em;font-weight:900;float:left;line-height:0.8;margin-right:8px;margin-top:8px;color:var(--blue);}
+p.body{font-size:17px;line-height:1.85;color:var(--ink2);margin-bottom:22px;}
+p.body strong{color:var(--ink);font-weight:600;}
+h2{font-family:'Fraunces',serif;font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--ink);line-height:1.1;margin:48px 0 16px;letter-spacing:-0.3px;}
+h2 em{font-style:italic;}
+.pull{font-family:'Fraunces',serif;font-size:clamp(22px,3.5vw,34px);font-weight:700;color:var(--ink);line-height:1.2;margin:44px 0;padding:28px 0;border-top:3px solid var(--ink);border-bottom:1px solid var(--border);letter-spacing:-0.3px;}
+.pull em{font-style:italic;color:var(--green2);}
+
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--border);border-radius:8px;overflow:hidden;margin:36px 0;}
+.vs-side{padding:24px 22px;}
+.vs-side.war{background:#1a0808;}
+.vs-side.peace{background:var(--green-bg);}
+.vs-head{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.vs-side.war .vs-head{color:rgba(255,150,140,0.7);}
+.vs-side.peace .vs-head{color:var(--green2);}
+.vs-title{font-family:'Fraunces',serif;font-size:clamp(16px,2vw,20px);font-weight:700;margin-bottom:6px;line-height:1.15;}
+.vs-side.war .vs-title{color:#fff;}
+.vs-side.peace .vs-title{color:var(--green);}
+.vs-amount{font-family:'JetBrains Mono',monospace;font-size:13px;margin-bottom:8px;}
+.vs-side.war .vs-amount{color:#ff9186;}
+.vs-side.peace .vs-amount{color:var(--green2);}
+.vs-body{font-size:12px;line-height:1.55;}
+.vs-side.war .vs-body{color:rgba(255,255,255,0.55);}
+.vs-side.peace .vs-body{color:var(--ink3);}
+.vs-divider{border-left:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--ink3);writing-mode:vertical-rl;display:none;}
+
+.callout{border-radius:8px;padding:24px 28px;margin:36px 0;}
+.callout.blue{background:var(--blue-bg);border-left:4px solid var(--blue);}
+.callout.green{background:var(--green-bg);border-left:4px solid var(--green2);}
+.callout.red{background:var(--red-bg);border-left:4px solid var(--red);}
+.callout-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.callout.blue .callout-label{color:var(--blue);}
+.callout.green .callout-label{color:var(--green2);}
+.callout.red .callout-label{color:var(--red);}
+.callout-title{font-family:'Fraunces',serif;font-size:clamp(18px,2.5vw,24px);font-weight:700;margin-bottom:8px;line-height:1.1;}
+.callout.blue .callout-title{color:var(--blue);}
+.callout.green .callout-title{color:var(--green);}
+.callout.red .callout-title{color:var(--red);}
+.callout-body{font-size:14px;color:var(--ink3);line-height:1.65;}
+
+.ratio-visual{background:var(--ink);border-radius:8px;padding:28px;margin:36px 0;text-align:center;}
+.ratio-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:20px;}
+.ratio-blocks{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-bottom:16px;}
+.ratio-block{width:18px;height:18px;border-radius:3px;}
+.ratio-block.mil{background:#ff9186;}
+.ratio-block.hum{background:#7ecba8;}
+.ratio-legend{display:flex;gap:24px;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;}
+.ratio-leg-item{display:flex;align-items:center;gap:6px;}
+.ratio-leg-dot{width:10px;height:10px;border-radius:2px;}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--ink);padding-top:28px;margin-top:40px;flex-wrap:wrap;gap:16px;}
+.art-nav-link{text-decoration:none;display:flex;flex-direction:column;gap:4px;}
+.art-nav-dir{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);}
+.art-nav-title{font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:var(--ink);}
+.art-nav-title:hover{color:var(--green);}
+
+@media(max-width:600px){nav{padding:0 18px;}.hero,.article{padding-left:20px;padding-right:20px;}.vs{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Dividend</span></a>
+  <a class="nav-back" href="plain-truth.html">← The Plain Truth</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Plain Truth 02 — The AI Choice</div>
+    <h1>The most powerful<br>technology ever built.<br><em>What are we<br>using it for?</em></h1>
+    <p class="hero-open">AI could cure diseases your doctor has never heard of. It could end hunger. It could find clean water for a billion people. <strong>Instead, we're spending 43 times more making weapons smarter.</strong> This is not inevitable. It's a choice.</p>
+  </div>
+</div>
+
+<article class="article">
+
+<p class="body drop-cap">In 2020, a team at DeepMind — which is owned by Google — released something called AlphaFold. It solved one of the hardest problems in biology: predicting how proteins fold. Scientists had been trying to crack that problem for 50 years. AlphaFold did it in months.</p>
+
+<p class="body">The result? A freely available database of over 200 million protein structures. Drug researchers around the world now use it every day. It has already accelerated work on malaria, Parkinson's, antibiotic resistance, and dozens of other diseases. Some researchers say it's the most important biological tool ever created.</p>
+
+<p class="body">The total cost to develop AlphaFold: <strong>approximately $10 million.</strong></p>
+
+<div class="callout blue">
+  <div class="callout-label">Let that sink in</div>
+  <div class="callout-title">$10 million changed drug discovery for all of humanity.</div>
+  <div class="callout-body">For context: a single US military drone programme costs around $2.5 billion. The US Department of Defense's total AI budget in 2024 was $17.9 billion. That's 1,790 AlphaFolds. We chose not to build them.</div>
+</div>
+
+<h2>Where the money actually goes.</h2>
+
+<p class="body">Global investment in military AI — autonomous targeting systems, drone swarms, cyber warfare tools, missile guidance — reached roughly $96 billion in 2024. That figure is growing at around 24% per year.</p>
+
+<p class="body">Global investment in humanitarian AI — disease research, food security, clean water, disaster response — is harder to pin down precisely, but credible estimates put it at around $2 billion.</p>
+
+<p class="body">That's a ratio of <strong>$43 spent on military AI for every $1 spent on AI for human welfare.</strong></p>
+
+<div class="ratio-visual">
+  <div class="ratio-title">Military AI vs Humanitarian AI — $43 to $1</div>
+  <div class="ratio-blocks" id="ratioBlocks"></div>
+  <div class="ratio-legend">
+    <div class="ratio-leg-item"><div class="ratio-leg-dot" style="background:#ff9186"></div><span style="color:rgba(255,255,255,0.5);">Military AI ($43)</span></div>
+    <div class="ratio-leg-item"><div class="ratio-leg-dot" style="background:#7ecba8"></div><span style="color:rgba(255,255,255,0.5);">Humanitarian AI ($1)</span></div>
+  </div>
+</div>
+
+<h2>Here's what the other side of that equation looks like.</h2>
+
+<p class="body">These are real comparisons between military AI programmes and humanitarian AI projects that exist or could exist with equivalent funding.</p>
+
+<div class="vs">
+  <div class="vs-side war">
+    <div class="vs-head">What we're funding</div>
+    <div class="vs-title">Autonomous drone targeting AI</div>
+    <div class="vs-amount">$6B annual investment (US alone)</div>
+    <div class="vs-body">AI systems that identify and engage targets without human confirmation. Multiple active programmes across US, China, Russia, Israel, Turkey, and others.</div>
+  </div>
+  <div class="vs-side peace">
+    <div class="vs-head">What that money could fund</div>
+    <div class="vs-title">ALS early detection & treatment AI</div>
+    <div class="vs-amount">Full global research budget: ~$100M/yr</div>
+    <div class="vs-body">ALS kills everyone who gets it. There is no cure. The entire global research budget is 60× smaller than one drone targeting programme. Equivalent investment would likely produce a treatment within 10 years.</div>
+  </div>
+</div>
+
+<div class="vs">
+  <div class="vs-side war">
+    <div class="vs-head">What we're funding</div>
+    <div class="vs-title">AI disinformation & influence operations</div>
+    <div class="vs-amount">$4.2B estimated global spend</div>
+    <div class="vs-body">Military and intelligence AI designed to generate fake news, manipulate social media, and destabilise political systems. Every major power is doing this.</div>
+  </div>
+  <div class="vs-side peace">
+    <div class="vs-head">What that money could fund</div>
+    <div class="vs-title">Global food system optimisation</div>
+    <div class="vs-amount">Full programme cost: ~$800M one-time</div>
+    <div class="vs-body">AI that optimises crop yields, predicts famines 18 months in advance, and routes food aid to where it's needed before crises escalate. 800 million people are chronically hungry. This is solvable.</div>
+  </div>
+</div>
+
+<div class="vs">
+  <div class="vs-side war">
+    <div class="vs-head">What we're funding</div>
+    <div class="vs-title">Hypersonic missile guidance AI</div>
+    <div class="vs-amount">$3.8B US programme alone</div>
+    <div class="vs-body">AI systems to guide missiles travelling at Mach 5+ through unpredictable trajectories. Each missile costs $50–100 million. The AI to guide it costs more than that to develop.</div>
+  </div>
+  <div class="vs-side peace">
+    <div class="vs-head">What that money could fund</div>
+    <div class="vs-title">Clean water detection for rural communities</div>
+    <div class="vs-amount">Full global deployment: ~$500M</div>
+    <div class="vs-body">AI that identifies safe groundwater sources and optimises purification. 2.2 billion people lack safe drinking water. The technology to find and deliver it already exists. It just isn't funded.</div>
+  </div>
+</div>
+
+<div class="pull">
+  We are not short of the technology to solve these problems. We are not short of the science. We are short of the <em>decision</em> to apply one to the other.
+</div>
+
+<h2>But isn't military AI necessary for national security?</h2>
+
+<p class="body">That's a legitimate question. We're not going to pretend it isn't.</p>
+
+<p class="body">Here's what we'd say: even if you believe some military AI investment is justified, the current ratio of 43 to 1 is not a carefully reasoned strategic balance. It is the output of budget processes designed decades ago, dominated by defence contractors whose business model depends on continuous military investment.</p>
+
+<p class="body">Nobody sat down and decided: "43 times more military AI than humanitarian AI is the correct number." It just happened. And things that just happen can be changed.</p>
+
+<div class="callout green">
+  <div class="callout-label">The possibility</div>
+  <div class="callout-title">A 10-to-1 ratio would change everything.</div>
+  <div class="callout-body">We're not asking for the ratio to flip. We're asking: what if it went from 43-to-1 to 10-to-1? That would still mean far more military AI than humanitarian. But the humanitarian share would increase by 330%. That's the difference between a cure for one disease and a cure for thirty. That's the difference between one AlphaFold and a hundred. The technology is ready. The question is whether the decision is.</div>
+</div>
+
+<div class="article-nav">
+  <a class="art-nav-link" href="pt-war.html">
+    <div class="art-nav-dir">← Previous</div>
+    <div class="art-nav-title">What Wars Actually Cost</div>
+  </a>
+  <a class="art-nav-link" href="pt-wealth.html" style="text-align:right;">
+    <div class="art-nav-dir">Next →</div>
+    <div class="art-nav-title">Why You Can't Afford a House</div>
+  </a>
+</div>
+
+</article>
+
+<script>
+// Build ratio visual
+const blocks = document.getElementById('ratioBlocks');
+for(let i=0;i<43;i++){const b=document.createElement('div');b.className='ratio-block mil';blocks.appendChild(b);}
+const h=document.createElement('div');h.className='ratio-block hum';blocks.appendChild(h);
+</script>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>

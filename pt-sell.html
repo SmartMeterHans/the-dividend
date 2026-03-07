@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make Them Sell — The Plain Truth</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fefcf8;--ink:#17150f;--ink2:#2e2a1e;--ink3:#5a5244;--green:#1a6b3c;--green2:#228b4f;--green-bg:#edf7f2;--green-border:#b8d8c5;--amber:#b5620a;--amber-bg:#fef7ec;--red:#b52010;--red-bg:#fef4f2;--border:#ddd7c8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+nav{background:var(--ink);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Fraunces',serif;font-size:20px;color:#fff;text-decoration:none;font-weight:600;}
+.nav-logo span{color:#7ecba8;font-style:italic;}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#fff;text-decoration:none;transition:all 0.2s;padding:8px 16px;border:1.5px solid rgba(255,255,255,0.35);border-radius:4px;font-weight:600;}.nav-back:hover{background:rgba(255,255,255,0.12);}
+
+
+.hero{background:linear-gradient(150deg,#0a1a0e 0%,#081408 100%);padding:80px 48px 64px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;bottom:-40px;right:-40px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(26,107,60,0.25),transparent 70%);}
+.hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(126,203,168,0.6);margin-bottom:20px;}
+h1{font-family:'Fraunces',serif;font-size:clamp(40px,7vw,80px);font-weight:900;color:#fff;line-height:0.97;margin-bottom:24px;letter-spacing:-1px;}
+h1 em{font-style:italic;color:#7ecba8;}
+.hero-open{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,0.7);line-height:1.7;max-width:640px;font-weight:300;}
+.hero-open strong{color:#fff;font-weight:600;}
+
+.article{max-width:740px;margin:0 auto;padding:60px 40px 100px;}
+.drop-cap::first-letter{font-family:'Fraunces',serif;font-size:5.5em;font-weight:900;float:left;line-height:0.8;margin-right:8px;margin-top:8px;color:var(--green2);}
+p.body{font-size:17px;line-height:1.85;color:var(--ink2);margin-bottom:22px;}
+p.body strong{color:var(--ink);font-weight:600;}
+h2{font-family:'Fraunces',serif;font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--ink);line-height:1.1;margin:48px 0 16px;letter-spacing:-0.3px;}
+h2 em{font-style:italic;}
+.pull{font-family:'Fraunces',serif;font-size:clamp(22px,3.5vw,34px);font-weight:700;color:var(--ink);line-height:1.2;margin:44px 0;padding:28px 0;border-top:3px solid var(--ink);border-bottom:1px solid var(--border);letter-spacing:-0.3px;}
+.pull em{font-style:italic;color:var(--green2);}
+
+/* BBD SIMPLE STEPS */
+.steps{display:flex;flex-direction:column;gap:0;border:2px solid var(--ink);border-radius:8px;overflow:hidden;margin:36px 0;}
+.step{display:grid;grid-template-columns:60px 1fr;border-bottom:2px solid var(--ink);}
+.step:last-child{border-bottom:none;}
+.step-num{background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:28px;font-weight:900;color:rgba(255,255,255,0.15);}
+.step-body{padding:18px 22px;}
+.step-title{font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.step-text{font-size:14px;color:var(--ink3);line-height:1.55;}
+.step-badge{display:inline-block;margin-top:7px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 8px;border-radius:2px;}
+.step-badge.red{background:var(--red);color:#fff;}
+.step-badge.green{background:var(--green2);color:#fff;}
+.step.final{background:var(--ink);}
+.step.final .step-title{color:#fff;}
+.step.final .step-text{color:rgba(255,255,255,0.5);}
+
+.callout{border-radius:8px;padding:24px 28px;margin:36px 0;}
+.callout.green{background:var(--green-bg);border-left:4px solid var(--green2);}
+.callout.amber{background:var(--amber-bg);border-left:4px solid var(--amber);}
+.callout.red{background:var(--red-bg);border-left:4px solid var(--red);}
+.callout-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.callout.green .callout-label{color:var(--green2);}
+.callout.amber .callout-label{color:var(--amber);}
+.callout.red .callout-label{color:var(--red);}
+.callout-title{font-family:'Fraunces',serif;font-size:clamp(18px,2.5vw,24px);font-weight:700;margin-bottom:8px;line-height:1.1;}
+.callout.green .callout-title{color:var(--green);}
+.callout.amber .callout-title{color:var(--amber);}
+.callout.red .callout-title{color:var(--red);}
+.callout-body{font-size:14px;color:var(--ink3);line-height:1.65;}
+
+/* OBJECTIONS simple */
+.obj-simple{display:flex;flex-direction:column;gap:12px;margin:36px 0;}
+.obj-row{border:1.5px solid var(--border);border-radius:6px;overflow:hidden;}
+.obj-q{padding:14px 18px;background:var(--red-bg);display:flex;gap:12px;align-items:flex-start;}
+.obj-q-icon{font-size:18px;flex-shrink:0;}
+.obj-q-text{font-size:14px;color:var(--ink2);line-height:1.5;font-style:italic;}
+.obj-a{padding:14px 18px;background:var(--green-bg);display:flex;gap:12px;align-items:flex-start;border-top:1.5px solid var(--green-border);}
+.obj-a-icon{font-size:18px;flex-shrink:0;}
+.obj-a-text{font-size:14px;color:var(--ink3);line-height:1.6;}
+.obj-a-text strong{color:var(--green);font-weight:600;}
+
+/* FINAL HOPE */
+.hope{background:var(--green);border-radius:8px;padding:40px;margin:36px 0;}
+.hope-title{font-family:'Fraunces',serif;font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:20px;}
+.hope-title em{font-style:italic;color:#a8e6c4;}
+.hope-body{font-size:16px;color:rgba(255,255,255,0.8);line-height:1.75;margin-bottom:16px;}
+.hope-body strong{color:#fff;font-weight:600;}
+.hope-cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;}
+.hope-btn{padding:12px 22px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:4px;text-decoration:none;transition:all 0.2s;}
+.hope-btn.primary{background:#fff;color:var(--green);}
+.hope-btn.secondary{border:1.5px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);}
+.hope-btn.secondary:hover{border-color:#fff;color:#fff;}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--ink);padding-top:28px;margin-top:40px;flex-wrap:wrap;gap:16px;}
+.art-nav-link{text-decoration:none;display:flex;flex-direction:column;gap:4px;}
+.art-nav-dir{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);}
+.art-nav-title{font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:var(--ink);}
+.art-nav-title:hover{color:var(--green);}
+
+@media(max-width:600px){nav{padding:0 18px;}.hero,.article{padding-left:20px;padding-right:20px;}.step{grid-template-columns:48px 1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Dividend</span></a>
+  <a class="nav-back" href="plain-truth.html">← The Plain Truth</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Plain Truth 04 — The Mechanism</div>
+    <h1>They don't<br>hold cash.<br><em>Here's why<br>that matters.</em></h1>
+    <p class="hero-open">A wealth tax sounds simple. But there's a trick that makes most of them useless — and <strong>one specific fix that closes the loophole permanently.</strong> This is the piece where the solution gets specific.</p>
+  </div>
+</div>
+
+<article class="article">
+
+<p class="body drop-cap">Imagine you own a painting worth $10 million. Every year, it gets more valuable. You never sell it. You never receive any income from it. Under most tax systems, you pay almost nothing on that painting, year after year, no matter how much it appreciates.</p>
+
+<p class="body">Now imagine you own $10 billion in Amazon shares. Same logic. You never sell. The shares go up every year. No income, no tax bill. You can borrow $500 million from a bank against the shares to fund your lifestyle. The loan isn't income. Not taxable. You live extraordinarily well. You pay almost nothing.</p>
+
+<p class="body">This isn't a loophole that slipped through by accident. It's how the entire system is designed for people with large assets. Economists call it <strong>"Buy, Borrow, Die."</strong></p>
+
+<h2>How Buy, Borrow, Die actually works.</h2>
+
+<div class="steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-title">Buy assets. Never sell.</div>
+      <div class="step-text">Acquire shares, property, private companies. Hold them. As long as you don't sell, the gain is "unrealised" — and unrealised gains are not taxed in most countries.</div>
+      <div class="step-badge red">Tax paid: £0</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-title">Borrow against the assets. Live on the loan.</div>
+      <div class="step-text">Want cash? Don't sell — borrow. Banks will lend you enormous sums at low interest rates if you have assets as collateral. A loan is not income. It is not taxed.</div>
+      <div class="step-badge red">Tax paid: £0</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-title">The assets keep growing. The loan stays small.</div>
+      <div class="step-text">Your $10 billion portfolio grows at 8% a year — $800 million annual gain. You borrowed $50 million to live on. The gap gets bigger every year. The loan is trivial relative to the wealth.</div>
+      <div class="step-badge red">Tax paid: £0</div>
+    </div>
+  </div>
+  <div class="step final">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <div class="step-title">Die. The gain disappears.</div>
+      <div class="step-text">When you die, your assets pass to your heirs at "stepped-up basis" — meaning the entire lifetime gain is legally erased. Heirs start fresh. The cycle repeats. The bill on $50 billion of gains: permanently zero.</div>
+      <div class="step-badge green">Total tax on lifetime gains: £0</div>
+    </div>
+  </div>
+</div>
+
+<p class="body">This is not a secret. This is not illegal. ProPublica, a US journalism organisation, obtained actual IRS tax records showing that America's 25 wealthiest people paid an average true tax rate of 3.4% over five years. Warren Buffett paid 0.1%.</p>
+
+<p class="body">A teacher in America pays around 28%. A nurse in the UK pays around 32%.</p>
+
+<div class="pull">
+  Warren Buffett paid 0.1% in real tax over five years, as his wealth grew by tens of billions. A teacher pays 28%. <em>This is legal.</em>
+</div>
+
+<h2>So what's the fix?</h2>
+
+<p class="body">Here's where most conversations about wealth taxes miss the point.</p>
+
+<p class="body">Politicians say: "We'll introduce a 2% annual wealth tax." Sounds good. But if the wealthy can just borrow against their assets to pay the tax — and they can — then the tax just becomes another cost of doing business. They borrow $200 million from their bank to pay the $200 million tax bill. Their wealth keeps growing. Nothing actually changes.</p>
+
+<p class="body">The real fix is called a <strong>sell mandate.</strong> Simple idea: you can't pay the wealth tax with borrowed money. You have to sell assets to pay it. A 2% annual tax on $10 billion means you have to sell $200 million in shares or property per year.</p>
+
+<div class="callout green">
+  <div class="callout-label">The difference this makes</div>
+  <div class="callout-title">Selling shares means someone else buys them.</div>
+  <div class="callout-body">When a billionaire is forced to sell $200 million in Amazon shares, those shares don't disappear. They go to pension funds, individual investors, and the public market. Ownership gets distributed. When they're forced to sell a property portfolio, those homes go to buyers — often the first-time buyers who couldn't previously compete. The sell mandate doesn't just raise tax revenue. It restructures who owns what.</div>
+</div>
+
+<h2>"But won't that crash the stock market?"</h2>
+
+<p class="body">This is the main argument you'll hear against it. It sounds serious. Here's why it's wrong.</p>
+
+<p class="body">The US stock market processes around $400 billion in trades every single day. The entire annual sell obligation of all ultra-wealthy Americans under a 2% tax would be around $420 billion — spread over 365 days. That's about $1.15 billion per day. Against $400 billion daily volume, that's 0.3%.</p>
+
+<p class="body">Economists who have studied this — including researchers at the EU Tax Observatory — are clear: at this scale, distributed over months, the market impact would be imperceptible. The "market crash" argument is a lobbying claim, not an economic one.</p>
+
+<div class="obj-simple">
+  <div class="obj-row">
+    <div class="obj-q"><div class="obj-q-icon">❓</div><div class="obj-q-text">"The rich will just move to Monaco and take their money with them."</div></div>
+    <div class="obj-a"><div class="obj-a-icon">✓</div><div class="obj-a-text">Research shows <strong>fewer than 2% of ultra-wealthy people actually relocate</strong> when wealth taxes are introduced. Their companies, families, staff, and social networks are here. International coordination — which the EU and G20 are already pursuing — eliminates the option entirely.</div></div>
+  </div>
+  <div class="obj-row">
+    <div class="obj-q"><div class="obj-q-icon">❓</div><div class="obj-q-text">"Entrepreneurs need their wealth to fund future investments."</div></div>
+    <div class="obj-a"><div class="obj-a-icon">✓</div><div class="obj-a-text">The sell mandate applies only to wealth <strong>above $100 million</strong>. The first £/$100M is completely untouched. No entrepreneur needs more than $100 million in personal wealth to build a company. Norway, Sweden, and Denmark all have wealth taxation — and all rank in the top 10 most innovative economies on earth.</div></div>
+  </div>
+  <div class="obj-row">
+    <div class="obj-q"><div class="obj-q-icon">❓</div><div class="obj-q-text">"France tried a wealth tax and it failed."</div></div>
+    <div class="obj-a"><div class="obj-a-icon">✓</div><div class="obj-a-text">France's tax failed because it had no sell mandate and no international coordination — so people avoided it through asset restructuring. <strong>Switzerland has had a functioning wealth tax for over 100 years.</strong> Norway's is working now. The lesson is "design it better," not "don't do it."</div></div>
+  </div>
+</div>
+
+<h2>What actually changes when the sell mandate works.</h2>
+
+<p class="body">Here's the part that doesn't get talked about enough — because it's actually more important than the tax revenue.</p>
+
+<p class="body">When the ultra-wealthy are forced to sell assets, those assets don't vanish. They transfer. Shares that have been held in concentrated portfolios for decades get distributed to millions of ordinary investors and pension funds. Property portfolios that have kept rental prices artificially high get sold to first-time buyers. Wealth that has been sitting — generating nothing for anyone except its owner — starts moving.</p>
+
+<p class="body">Economists call this the "velocity of money" effect. Money that moves creates more economic activity than money that sits. When $842 billion a year flows from asset portfolios into public services and working-class pockets — where nearly all of it gets spent — economic growth actually <em>increases</em>.</p>
+
+<div class="hope">
+  <div class="hope-title">This is the end of <em>The Plain Truth.</em><br>Here's what we want you to take away.</div>
+  <div class="hope-body">The world isn't broken because there isn't enough. It's broken because too much is held in too few hands, and the rules that keep it there are changeable. Not easily. Not quickly. But <strong>specifically</strong>.</div>
+  <div class="hope-body">A sell mandate. A coordinated global minimum wealth tax. A decision to point AI at disease instead of destruction. An honest accounting of what wars cost versus what peace costs.</div>
+  <div class="hope-body">None of this requires revolution. It requires <strong>accurate arithmetic and enough people who understand it.</strong> You understand it now. Share it.</div>
+  <div class="hope-cta">
+    <a class="hope-btn primary" href="index.html#contact">Get involved</a>
+    <a class="hope-btn secondary" href="plain-truth.html">Read all four parts</a>
+    <a class="hope-btn secondary" href="expert-hub.html">See the expert evidence</a>
+  </div>
+</div>
+
+<div class="article-nav">
+  <a class="art-nav-link" href="pt-wealth.html">
+    <div class="art-nav-dir">← Previous</div>
+    <div class="art-nav-title">Why You Can't Afford a House</div>
+  </a>
+  <a class="art-nav-link" href="plain-truth.html" style="text-align:right;">
+    <div class="art-nav-dir">↑ Back to top</div>
+    <div class="art-nav-title">All Plain Truth pieces</div>
+  </a>
+</div>
+
+</article>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>

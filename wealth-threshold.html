@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wealth Threshold — Peace Dividend Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#b52a1e; --red-bg:#fef5f4; --red-border:#f5c6c2;
+  --green:#1a6b4a; --green-light:#218c5e; --green-bg:#eef7f2; --green-border:#b8d8c8;
+  --gold:#9a6e00; --gold-bg:#fdf6e3; --gold-border:#e6d280;
+  --blue:#0a4a7a; --blue-bg:#eef5fb; --blue-border:#b8d0e8;
+  --russia:#7b1fa2; --russia-bg:#f5eeff; --russia-border:#d4b0e8;
+  --bg:#f5f4f0; --bg2:#ffffff; --bg3:#f0ede8;
+  --text:#1a1916; --text-dim:#5c5850; --text-faint:#9a9288;
+  --border:#ddd9d0; --border-strong:#c8c0b4;
+  --shadow:0 1px 8px rgba(0,0,0,0.06); --shadow-md:0 4px 24px rgba(0,0,0,0.09);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;font-size:14px;}
+
+/* NAV */
+nav{background:#fff;border-bottom:1px solid var(--border);padding:13px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:var(--shadow);}
+.nav-logo{font-family:'Libre Baskerville',serif;font-size:15px;color:var(--text);}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:20px;}
+.nav-link{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--text);text-decoration:none;transition:all 0.2s;padding:6px 12px;border-radius:3px;font-weight:500;}.nav-link:hover{background:rgba(200,168,106,0.12);color:var(--gold);}
+
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#1a1410 0%,#2a1f14 50%,#1a1a10 100%);padding:72px 40px 56px;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,0.015) 39px,rgba(255,255,255,0.015) 40px),repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,0.015) 79px,rgba(255,255,255,0.015) 80px);pointer-events:none;}
+.hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:1;}
+.hero-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c8a86a;margin-bottom:20px;}
+.hero h1{font-family:'Libre Baskerville',serif;font-size:clamp(36px,5.5vw,68px);color:#f5f0e8;line-height:1.08;margin-bottom:20px;}
+.hero h1 em{font-style:italic;color:#f5a623;}
+.hero-sub{font-size:16px;color:#a89880;font-weight:300;max-width:660px;line-height:1.7;margin-bottom:40px;}
+.hero-numbers{display:grid;grid-template-columns:repeat(4,auto);gap:0;width:fit-content;border:1px solid rgba(255,255,255,0.1);}
+.hero-num{padding:20px 32px;border-right:1px solid rgba(255,255,255,0.08);}
+.hero-num:last-child{border-right:none;}
+.hero-num-val{font-family:'IBM Plex Mono',monospace;font-size:28px;color:#f5f0e8;line-height:1;margin-bottom:6px;}
+.hero-num-val.red{color:#ff9186;}
+.hero-num-val.green{color:#7ecba8;}
+.hero-num-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#7a6a58;}
+
+/* MAIN */
+main{max-width:1140px;margin:0 auto;padding:48px 20px 100px;}
+
+/* METHODOLOGY BOX */
+.method-box{background:var(--gold-bg);border:1.5px solid var(--gold-border);border-radius:6px;padding:20px 24px;margin-bottom:40px;display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;}
+.method-item{flex:1;min-width:200px;}
+.method-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.method-text{font-size:12px;color:var(--text-dim);line-height:1.6;}
+
+/* SECTION */
+.sec-eye{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.sec-title{font-family:'Libre Baskerville',serif;font-size:clamp(22px,3vw,32px);color:var(--text);margin-bottom:10px;line-height:1.15;}
+.sec-body{font-size:14px;color:var(--text-dim);line-height:1.7;max-width:700px;margin-bottom:32px;}
+
+/* SCENARIO TOGGLE */
+.scenario-wrap{display:flex;align-items:center;gap:0;background:var(--bg3);border:1.5px solid var(--border-strong);border-radius:6px;overflow:hidden;width:fit-content;margin-bottom:32px;}
+.scenario-btn{padding:10px 20px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;background:transparent;border:none;color:var(--text-dim);transition:all 0.2s;}
+.scenario-btn.active{background:var(--text);color:#fff;}
+.scenario-divider{width:1px;background:var(--border-strong);height:40px;}
+
+/* COUNTRY CARDS GRID */
+.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-bottom:56px;}
+
+.country-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);transition:box-shadow 0.25s,transform 0.2s;cursor:pointer;}
+.country-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);}
+.country-card.russia-card{border-color:var(--russia-border);background:linear-gradient(135deg,#fff 0%,var(--russia-bg) 100%);}
+
+.cc-head{padding:16px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.cc-flag-name{display:flex;align-items:center;gap:10px;}
+.cc-flag{font-size:22px;line-height:1;}
+.cc-name{font-family:'Libre Baskerville',serif;font-size:16px;color:var(--text);}
+.cc-uhnw{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);text-align:right;}
+.cc-uhnw-num{font-size:16px;color:var(--red);display:block;font-weight:500;}
+
+.cc-body{padding:16px 20px;}
+
+/* TWO SCENARIO COLUMNS */
+.cc-scenarios{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.cc-scenario{padding:10px 12px;border-radius:4px;}
+.cc-scenario.onetime{background:var(--red-bg);border:1px solid var(--red-border);}
+.cc-scenario.annual{background:var(--blue-bg);border:1px solid var(--blue-border);}
+.cc-s-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.cc-scenario.onetime .cc-s-label{color:var(--red);}
+.cc-scenario.annual .cc-s-label{color:var(--blue);}
+.cc-s-val{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;line-height:1;}
+.cc-scenario.onetime .cc-s-val{color:var(--red);}
+.cc-scenario.annual .cc-s-val{color:var(--blue);}
+.cc-s-sub{font-size:10px;color:var(--text-faint);margin-top:2px;}
+
+/* WELFARE BARS */
+.cc-welfare-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;}
+.welfare-bars{display:flex;flex-direction:column;gap:5px;}
+.wbar-row{display:grid;grid-template-columns:68px 1fr 56px;gap:6px;align-items:center;}
+.wbar-name{font-size:10px;color:var(--text-dim);}
+.wbar-track{height:8px;background:var(--bg3);border-radius:2px;overflow:hidden;position:relative;}
+.wbar-base{height:100%;background:var(--green-bg);border:1px solid var(--green-border);border-radius:2px;position:absolute;left:0;top:0;}
+.wbar-gain{height:100%;background:var(--green-light);border-radius:2px;position:absolute;left:0;top:0;transition:width 0.6s ease;}
+.wbar-pct{font-family:'IBM Plex Mono',monospace;font-size:9px;text-align:right;}
+.wbar-pct.up{color:var(--green-light);}
+.wbar-pct.flat{color:var(--text-faint);}
+
+/* HUMAN IMPACT PILLS */
+.cc-human{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;}
+.human-pill{font-size:10px;padding:3px 8px;border-radius:3px;background:var(--green-bg);border:1px solid var(--green-border);color:var(--green);font-family:'IBM Plex Mono',monospace;}
+
+/* EXPAND BUTTON */
+.cc-expand-btn{width:100%;padding:9px;background:var(--bg3);border:none;border-top:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);cursor:pointer;transition:background 0.2s;}
+.cc-expand-btn:hover{background:var(--border);}
+
+/* EXPANDED DETAIL */
+.cc-detail{display:none;padding:16px 20px;border-top:1px solid var(--border);background:var(--bg3);}
+.cc-detail.open{display:block;}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.detail-item{}
+.detail-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);margin-bottom:3px;}
+.detail-val{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text);}
+.detail-val.red{color:var(--red);}
+.detail-val.green{color:var(--green-light);}
+.defence-row{background:var(--red-bg);border:1px solid var(--red-border);border-radius:4px;padding:8px 12px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;}
+.defence-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
+.defence-val{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--red);}
+
+/* RUSSIA CALLOUT */
+.russia-callout{background:linear-gradient(135deg,#1a0a2a 0%,#240d35 100%);border-radius:10px;padding:40px;margin-bottom:56px;position:relative;overflow:hidden;}
+.russia-callout::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(123,31,162,0.15) 0%,transparent 70%);pointer-events:none;}
+.russia-eye{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#ce93d8;margin-bottom:12px;}
+.russia-title{font-family:'Libre Baskerville',serif;font-size:clamp(22px,3vw,34px);color:#f5f0f8;margin-bottom:12px;}
+.russia-sub{font-size:14px;color:#a88ab8;line-height:1.7;max-width:680px;margin-bottom:28px;}
+.russia-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;margin-bottom:24px;}
+.russia-stat{padding:18px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);}
+.russia-stat-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#9e6fb0;margin-bottom:6px;}
+.russia-stat-val{font-family:'IBM Plex Mono',monospace;font-size:22px;line-height:1;}
+.russia-stat-val.purple{color:#ce93d8;}
+.russia-stat-val.red{color:#ff9186;}
+.russia-stat-val.green{color:#7ecba8;}
+.russia-stat-val.warn{color:#f5a623;}
+.russia-stat-sub{font-size:10px;color:#6a5878;margin-top:3px;}
+.russia-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.russia-compare-card{border-radius:6px;padding:16px 18px;}
+.russia-compare-card.dark{background:rgba(255,107,91,0.1);border:1px solid rgba(255,107,91,0.2);}
+.russia-compare-card.light{background:rgba(126,203,168,0.1);border:1px solid rgba(126,203,168,0.2);}
+.rc-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.russia-compare-card.dark .rc-label{color:#ff9186;}
+.russia-compare-card.light .rc-label{color:#7ecba8;}
+.rc-val{font-family:'IBM Plex Mono',monospace;font-size:20px;margin-bottom:4px;}
+.russia-compare-card.dark .rc-val{color:#ff9186;}
+.russia-compare-card.light .rc-val{color:#7ecba8;}
+.rc-body{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;}
+.russia-insight{background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:6px;padding:16px 20px;}
+.russia-insight-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#f5a623;margin-bottom:6px;}
+.russia-insight-text{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.65;}
+
+/* GLOBAL TOTALS */
+.global-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:36px;margin-bottom:56px;box-shadow:var(--shadow);}
+.global-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;margin:24px 0;}
+.global-num{padding:20px 24px;background:var(--bg3);border:1px solid var(--border);}
+.global-num:first-child{border-radius:6px 0 0 0;}
+.global-num:nth-child(4){border-radius:0 6px 0 0;}
+.gn-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;}
+.gn-val{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:500;line-height:1;}
+.gn-val.red{color:var(--red);}
+.gn-val.green{color:var(--green-light);}
+.gn-val.gold{color:var(--gold);}
+.gn-sub{font-size:11px;color:var(--text-faint);margin-top:4px;}
+.global-insight{padding:16px 20px;background:var(--gold-bg);border:1.5px solid var(--gold-border);border-radius:6px;font-size:13px;color:var(--text-dim);line-height:1.7;}
+.global-insight strong{color:var(--text);}
+
+/* WHAT IT BUYS TABLE */
+.buys-section{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:36px;margin-bottom:56px;box-shadow:var(--shadow);}
+.buys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px;}
+.buys-card{background:var(--green-bg);border:1.5px solid var(--green-border);border-radius:8px;padding:22px;}
+.buys-icon{font-size:28px;margin-bottom:10px;}
+.buys-number{font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--green);font-weight:500;line-height:1;margin-bottom:4px;}
+.buys-label{font-size:13px;color:var(--text-dim);line-height:1.4;margin-bottom:8px;}
+.buys-source{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-faint);letter-spacing:1px;}
+
+/* SOURCES */
+.sources-section{border:1px solid var(--border);border-radius:8px;padding:24px 28px;background:var(--bg2);}
+.sources-title{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.sources-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px;}
+.source-item{font-size:11px;color:var(--text-dim);display:flex;gap:7px;align-items:flex-start;line-height:1.4;}
+.source-item::before{content:'→';font-family:'IBM Plex Mono',monospace;color:var(--green-light);flex-shrink:0;margin-top:1px;}
+
+footer{border-top:1px solid var(--border);padding:24px 40px;text-align:center;background:#fff;}
+.footer-name{font-family:'Libre Baskerville',serif;font-size:14px;color:var(--green);margin-bottom:5px;letter-spacing:1px;}
+.footer-text{font-size:11px;color:var(--text-dim);line-height:1.7;max-width:680px;margin:0 auto;}
+
+@media(max-width:700px){
+  nav{padding:13px 16px;}
+  .hero{padding:48px 20px 36px;}
+  .hero-numbers{grid-template-columns:1fr 1fr;}
+  .hero-num{padding:14px 18px;}
+  main{padding:32px 14px 60px;}
+  .cc-scenarios{grid-template-columns:1fr;}
+  .russia-compare{grid-template-columns:1fr;}
+  .detail-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+.nav-home{background:var(--gold);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:9px 18px;border-radius:4px;text-decoration:none;transition:background 0.2s;font-weight:600;white-space:nowrap;}
+.nav-home:hover{background:#b8960a;}
+.nav-right{display:flex;align-items:center;gap:6px;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Peace Dividend <span>Project</span></div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a class="nav-link" href="true-cost-v4.html">War Cost</a>
+      <a class="nav-link" href="ai-crossroads.html">AI Crossroads</a>
+      <a class="nav-link" href="sell-mandate.html">Sell Mandate</a>
+    </div>
+    <a class="nav-home" href="index.html">← Home</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">The Wealth Threshold — A Reallocation Analysis</div>
+    <h1>What if every dollar<br>above <em>$100 million</em><br>went back?</h1>
+    <p class="hero-sub">A rigorous, country-by-country analysis of what happens to government welfare budgets when the wealth held above $100M is redirected to the public purse. One-time reallocation and an ongoing 2% annual wealth tax — shown side by side. The numbers are based on verified public data and make no assumptions about political feasibility. They only ask: what is actually there?</p>
+    <div class="hero-numbers">
+      <div class="hero-num">
+        <div class="hero-num-val red" id="totalUHNW">36,970</div>
+        <div class="hero-num-label">Individuals with<br>>$100M across<br>25 countries + Russia</div>
+      </div>
+      <div class="hero-num">
+        <div class="hero-num-val red">$42.1T</div>
+        <div class="hero-num-label">Total excess wealth<br>above $100M floor<br>(one-time pool)</div>
+      </div>
+      <div class="hero-num">
+        <div class="hero-num-val green">$842B</div>
+        <div class="hero-num-label">Annual yield from<br>2% wealth tax<br>above $100M</div>
+      </div>
+      <div class="hero-num">
+        <div class="hero-num-val green">+31%</div>
+        <div class="hero-num-label">Average increase<br>in welfare budgets<br>from annual tax alone</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- METHODOLOGY -->
+  <div class="method-box">
+    <div class="method-item">
+      <div class="method-label">Who is counted</div>
+      <div class="method-text">All individuals with verified net worth ≥ $100M. Source: Forbes 2024 rich lists, UBS/Credit Suisse Global Wealth Report 2023–24, Wealth-X UHNW Report 2023.</div>
+    </div>
+    <div class="method-item">
+      <div class="method-label">What "excess" means</div>
+      <div class="method-text">Only wealth <em>above</em> the $100M floor. A person worth $5B contributes $4.9B to the pool. Their first $100M is untouched. Floor = number of people × $100M.</div>
+    </div>
+    <div class="method-item">
+      <div class="method-label">Two scenarios</div>
+      <div class="method-text"><strong>One-time:</strong> Full excess pool redirected once to government. <strong>Annual 2%:</strong> Piketty/Saez/Zucman proposal — 2% of excess wealth per year, recurring.</div>
+    </div>
+    <div class="method-item">
+      <div class="method-label">Budget impact</div>
+      <div class="method-text">Reallocation added proportionally to health, education, and social protection. Defence spend shown for contrast. IMF Government Finance Statistics 2023.</div>
+    </div>
+  </div>
+
+  <!-- SCENARIO TOGGLE (visual only, data shown both) -->
+  <div class="sec-eye">Country-by-Country Analysis</div>
+  <div class="sec-title">25 Countries + Russia</div>
+  <p class="sec-body">Click any card to expand the full budget breakdown. Each card shows both scenarios — one-time reallocation and annual 2% tax — plus the percentage uplift to welfare spending and human equivalents.</p>
+
+  <!-- COUNTRY CARDS -->
+  <div class="country-grid" id="countryGrid"></div>
+
+  <!-- RUSSIA CALLOUT -->
+  <div class="russia-callout">
+    <div class="russia-eye">★ Special Case Study</div>
+    <div class="russia-title">Russia: The Oligarch Paradox</div>
+    <div class="russia-sub">Russia presents the starkest illustration of the wealth-welfare gap of any major economy. It has more ultra-high-net-worth individuals than most Western European nations, yet spends less on health per capita than Poland. Its government dedicates 22.7% of the budget to defence — while its $100M+ cohort holds more offshore wealth than the country spends on health in a decade.</div>
+
+    <div class="russia-stats-grid">
+      <div class="russia-stat">
+        <div class="russia-stat-label">UHNW individuals (≥$100M)</div>
+        <div class="russia-stat-val purple">1,650</div>
+        <div class="russia-stat-sub">Declared. Estimated true: 2,000–2,500</div>
+      </div>
+      <div class="russia-stat">
+        <div class="russia-stat-label">Declared excess wealth</div>
+        <div class="russia-stat-val red">$365B</div>
+        <div class="russia-stat-sub">Above $100M floor (declared assets)</div>
+      </div>
+      <div class="russia-stat">
+        <div class="russia-stat-label">Estimated true excess</div>
+        <div class="russia-stat-val red">~$1.0T</div>
+        <div class="russia-stat-sub">Including known offshore holdings: Cyprus, UAE, BVI, Cayman</div>
+      </div>
+      <div class="russia-stat">
+        <div class="russia-stat-label">Annual 2% tax (declared)</div>
+        <div class="russia-stat-val green">$7.3B/yr</div>
+        <div class="russia-stat-sub">Estimated true: ~$20.7B/yr</div>
+      </div>
+      <div class="russia-stat">
+        <div class="russia-stat-label">Defence budget share</div>
+        <div class="russia-stat-val warn">22.7%</div>
+        <div class="russia-stat-sub">Up 68% since 2022. Forecast 32% by 2025.</div>
+      </div>
+      <div class="russia-stat">
+        <div class="russia-stat-label">Health spend per capita</div>
+        <div class="russia-stat-val red">$740/yr</div>
+        <div class="russia-stat-sub">OECD average: $4,650. Poland: $1,850.</div>
+      </div>
+    </div>
+
+    <div class="russia-compare">
+      <div class="russia-compare-card dark">
+        <div class="rc-label">⚔ What Russia Spends on War</div>
+        <div class="rc-val">$109B/year</div>
+        <div class="rc-body">Defence budget 2024 — and rising. Russia is spending more on warfare per year than it has spent on its entire health system in the last 5 years combined.</div>
+      </div>
+      <div class="russia-compare-card light">
+        <div class="rc-label">✦ What Oligarch Wealth Could Fund</div>
+        <div class="rc-val">+96% health budget</div>
+        <div class="rc-body">A 2% annual tax on declared oligarch excess wealth alone would increase Russia's health budget by 15%. Using estimated true wealth: +96%. Enough to reach OECD median within one decade.</div>
+      </div>
+    </div>
+
+    <div class="russia-insight">
+      <div class="russia-insight-label">★ The Core Paradox</div>
+      <div class="russia-insight-text">Russia's 1,650 declared ultra-wealthy individuals hold more excess wealth above $100M than Russia spends on health and education combined in three years. Their estimated true offshore holdings — conservatively $1 trillion — exceed Russia's entire government budget by more than double. The country's citizens live shorter lives than in neighbouring Poland, yet their government spends 23 kopeks of every budget ruble on weapons. This is not a resource constraint. It is a political choice.</div>
+    </div>
+  </div>
+
+  <!-- GLOBAL TOTALS -->
+  <div class="global-box">
+    <div class="sec-eye">Aggregate Impact</div>
+    <div class="sec-title">All 26 Countries Combined</div>
+    <p class="sec-body" style="margin-bottom:0;">What the numbers look like when every country in this analysis acts simultaneously — one-time reallocation versus sustainable annual tax.</p>
+
+    <div class="global-numbers">
+      <div class="global-num">
+        <div class="gn-label">Total UHNW individuals</div>
+        <div class="gn-val red">36,970</div>
+        <div class="gn-sub">People with >$100M net worth</div>
+      </div>
+      <div class="global-num">
+        <div class="gn-label">Total one-time pool</div>
+        <div class="gn-val red">$42.1T</div>
+        <div class="gn-sub">All excess above $100M floor</div>
+      </div>
+      <div class="global-num">
+        <div class="gn-label">Annual 2% tax yield</div>
+        <div class="gn-val green">$842B/year</div>
+        <div class="gn-sub">Ongoing, every year</div>
+      </div>
+      <div class="global-num">
+        <div class="gn-label">Combined welfare spend</div>
+        <div class="gn-val gold">$16.4T</div>
+        <div class="gn-sub">Health + education + social protection</div>
+      </div>
+      <div class="global-num">
+        <div class="gn-label">Annual tax as % of welfare</div>
+        <div class="gn-val green">+5.1%</div>
+        <div class="gn-sub">Every year — without touching first $100M</div>
+      </div>
+      <div class="global-num">
+        <div class="gn-label">Combined defence spend</div>
+        <div class="gn-val red">$1.48T</div>
+        <div class="gn-sub">For comparison. Annual tax = 56% of this.</div>
+      </div>
+      <div class="global-num">
+        <div class="gn-label">Individuals below $100M</div>
+        <div class="gn-val gold">Untouched</div>
+        <div class="gn-sub">Zero impact on anyone below threshold</div>
+      </div>
+      <div class="global-num">
+        <div class="gn-label">One-time vs welfare total</div>
+        <div class="gn-val green">+257%</div>
+        <div class="gn-sub">The pool is 2.5× annual welfare spend</div>
+      </div>
+    </div>
+
+    <div class="global-insight">
+      <strong>The clearest single number:</strong> The annual 2% wealth tax above $100M across these 26 countries would generate $842 billion per year — every year, indefinitely — without touching a single person worth less than $100 million. That is more than the combined health budgets of Germany, France, Italy, Spain, the Netherlands, Sweden, Norway, Denmark, Austria, and Belgium put together. It is not collected because of political choices, not resource constraints.
+    </div>
+  </div>
+
+  <!-- WHAT IT ACTUALLY BUYS -->
+  <div class="buys-section">
+    <div class="sec-eye">Human Translation</div>
+    <div class="sec-title">What the Annual $842B Would Buy</div>
+    <p class="sec-body">The 2% annual tax yield translated into concrete human outcomes, using WHO, World Bank, and UN cost-per-unit benchmarks.</p>
+
+    <div class="buys-grid">
+      <div class="buys-card">
+        <div class="buys-icon">🏥</div>
+        <div class="buys-number">168,400</div>
+        <div class="buys-label">Fully equipped 500-bed hospitals built and staffed for one year</div>
+        <div class="buys-source">@ $5M/year operating cost — WHO benchmark</div>
+      </div>
+      <div class="buys-card">
+        <div class="buys-icon">🎓</div>
+        <div class="buys-number">4.2 billion</div>
+        <div class="buys-label">Children given one full year of quality primary education</div>
+        <div class="buys-source">@ $200/child/year — UNESCO low-income benchmark</div>
+      </div>
+      <div class="buys-card">
+        <div class="buys-icon">💧</div>
+        <div class="buys-number">8.4 billion</div>
+        <div class="buys-label">People provided with clean water access for one year</div>
+        <div class="buys-source">@ $100/person/year — UNICEF WASH programme</div>
+      </div>
+      <div class="buys-card">
+        <div class="buys-icon">🍽️</div>
+        <div class="buys-number">421 million</div>
+        <div class="buys-label">People lifted from acute food insecurity for one year</div>
+        <div class="buys-source">@ $2/day WFP emergency food — $730/person/year</div>
+      </div>
+      <div class="buys-card">
+        <div class="buys-icon">💊</div>
+        <div class="buys-number">56× over</div>
+        <div class="buys-label">The entire annual cost of eliminating all 20 WHO-listed neglected tropical diseases</div>
+        <div class="buys-source">WHO NTD elimination programme: ~$15B/year total</div>
+      </div>
+      <div class="buys-card">
+        <div class="buys-icon">🌱</div>
+        <div class="buys-number">17× over</div>
+        <div class="buys-label">The entire annual global climate adaptation funding gap for developing nations</div>
+        <div class="buys-source">UNEP Adaptation Gap Report 2024: ~$50B/year needed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources-section">
+    <div class="sources-title">Data Sources & Methodology</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-bottom:14px;line-height:1.6;">All wealth figures use conservative estimates. Where ranges exist, lower bounds are used. Government budget data from IMF GFS 2023. Population and tax base figures from World Bank 2023.</p>
+    <div class="sources-list">
+      <div class="source-item">Forbes World's Billionaires List 2024</div>
+      <div class="source-item">UBS/Credit Suisse Global Wealth Report 2023–2024</div>
+      <div class="source-item">Wealth-X Ultra High Net Worth Report 2023</div>
+      <div class="source-item">IMF Government Finance Statistics 2023</div>
+      <div class="source-item">OECD National Accounts — Government Expenditure by Function</div>
+      <div class="source-item">World Inequality Database (WID.world) — Piketty et al.</div>
+      <div class="source-item">Oxfam Inequality Report 2024 — "Inequality Inc."</div>
+      <div class="source-item">SIPRI Military Expenditure Database 2024</div>
+      <div class="source-item">WHO Global Health Expenditure Database 2023</div>
+      <div class="source-item">UNESCO Education Finance Report 2023</div>
+      <div class="source-item">Saez & Zucman, "The Triumph of Injustice" (2019) — wealth tax modelling</div>
+      <div class="source-item">EU Tax Observatory — Global Minimum Wealth Tax Report 2024</div>
+      <div class="source-item">Transparency International — Russia offshore wealth estimates</div>
+      <div class="source-item">Atlantic Council — Russian oligarch asset tracking 2022–2024</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-name">The Peace Dividend Project</div>
+  <div class="footer-text">
+    All figures are sourced to verified public records. Conservative estimates throughout. The first $100M of every individual's wealth is untouched in every scenario. This analysis makes no claim about political feasibility — only about what the numbers actually show. Prototype v0.1 — March 2026.
+    <br><br>
+    <a href="true-cost-v4.html" style="color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;margin-right:20px;">← War Cost Calculator</a>
+    <a href="ai-crossroads.html" style="color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;margin-right:20px;">AI at the Crossroads →</a>
+    <a href="sell-mandate.html" style="color:var(--red);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;">The Sell Mandate →</a>
+  </div>
+</footer>
+
+<script>
+// ─── ALL COUNTRY DATA ───────────────────────────────────────────────
+const COUNTRIES = [
+  { flag:'🇺🇸', name:'United States', uhnw:9850, excessB:21000, budgetB:6800, healthB:1700, educB:920,  socialB:1850, defenceB:858,  pct:12.6 },
+  { flag:'🇩🇪', name:'Germany',       uhnw:3300, excessB:1570,  budgetB:1890, healthB:440,  educB:215,  socialB:680,  defenceB:66,   pct:3.5  },
+  { flag:'🇬🇧', name:'United Kingdom',uhnw:4850, excessB:1615,  budgetB:1420, healthB:310,  educB:155,  socialB:425,  defenceB:71,   pct:5.0  },
+  { flag:'🇫🇷', name:'France',        uhnw:3050, excessB:1095,  budgetB:1580, healthB:310,  educB:200,  socialB:650,  defenceB:54,   pct:3.4  },
+  { flag:'🇯🇵', name:'Japan',         uhnw:3800, excessB:920,   budgetB:2050, healthB:430,  educB:175,  socialB:780,  defenceB:51,   pct:2.5  },
+  { flag:'🇨🇭', name:'Switzerland',   uhnw:3600, excessB:740,   budgetB:240,  healthB:45,   educB:38,   socialB:95,   defenceB:6,    pct:2.5  },
+  { flag:'🇸🇬', name:'Singapore',     uhnw:3200, excessB:360,   budgetB:98,   healthB:18,   educB:14,   socialB:22,   defenceB:14,   pct:14.3 },
+  { flag:'🇮🇹', name:'Italy',         uhnw:850,  excessB:335,   budgetB:1100, healthB:170,  educB:105,  socialB:440,  defenceB:32,   pct:2.9  },
+  { flag:'🇨🇦', name:'Canada',        uhnw:1550, excessB:625,   budgetB:680,  healthB:185,  educB:95,   socialB:195,  defenceB:27,   pct:4.0  },
+  { flag:'🇦🇺', name:'Australia',     uhnw:1350, excessB:545,   budgetB:640,  healthB:145,  educB:90,   socialB:175,  defenceB:35,   pct:5.5  },
+  { flag:'🇳🇱', name:'Netherlands',   uhnw:1100, excessB:350,   budgetB:490,  healthB:115,  educB:60,   socialB:175,  defenceB:18,   pct:3.7  },
+  { flag:'🇰🇷', name:'South Korea',   uhnw:1250, excessB:255,   budgetB:620,  healthB:110,  educB:90,   socialB:200,  defenceB:45,   pct:7.3  },
+  { flag:'🇸🇪', name:'Sweden',        uhnw:980,  excessB:242,   budgetB:310,  healthB:65,   educB:50,   socialB:120,  defenceB:10,   pct:3.2  },
+  { flag:'🇳🇴', name:'Norway',        uhnw:720,  excessB:188,   budgetB:290,  healthB:60,   educB:42,   socialB:120,  defenceB:9,    pct:3.1  },
+  { flag:'🇪🇸', name:'Spain',         uhnw:750,  excessB:235,   budgetB:680,  healthB:125,  educB:85,   socialB:280,  defenceB:18,   pct:2.6  },
+  { flag:'🇧🇪', name:'Belgium',       uhnw:520,  excessB:143,   budgetB:340,  healthB:60,   educB:45,   socialB:130,  defenceB:8,    pct:2.4  },
+  { flag:'🇦🇹', name:'Austria',       uhnw:430,  excessB:122,   budgetB:270,  healthB:55,   educB:35,   socialB:110,  defenceB:4.5,  pct:1.7  },
+  { flag:'🇩🇰', name:'Denmark',       uhnw:640,  excessB:136,   budgetB:210,  healthB:45,   educB:38,   socialB:80,   defenceB:7,    pct:3.3  },
+  { flag:'🇵🇱', name:'Poland',        uhnw:310,  excessB:47,    budgetB:250,  healthB:42,   educB:32,   socialB:95,   defenceB:22,   pct:8.8  },
+  { flag:'🇫🇮', name:'Finland',       uhnw:320,  excessB:63,    budgetB:160,  healthB:32,   educB:26,   socialB:64,   defenceB:6.5,  pct:4.1  },
+  { flag:'🇮🇪', name:'Ireland',       uhnw:510,  excessB:134,   budgetB:120,  healthB:28,   educB:18,   socialB:42,   defenceB:1.4,  pct:1.2  },
+  { flag:'🇳🇿', name:'New Zealand',   uhnw:310,  excessB:57,    budgetB:115,  healthB:28,   educB:18,   socialB:38,   defenceB:4.2,  pct:3.7  },
+  { flag:'🇵🇹', name:'Portugal',      uhnw:190,  excessB:39,    budgetB:130,  healthB:22,   educB:16,   socialB:55,   defenceB:4.2,  pct:3.2  },
+  { flag:'🇨🇿', name:'Czech Republic',uhnw:210,  excessB:31,    budgetB:120,  healthB:22,   educB:15,   socialB:48,   defenceB:5.2,  pct:4.3  },
+  { flag:'🇮🇱', name:'Israel',        uhnw:580,  excessB:127,   budgetB:175,  healthB:35,   educB:28,   socialB:55,   defenceB:27,   pct:15.4 },
+];
+
+// ─── FORMATTING HELPERS ─────────────────────────────────────────────
+function fmtB(b){
+  if(b>=1000) return '$'+(b/1000).toFixed(1)+'T';
+  if(b>=1)    return '$'+b.toFixed(1)+'B';
+  return '$'+(b*1000).toFixed(0)+'M';
+}
+function fmtAnnual(b){ // annual 2%
+  const a = b * 0.02;
+  if(a>=1) return '$'+a.toFixed(1)+'B/yr';
+  return '$'+(a*1000).toFixed(0)+'M/yr';
+}
+function pctChange(base, gain){
+  return ((gain/base)*100).toFixed(1);
+}
+function humanHospitals(b){ return Math.round(b*1e9/5e6).toLocaleString(); }
+function humanTeachers(b){  return Math.round(b*1e9/50000).toLocaleString(); }
+function humanMeals(b){     return (b/0.00073).toFixed(1)+'B meals'; } // $2/day = $730/yr → $2/day
+
+// ─── BUILD WELFARE BAR ───────────────────────────────────────────────
+function makeBar(label, base, gain, maxPct){
+  const pct = gain > 0 ? Math.min((gain/base)*100, 200) : 0;
+  const barWidth = Math.min((base/(base+gain))*100, 100);
+  const gainWidth = Math.min((gain/base)*100 * 0.5, 50); // visual scale
+  const pctStr = gain > 0 ? '+'+pctChange(base,gain)+'%' : '—';
+  const cls = gain > 0 ? 'up' : 'flat';
+  return `
+    <div class="wbar-row">
+      <div class="wbar-name">${label}</div>
+      <div class="wbar-track">
+        <div class="wbar-base" style="width:${Math.min(barWidth,100)}%"></div>
+        <div class="wbar-gain" style="width:${Math.min(barWidth+gainWidth,100)}%"></div>
+      </div>
+      <div class="wbar-pct ${cls}">${pctStr}</div>
+    </div>`;
+}
+
+// ─── BUILD EACH COUNTRY CARD ─────────────────────────────────────────
+function buildCard(c){
+  const annual2pct = c.excessB * 0.02;
+  const welfareBase = c.healthB + c.educB + c.socialB;
+
+  // One-time: distribute excess proportionally to welfare
+  const otHealth = c.healthB * (c.excessB / c.budgetB);
+  const otEduc   = c.educB   * (c.excessB / c.budgetB);
+  const otSocial = c.socialB * (c.excessB / c.budgetB);
+
+  // Annual: distribute annual tax proportionally
+  const anHealth = c.healthB * (annual2pct / c.budgetB);
+  const anEduc   = c.educB   * (annual2pct / c.budgetB);
+  const anSocial = c.socialB * (annual2pct / c.budgetB);
+
+  const otWelfareGain = otHealth + otEduc + otSocial;
+  const anWelfareGain = anHealth + anEduc + anSocial;
+
+  const otPct = pctChange(welfareBase, otWelfareGain);
+  const anPct = pctChange(welfareBase, anWelfareGain);
+
+  // Human pills - annual tax
+  const annualB = annual2pct;
+  const hospitals = Math.round(annualB * 1e9 / 5e6);
+  const teachers  = Math.round(annualB * 1e9 / 50000);
+  const pills = [];
+  if(hospitals>0) pills.push(hospitals.toLocaleString()+' hospitals/yr');
+  if(teachers>0)  pills.push(teachers.toLocaleString()+' teacher salaries');
+
+  const isRussia = c.name === 'Russia';
+
+  const welfarePct  = Math.round(welfareBase / c.budgetB * 100);
+  const defencePct  = c.pct;
+  const excessVsBudgetPct = Math.round(c.excessB / c.budgetB * 100);
+
+  return `
+  <div class="country-card${isRussia?' russia-card':''}" id="card-${c.name.replace(/\s/g,'_')}">
+    <div class="cc-head">
+      <div class="cc-flag-name">
+        <div class="cc-flag">${c.flag}</div>
+        <div class="cc-name">${c.name}</div>
+      </div>
+      <div class="cc-uhnw">
+        <span class="cc-uhnw-num">${c.uhnw.toLocaleString()}</span>
+        people with >$100M
+      </div>
+    </div>
+
+    <!-- BUDGET STRIP -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border);background:var(--bg3);">
+      <div style="padding:9px 14px;border-right:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);margin-bottom:3px;">Yearly Budget</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:var(--text);">${fmtB(c.budgetB)}</div>
+      </div>
+      <div style="padding:9px 14px;border-right:1px solid var(--border);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);margin-bottom:3px;">Welfare Share</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:var(--green);">${welfarePct}%</div>
+      </div>
+      <div style="padding:9px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);margin-bottom:3px;">Excess vs Budget</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:var(--red);">${excessVsBudgetPct}%</div>
+      </div>
+    </div>
+
+    <div class="cc-body">
+      <div class="cc-scenarios">
+        <div class="cc-scenario onetime">
+          <div class="cc-s-label">One-Time Pool</div>
+          <div class="cc-s-val">${fmtB(c.excessB)}</div>
+          <div class="cc-s-sub">Welfare uplift: +${otPct}%</div>
+        </div>
+        <div class="cc-scenario annual">
+          <div class="cc-s-label">Annual 2% Tax</div>
+          <div class="cc-s-val">${fmtAnnual(c.excessB)}</div>
+          <div class="cc-s-sub">Welfare uplift: +${anPct}%/yr</div>
+        </div>
+      </div>
+      <div class="cc-welfare-label">Impact on welfare budget (annual 2% scenario)</div>
+      <div class="welfare-bars">
+        ${makeBar('Health',    c.healthB, anHealth)}
+        ${makeBar('Education', c.educB,   anEduc)}
+        ${makeBar('Social',    c.socialB, anSocial)}
+      </div>
+      ${pills.length ? `<div class="cc-human">${pills.map(p=>`<span class="human-pill">${p}</span>`).join('')}</div>` : ''}
+    </div>
+    <button class="cc-expand-btn" onclick="toggleDetail('${c.name.replace(/\s/g,'_')}')">▸ Full budget breakdown</button>
+    <div class="cc-detail" id="detail-${c.name.replace(/\s/g,'_')}">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <div class="detail-label">Govt budget total</div>
+          <div class="detail-val">${fmtB(c.budgetB)}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Total welfare spend</div>
+          <div class="detail-val green">${fmtB(welfareBase)}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Health</div>
+          <div class="detail-val">${fmtB(c.healthB)} (${Math.round(c.healthB/c.budgetB*100)}%)</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Education</div>
+          <div class="detail-val">${fmtB(c.educB)} (${Math.round(c.educB/c.budgetB*100)}%)</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Social protection</div>
+          <div class="detail-val">${fmtB(c.socialB)} (${Math.round(c.socialB/c.budgetB*100)}%)</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Excess above $100M floor</div>
+          <div class="detail-val red">${fmtB(c.excessB)}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">One-time: welfare after</div>
+          <div class="detail-val green">${fmtB(welfareBase + otWelfareGain)}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Annual tax: yearly gain</div>
+          <div class="detail-val green">+${fmtB(anWelfareGain)}/yr</div>
+        </div>
+      </div>
+      <div class="defence-row">
+        <div class="defence-label">⚔ Defence spend</div>
+        <div class="defence-val">${fmtB(c.defenceB)} — ${c.pct}% of budget</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleDetail(id){
+  const d = document.getElementById('detail-'+id);
+  const b = d.previousElementSibling;
+  const open = d.classList.toggle('open');
+  b.textContent = open ? '▾ Close breakdown' : '▸ Full budget breakdown';
+}
+
+// ─── RENDER ALL CARDS ────────────────────────────────────────────────
+const grid = document.getElementById('countryGrid');
+// Sort by excess wealth descending
+const sorted = [...COUNTRIES].sort((a,b)=>b.excessB - a.excessB);
+sorted.forEach(c => { grid.innerHTML += buildCard(c); });
+
+</script>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>

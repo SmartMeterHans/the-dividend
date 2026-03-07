@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Wars Actually Cost — The Plain Truth</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fefcf8;--bg2:#f3f0e8;--ink:#17150f;--ink2:#2e2a1e;--ink3:#5a5244;--green:#1a6b3c;--green2:#228b4f;--green-bg:#edf7f2;--red:#b52010;--red-bg:#fef4f2;--amber:#b5620a;--border:#ddd7c8;--shadow:0 2px 16px rgba(23,21,15,0.07);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+nav{background:var(--ink);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Fraunces',serif;font-size:20px;color:#fff;text-decoration:none;font-weight:600;}
+.nav-logo span{color:#7ecba8;font-style:italic;}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#fff;text-decoration:none;transition:all 0.2s;padding:8px 16px;border:1.5px solid rgba(255,255,255,0.35);border-radius:4px;font-weight:600;}.nav-back:hover{background:rgba(255,255,255,0.12);}
+
+
+.hero{background:#1a0808;padding:80px 48px 64px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(181,32,16,0.15),transparent 60%);}
+.hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,150,140,0.6);margin-bottom:20px;}
+h1{font-family:'Fraunces',serif;font-size:clamp(40px,7vw,80px);font-weight:900;color:#fff;line-height:0.97;margin-bottom:24px;letter-spacing:-1px;}
+h1 em{font-style:italic;color:#ff9186;}
+.hero-open{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,0.7);line-height:1.7;max-width:640px;font-weight:300;}
+.hero-open strong{color:#fff;font-weight:600;}
+
+.article{max-width:740px;margin:0 auto;padding:60px 40px 100px;}
+
+/* TYPOGRAPHY */
+.drop-cap::first-letter{font-family:'Fraunces',serif;font-size:5.5em;font-weight:900;float:left;line-height:0.8;margin-right:8px;margin-top:8px;color:var(--red);}
+p.body{font-size:17px;line-height:1.85;color:var(--ink2);margin-bottom:22px;}
+p.body strong{color:var(--ink);font-weight:600;}
+.pull{font-family:'Fraunces',serif;font-size:clamp(22px,3.5vw,34px);font-weight:700;color:var(--ink);line-height:1.2;margin:44px 0;padding:28px 0;border-top:3px solid var(--ink);border-bottom:1px solid var(--border);letter-spacing:-0.3px;}
+.pull em{font-style:italic;color:var(--green2);}
+
+/* CALLOUT BOXES */
+.callout{border-radius:8px;padding:24px 28px;margin:36px 0;}
+.callout.red{background:var(--red-bg);border-left:4px solid var(--red);}
+.callout.green{background:var(--green-bg);border-left:4px solid var(--green2);}
+.callout.amber{background:#fef7ec;border-left:4px solid var(--amber);}
+.callout-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.callout.red .callout-label{color:var(--red);}
+.callout.green .callout-label{color:var(--green2);}
+.callout.amber .callout-label{color:var(--amber);}
+.callout-title{font-family:'Fraunces',serif;font-size:clamp(20px,3vw,28px);font-weight:700;margin-bottom:8px;line-height:1.1;}
+.callout.red .callout-title{color:var(--red);}
+.callout.green .callout-title{color:var(--green);}
+.callout-body{font-size:14px;color:var(--ink3);line-height:1.65;}
+
+/* EXCHANGE TABLE */
+.exchange{background:var(--ink);border-radius:8px;padding:28px;margin:36px 0;color:#fff;}
+.exchange-title{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:20px;}
+.exchange-row{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.exchange-row:last-child{border-bottom:none;}
+.ex-left{font-size:13px;color:rgba(255,150,140,0.9);line-height:1.4;}
+.ex-eq{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);}
+.ex-right{font-size:13px;color:#7ecba8;line-height:1.4;text-align:right;}
+
+/* SECTION HEADERS */
+h2{font-family:'Fraunces',serif;font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--ink);line-height:1.1;margin:48px 0 16px;letter-spacing:-0.3px;}
+h2 em{font-style:italic;}
+
+/* NAV between articles */
+.article-nav{display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--ink);padding-top:28px;margin-top:40px;flex-wrap:wrap;gap:16px;}
+.art-nav-link{text-decoration:none;display:flex;flex-direction:column;gap:4px;}
+.art-nav-dir{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);}
+.art-nav-title{font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:var(--ink);}
+.art-nav-title:hover{color:var(--green);}
+
+@media(max-width:600px){nav{padding:0 18px;}.hero,.article{padding-left:20px;padding-right:20px;}.exchange-row{grid-template-columns:1fr;gap:4px;}.ex-eq,.ex-right{text-align:left;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Dividend</span></a>
+  <a class="nav-back" href="plain-truth.html">← The Plain Truth</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Plain Truth 01 — Wars & Their Cost</div>
+    <h1>What wars<br>actually cost —<br><em>and what we<br>could buy instead</em></h1>
+    <p class="hero-open">Not in political speeches. Not in defence budgets. In <strong>real things</strong> — hospitals, schools, clean water, children who grow up. Here are the numbers no one puts on a poster.</p>
+  </div>
+</div>
+
+<article class="article">
+
+<p class="body drop-cap">Right now, while you're reading this, there are eight major wars happening on earth. Sudan. Ukraine. Gaza. Yemen. Myanmar. Congo. Somalia. The Sahel. Every single one of them is costing money that could be doing something else.</p>
+
+<p class="body">Not a little money. Enormous amounts of money.</p>
+
+<p class="body">The war in Sudan — which most people in Europe and America couldn't find on a map — is costing around <strong>$80 million every single day</strong>. It started in April 2023. Do the maths. That's over $60 billion gone, just for one conflict that most people aren't paying attention to.</p>
+
+<div class="callout red">
+  <div class="callout-label">The Sudan Numbers</div>
+  <div class="callout-title">$80 million. Every day.</div>
+  <div class="callout-body">150,000 people have died. 11 million have fled their homes — more than fled Syria at the height of that war. 1.73 million have crossed international borders. The daily cost of $80 million is a conservative estimate combining direct military costs, infrastructure destruction, economic collapse, and humanitarian response. The total since April 2023: over $60 billion.</div>
+</div>
+
+<p class="body">Here's what I want you to think about. That $60 billion didn't just disappear. It was real money, real resources, real human effort — pointed at destruction instead of construction.</p>
+
+<p class="body">So let's talk about what $60 billion could have done instead.</p>
+
+<div class="exchange">
+  <div class="exchange-title">The Sudan conflict cost — translated</div>
+  <div class="exchange-row">
+    <div class="ex-left">1 day of the Sudan war<br>$80 million</div>
+    <div class="ex-eq">=</div>
+    <div class="ex-right">80 fully equipped rural health clinics. Permanently.</div>
+  </div>
+  <div class="exchange-row">
+    <div class="ex-left">1 week of the Sudan war<br>$560 million</div>
+    <div class="ex-eq">=</div>
+    <div class="ex-right">Clean water for 5.6 million people. Forever.</div>
+  </div>
+  <div class="exchange-row">
+    <div class="ex-left">1 month of the Sudan war<br>$2.4 billion</div>
+    <div class="ex-eq">=</div>
+    <div class="ex-right">10 years of primary school for every child in Sudan.</div>
+  </div>
+  <div class="exchange-row">
+    <div class="ex-left">The full conflict cost so far<br>$60+ billion</div>
+    <div class="ex-eq">=</div>
+    <div class="ex-right">112,000 hospitals. Or food security for 600 million people for a year.</div>
+  </div>
+</div>
+
+<h2>It's not just Sudan.</h2>
+
+<p class="body">Add up all eight active conflicts. The total annual cost — direct military spending, humanitarian response, economic damage, reconstruction — runs to hundreds of billions of dollars every single year.</p>
+
+<p class="body">And that's before you count the global military budget. The world spends <strong>$2.3 trillion on defence every year</strong>. To put that in perspective: the entire United Nations annual budget is about $3 billion. We spend more on weapons in 36 hours than the UN gets for a whole year.</p>
+
+<div class="pull">
+  The world spends $2.3 trillion on defence every year. The entire UN budget is $3 billion. We spend more on weapons in 36 hours than the UN gets for a <em>whole year.</em>
+</div>
+
+<h2>Why does this affect you, even if you're not there?</h2>
+
+<p class="body">Two reasons.</p>
+
+<p class="body">First: the people fleeing these wars have to go somewhere. Over 46 million people are currently displaced by conflict worldwide. When they arrive in Europe, America, or neighbouring countries, that creates pressure — on housing, on services, on politics. The cost of hosting displaced people in the EU alone is estimated at €43 billion a year. That is not free money. It comes from somewhere.</p>
+
+<p class="body">Second: the money spent on these wars is money that cannot be spent on climate change, pandemic preparedness, or the dozens of other global problems that will eventually arrive at your door regardless of where you live.</p>
+
+<div class="callout amber">
+  <div class="callout-label">A note on what "cost" means</div>
+  <div class="callout-title">These numbers are conservative.</div>
+  <div class="callout-body">All figures in this analysis use the lower end of credible estimates. The true costs — when you include lost economic growth, generational trauma, environmental damage, and long-term health impacts — are substantially higher. We use conservative numbers precisely because we don't need to exaggerate. The conservative numbers are damning enough.</div>
+</div>
+
+<h2>Here's the bit that matters.</h2>
+
+<p class="body">Wars are not natural disasters. They don't just happen. They are funded. They are equipped. They involve decisions made by governments, arms companies, and individuals who weigh up whether the cost is worth it.</p>
+
+<p class="body">For most of history, those decisions have been made with very sophisticated analysis on the war side and almost no analysis on the peace side. Nobody builds a spreadsheet showing what 500 days of peace in Sudan would buy. Nobody models the GDP of a country that didn't go to war.</p>
+
+<p class="body"><strong>We do.</strong> That's what this project is. We're not anti-military. We're pro-arithmetic.</p>
+
+<div class="callout green">
+  <div class="callout-label">What comes next</div>
+  <div class="callout-title">The money exists to do this differently.</div>
+  <div class="callout-body">The next three Plain Truth pieces show where the money is, why it isn't being used, and exactly what it would take to change that. The argument gets more hopeful from here — because once you understand where the wealth is concentrated and how it actually works, the solution becomes clear. It's not simple. But it's specific. And specific is where hope lives.</div>
+</div>
+
+<div class="article-nav">
+  <a class="art-nav-link" href="plain-truth.html">
+    <div class="art-nav-dir">← Back</div>
+    <div class="art-nav-title">All Plain Truth pieces</div>
+  </a>
+  <a class="art-nav-link" href="pt-ai.html" style="text-align:right;">
+    <div class="art-nav-dir">Next →</div>
+    <div class="art-nav-title">AI: Killer Drones or Cure for ALS?</div>
+  </a>
+</div>
+
+</article>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>

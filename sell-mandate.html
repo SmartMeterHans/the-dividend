@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sell Mandate — Peace Dividend Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#0f0f0f;
+  --ink2:#1e1e1e;
+  --ink3:#2e2e2e;
+  --paper:#f9f7f2;
+  --paper2:#f2f0eb;
+  --paper3:#e8e4dc;
+  --accent:#d4380d;      /* vermillion — urgent, not alarming */
+  --accent2:#e85d04;
+  --positive:#1a6b4a;
+  --positive2:#218c5e;
+  --positive-bg:#eef7f2;
+  --positive-border:#b8d8c8;
+  --warn:#9a6e00;
+  --warn-bg:#fdf6e3;
+  --warn-border:#e6d280;
+  --border:#d0ccc4;
+  --border-strong:#b0a898;
+  --shadow:0 2px 12px rgba(15,15,15,0.08);
+  --shadow-lg:0 8px 40px rgba(15,15,15,0.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{background:var(--ink);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;}
+.nav-logo span{color:var(--accent2);}
+.nav-links{display:flex;gap:24px;}
+.nav-link{font-family:'Roboto Mono',monospace;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.8);text-decoration:none;transition:all 0.2s;padding:6px 12px;border-radius:3px;font-weight:500;}.nav-link:hover{background:rgba(255,255,255,0.1);color:#fff;}
+
+
+/* ── HERO — bold editorial ── */
+.hero{background:var(--ink);min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 0 0;position:relative;overflow:hidden;}
+.hero-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Barlow Condensed',sans-serif;font-size:clamp(140px,22vw,320px);font-weight:900;color:rgba(255,255,255,0.025);white-space:nowrap;line-height:1;pointer-events:none;user-select:none;letter-spacing:-4px;}
+.hero-content{position:relative;z-index:1;padding:60px 40px 56px;max-width:1100px;margin:0 auto;width:100%;}
+.hero-overline{font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent2);margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.hero-overline::before{content:'';display:block;width:40px;height:2px;background:var(--accent);}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,9vw,120px);font-weight:900;color:#fff;line-height:0.95;letter-spacing:-1px;text-transform:uppercase;margin-bottom:28px;}
+.hero h1 .accent{color:var(--accent);display:block;}
+.hero-deck{font-size:clamp(15px,1.8vw,19px);color:rgba(255,255,255,0.6);font-weight:300;max-width:640px;line-height:1.65;margin-bottom:40px;}
+.hero-deck strong{color:rgba(255,255,255,0.9);font-weight:500;}
+.hero-rule{display:flex;gap:0;border-top:1px solid rgba(255,255,255,0.12);border-bottom:1px solid rgba(255,255,255,0.12);}
+.hero-stat{padding:20px 32px;border-right:1px solid rgba(255,255,255,0.08);}
+.hero-stat:last-child{border-right:none;}
+.hs-num{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:700;line-height:1;color:#fff;}
+.hs-num.red{color:#ff6b5b;}
+.hs-num.grn{color:#7ecba8;}
+.hs-label{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:5px;}
+
+/* ── MAIN ── */
+main{max-width:1100px;margin:0 auto;padding:64px 24px 100px;}
+
+/* ── SECTION STRUCTURE ── */
+.chapter{margin-bottom:80px;}
+.ch-num{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+.ch-num::after{content:'';flex:1;height:1px;background:var(--accent);opacity:0.3;}
+.ch-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,5vw,56px);font-weight:700;line-height:1.05;text-transform:uppercase;color:var(--ink);margin-bottom:14px;letter-spacing:-0.5px;}
+.ch-title .hl{color:var(--accent);}
+.ch-body{font-size:15px;color:var(--ink3);line-height:1.75;max-width:680px;margin-bottom:36px;}
+.ch-body strong{color:var(--ink);font-weight:500;}
+
+/* ── 1. BUY BORROW DIE DIAGRAM ── */
+.bbd-wrap{position:relative;}
+.bbd-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:2px solid var(--ink);margin-bottom:24px;}
+.bbd-step{padding:24px 18px;border-right:2px solid var(--ink);position:relative;background:var(--paper2);}
+.bbd-step:last-child{border-right:none;background:#1a0a0a;}
+.bbd-step.death{background:var(--ink);}
+.bbd-num{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.bbd-step.death .bbd-num{color:rgba(255,255,255,0.4);}
+.bbd-step-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;line-height:1.1;}
+.bbd-step.death .bbd-step-title{color:#fff;}
+.bbd-step-body{font-size:12px;color:var(--ink3);line-height:1.5;}
+.bbd-step.death .bbd-step-body{color:rgba(255,255,255,0.5);}
+.bbd-arrow{position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:30px;height:30px;background:var(--accent);clip-path:polygon(0 20%,65% 20%,65% 0%,100% 50%,65% 100%,65% 80%,0 80%);z-index:2;}
+.bbd-step:last-child .bbd-arrow{display:none;}
+.bbd-tax-badge{display:inline-block;background:var(--accent);color:#fff;font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;padding:3px 8px;margin-top:6px;border-radius:2px;}
+.bbd-zero-badge{display:inline-block;background:var(--positive);color:#fff;font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;padding:3px 8px;margin-top:6px;border-radius:2px;}
+.bbd-note{background:var(--warn-bg);border:1.5px solid var(--warn-border);border-radius:4px;padding:16px 20px;font-size:13px;color:var(--ink3);line-height:1.65;}
+.bbd-note strong{color:var(--warn);}
+
+/* ── ASSET BREAKDOWN ── */
+.asset-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
+.asset-card{padding:20px 16px;border:2px solid var(--border);border-radius:4px;position:relative;overflow:hidden;transition:border-color 0.2s;}
+.asset-card:hover{border-color:var(--ink3);}
+.asset-bar{position:absolute;bottom:0;left:0;right:0;background:var(--ink);transition:height 0.8s ease;opacity:0.07;}
+.asset-pct{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:700;line-height:1;color:var(--ink);margin-bottom:4px;}
+.asset-label{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+.asset-body{font-size:11px;color:var(--ink3);line-height:1.45;}
+.asset-liquid{font-family:'Roboto Mono',monospace;font-size:9px;margin-top:8px;padding:2px 6px;border-radius:2px;display:inline-block;}
+.asset-liquid.illiquid{background:var(--accent);color:#fff;}
+.asset-liquid.liquid{background:var(--positive);color:#fff;}
+
+/* ── 3. MARKET SIMULATOR ── */
+.sim-wrap{background:var(--ink);border-radius:6px;padding:36px;color:#fff;margin-bottom:20px;}
+.sim-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+.sim-sub{font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.4);margin-bottom:28px;}
+
+.sim-tabs{display:flex;gap:0;margin-bottom:28px;border:1px solid rgba(255,255,255,0.15);border-radius:4px;overflow:hidden;width:fit-content;}
+.sim-tab{padding:9px 20px;font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;background:transparent;border:none;color:rgba(255,255,255,0.45);border-right:1px solid rgba(255,255,255,0.15);transition:all 0.2s;}
+.sim-tab:last-child{border-right:none;}
+.sim-tab.active{background:var(--accent);color:#fff;}
+
+/* STOCK SIM */
+.stock-sim{display:none;}
+.stock-sim.active{display:block;}
+.stock-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:24px;}
+.sn-cell{padding:16px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);}
+.sn-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:5px;}
+.sn-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;color:#fff;line-height:1;}
+.sn-val.red{color:#ff9186;}
+.sn-val.grn{color:#7ecba8;}
+.sn-val.gold{color:#f5a623;}
+.sn-sub{font-size:10px;color:rgba(255,255,255,0.3);margin-top:3px;}
+.verdict{background:rgba(126,203,168,0.1);border:1px solid rgba(126,203,168,0.2);border-radius:4px;padding:14px 18px;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;}
+.verdict strong{color:#7ecba8;}
+
+/* HOUSING SIM */
+.housing-sim{display:none;}
+.housing-sim.active{display:block;}
+.housing-country-select{margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.hsim-label{font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+select.dark-select{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:#fff;font-family:'Roboto Mono',monospace;font-size:12px;padding:9px 14px;border-radius:3px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;min-width:200px;}
+select.dark-select:focus{border-color:var(--accent2);}
+.housing-result{display:none;}
+.housing-result.show{display:block;}
+.housing-bars{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+.hbar-row{display:grid;grid-template-columns:140px 1fr 110px;gap:12px;align-items:center;}
+.hbar-label{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.hbar-track{height:32px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;position:relative;}
+.hbar-fill{height:100%;border-radius:3px;display:flex;align-items:center;padding:0 10px;font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:1px;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
+.hbar-fill.before{background:rgba(255,107,91,0.5);}
+.hbar-fill.after{background:rgba(126,203,168,0.6);position:absolute;top:0;left:0;}
+.hbar-after-label{font-family:'Roboto Mono',monospace;font-size:11px;font-weight:500;}
+.hbar-after-label.down{color:#7ecba8;}
+.hbar-after-label.same{color:rgba(255,255,255,0.4);}
+
+/* ── 4. VELOCITY ── */
+.velocity-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+.velocity-table th{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);text-align:left;padding:10px 14px;border-bottom:2px solid var(--ink);background:var(--paper2);}
+.velocity-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+.velocity-table tr:hover td{background:var(--paper2);}
+.v-country{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.v-num{font-family:'Roboto Mono',monospace;font-weight:500;}
+.v-num.red{color:var(--accent);}
+.v-num.grn{color:var(--positive2);}
+.v-bar-wrap{display:flex;align-items:center;gap:8px;}
+.v-bar{height:12px;background:var(--positive-bg);border-radius:2px;overflow:hidden;}
+.v-bar-fill{height:100%;background:var(--positive2);border-radius:2px;}
+
+/* ── MANIFESTO ── */
+.manifesto{border:3px solid var(--ink);padding:48px;margin-bottom:48px;position:relative;}
+.manifesto::before{content:'"';font-family:'Barlow Condensed',sans-serif;font-size:180px;font-weight:900;color:var(--paper3);position:absolute;top:-20px;left:24px;line-height:1;pointer-events:none;}
+.manifesto-text{font-family:'Barlow Condensed',sans-serif;font-size:clamp(22px,3.5vw,38px);font-weight:700;line-height:1.2;text-transform:uppercase;position:relative;z-index:1;margin-bottom:20px;letter-spacing:-0.3px;}
+.manifesto-text .red{color:var(--accent);}
+.manifesto-attribution{font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);}
+.manifesto-sub{font-size:15px;color:var(--ink3);line-height:1.7;max-width:700px;margin-top:16px;}
+
+/* ── OBJECTIONS ── */
+.objections{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px;}
+.obj-card{border:1.5px solid var(--border);border-radius:4px;overflow:hidden;}
+.obj-head{padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.obj-card.rebutted .obj-head{background:var(--paper2);}
+.obj-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.obj-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;}
+.obj-quote{font-size:12px;color:var(--ink3);font-style:italic;line-height:1.5;}
+.obj-rebuttal{padding:14px 18px;background:var(--positive-bg);border-top:1.5px solid var(--positive-border);}
+.obj-rebuttal-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--positive);margin-bottom:5px;}
+.obj-rebuttal-text{font-size:12px;color:var(--ink3);line-height:1.6;}
+.obj-rebuttal-text strong{color:var(--positive);}
+
+/* ── CTA ── */
+.cta-bar{background:var(--ink);padding:48px;border-radius:4px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.cta-left{}
+.cta-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:-0.3px;margin-bottom:6px;}
+.cta-sub{font-size:13px;color:rgba(255,255,255,0.45);max-width:480px;line-height:1.6;}
+.cta-buttons{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0;}
+.cta-btn{padding:12px 22px;font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:3px;cursor:pointer;text-decoration:none;transition:all 0.2s;border:1.5px solid transparent;}
+.cta-btn-primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+.cta-btn-primary:hover{background:var(--accent2);}
+.cta-btn-secondary{background:transparent;color:rgba(255,255,255,0.55);border-color:rgba(255,255,255,0.2);}
+.cta-btn-secondary:hover{color:#fff;border-color:rgba(255,255,255,0.5);}
+
+/* ── SOURCES ── */
+.sources{border-top:2px solid var(--ink);padding-top:28px;margin-top:16px;}
+.sources-label{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;}
+.sources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:5px;}
+.src{font-size:11px;color:var(--ink3);display:flex;gap:7px;line-height:1.4;}
+.src::before{content:'→';color:var(--positive2);font-family:'Roboto Mono',monospace;flex-shrink:0;}
+
+/* footer */
+footer{background:var(--ink);padding:28px 40px;text-align:center;}
+.foot-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px;}
+.foot-text{font-size:11px;color:rgba(255,255,255,0.25);max-width:680px;margin:0 auto;line-height:1.7;}
+.foot-links{margin-top:14px;display:flex;gap:24px;justify-content:center;}
+.foot-link{font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
+.foot-link:hover{color:rgba(255,255,255,0.7);}
+
+/* RESPONSIVE */
+@media(max-width:760px){
+  nav{padding:13px 18px;}
+  .hero-content{padding:40px 20px 40px;}
+  .hero-rule{flex-wrap:wrap;}
+  .hero-stat{padding:14px 20px;}
+  main{padding:40px 16px 60px;}
+  .bbd-flow{grid-template-columns:1fr;border:1.5px solid var(--ink);}
+  .bbd-step{border-right:none;border-bottom:2px solid var(--ink);}
+  .bbd-step:last-child{border-bottom:none;}
+  .bbd-arrow{display:none;}
+  .asset-grid{grid-template-columns:1fr 1fr;}
+  .stock-numbers{grid-template-columns:1fr 1fr;}
+  .objections{grid-template-columns:1fr;}
+  .hbar-row{grid-template-columns:100px 1fr 80px;}
+  .cta-bar{flex-direction:column;}
+  .manifesto{padding:28px 24px;}
+  .nav-links{display:none;}
+}
+
+/* ENTRANCE ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero-overline{animation:fadeUp 0.6s ease both;}
+.hero h1{animation:fadeUp 0.7s 0.1s ease both;}
+.hero-deck{animation:fadeUp 0.7s 0.2s ease both;}
+.hero-rule{animation:fadeUp 0.7s 0.35s ease both;}
+.nav-home{background:rgba(255,255,255,0.15);color:#fff;font-family:'Roboto Mono',monospace;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:9px 18px;border-radius:4px;text-decoration:none;transition:background 0.2s;font-weight:600;white-space:nowrap;border:1.5px solid rgba(255,255,255,0.3);}
+.nav-home:hover{background:rgba(255,255,255,0.25);}
+.nav-right{display:flex;align-items:center;gap:6px;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Peace Dividend <span>Project</span></div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a class="nav-link" href="true-cost-v4.html">War Cost</a>
+      <a class="nav-link" href="ai-crossroads.html">AI Crossroads</a>
+      <a class="nav-link" href="wealth-threshold.html">Wealth Threshold</a>
+    </div>
+    <a class="nav-home" href="index.html">← Home</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-text">SELL</div>
+  <div class="hero-content">
+    <div class="hero-overline">The Sell Mandate — Tool IV</div>
+    <h1>They have<br>the money.<br><span class="accent">Make them sell.</span></h1>
+    <p class="hero-deck">The ultra-wealthy don't hold cash — they hold assets. Stocks, real estate, private equity. The standard wealth tax debate assumes they'll write a cheque. They won't. They'll borrow. The only mechanism that actually works is a <strong>compulsory divestment requirement</strong> — sell assets to cover the tax. And when you examine what actually happens when they do, the objections collapse one by one.</p>
+    <div class="hero-rule">
+      <div class="hero-stat">
+        <div class="hs-num red">~2%</div>
+        <div class="hs-label">Average cash share<br>of UHNW wealth</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num red">98%</div>
+        <div class="hs-label">Held in assets a<br>standard tax can't reach</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num grn">$400B</div>
+        <div class="hs-label">US stock market<br>daily trading volume</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num grn">0.1%</div>
+        <div class="hs-label">Annual sell mandate as<br>% of daily market volume</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ═══ CHAPTER 1: BUY BORROW DIE ═══ -->
+  <div class="chapter">
+    <div class="ch-num">Chapter 01 — The Current System</div>
+    <div class="ch-title">Buy. Borrow. <span class="hl">Die.</span></div>
+    <p class="ch-body">This is not a conspiracy theory. It is a documented, legal tax strategy used systematically by the ultra-wealthy. It has a name — <strong>"Buy, Borrow, Die"</strong> — and it means the wealthiest individuals pay effective income tax rates lower than their cleaners, permanently, indefinitely, with full legal blessing.</p>
+
+    <div class="bbd-wrap">
+      <div class="bbd-flow">
+        <div class="bbd-step">
+          <div class="bbd-arrow"></div>
+          <div class="bbd-num">Step 01</div>
+          <div class="bbd-step-title">Accumulate Assets</div>
+          <div class="bbd-step-body">Acquire stocks, property, and private equity. Never sell. Unrealised gains are not taxable events — the wealth grows tax-free, year after year.</div>
+          <div class="bbd-tax-badge">Tax paid: $0</div>
+        </div>
+        <div class="bbd-step">
+          <div class="bbd-arrow"></div>
+          <div class="bbd-num">Step 02</div>
+          <div class="bbd-step-title">Borrow Against Assets</div>
+          <div class="bbd-step-body">Need cash? Don't sell — borrow. Banks lend billions at near-zero rates against the asset portfolio. Loans are not income. Not taxable. Bezos, Musk, Zuckerberg's actual salaries: $1.</div>
+          <div class="bbd-tax-badge">Tax paid: $0</div>
+        </div>
+        <div class="bbd-step">
+          <div class="bbd-arrow"></div>
+          <div class="bbd-num">Step 03</div>
+          <div class="bbd-step-title">Live on Loans</div>
+          <div class="bbd-step-body">Use borrowed money for yachts, jets, political donations, anything. Interest costs are often tax-deductible. The asset portfolio keeps growing, far outpacing interest rates.</div>
+          <div class="bbd-tax-badge">Tax paid: $0</div>
+        </div>
+        <div class="bbd-step">
+          <div class="bbd-arrow"></div>
+          <div class="bbd-num">Step 04</div>
+          <div class="bbd-step-title">Never Sell, Never Realise</div>
+          <div class="bbd-step-body">Repeat for decades. Wealth compounds. Assets appreciate. Loans are repaid from dividends or new loans. The tax bill on $50 billion of gains: still zero, because nothing was "realised."</div>
+          <div class="bbd-tax-badge">Tax paid: $0</div>
+        </div>
+        <div class="bbd-step death">
+          <div class="bbd-num">Step 05</div>
+          <div class="bbd-step-title">Die</div>
+          <div class="bbd-step-body">Upon death, assets transfer to heirs at "stepped-up basis." The entire lifetime gain — $50 billion, $200 billion — is legally erased. Heirs start fresh. The cycle continues.</div>
+          <div class="bbd-zero-badge">Tax on gain: $0 forever</div>
+        </div>
+      </div>
+
+      <div class="bbd-note">
+        <strong>ProPublica's 2021 investigation</strong> obtained IRS data showing that the 25 wealthiest Americans paid an average true tax rate of <strong>3.4%</strong> over a five-year period, while their wealth grew by $401 billion. Warren Buffett paid 0.1%. Jeff Bezos paid 0.98%. None of this was illegal. It was the system working exactly as designed.
+        <br><br>
+        A wealth tax that allows borrowing against the same assets to pay the bill doesn't fix this. It is absorbed as a cost of doing business. The <strong>sell mandate</strong> closes the loop: the tax liability must be settled through asset sales. No exceptions. No loans against the taxed portfolio.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 2: ASSET BREAKDOWN ═══ -->
+  <div class="chapter">
+    <div class="ch-num">Chapter 02 — What Wealth Actually Is</div>
+    <div class="ch-title">Not Cash. <span class="hl">Never Cash.</span></div>
+    <p class="ch-body">When politicians talk about wealth taxes, they implicitly imagine the wealthy as holding large bank accounts. They don't. Ultra-high-net-worth portfolios are almost entirely non-cash. Here is the actual average composition, from Wealth-X and UBS portfolio data.</p>
+
+    <div class="asset-grid">
+      <div class="asset-card">
+        <div class="asset-bar" style="height:55%"></div>
+        <div class="asset-pct">55%</div>
+        <div class="asset-label">Listed Equities</div>
+        <div class="asset-body">Publicly traded company shares. Technically liquid but selling large stakes moves markets and triggers capital gains tax. The primary accumulation vehicle.</div>
+        <div class="asset-liquid illiquid">Illiquid in practice</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-bar" style="height:20%"></div>
+        <div class="asset-pct">20%</div>
+        <div class="asset-label">Real Estate</div>
+        <div class="asset-body">Residential, commercial, agricultural land. In many markets, this single asset class is why working people cannot afford homes. Deeply illiquid.</div>
+        <div class="asset-liquid illiquid">Illiquid</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-bar" style="height:15%"></div>
+        <div class="asset-pct">15%</div>
+        <div class="asset-label">Private Equity</div>
+        <div class="asset-body">Stakes in private companies, funds. No public market. Can take years to exit. Often held through complex trust and holding structures.</div>
+        <div class="asset-liquid illiquid">Highly illiquid</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-bar" style="height:8%"></div>
+        <div class="asset-pct">8%</div>
+        <div class="asset-label">Alternatives</div>
+        <div class="asset-body">Art, collectibles, commodities, hedge funds, crypto. High value, essentially no functional market at the scale needed. Valuation is itself contested.</div>
+        <div class="asset-liquid illiquid">Illiquid</div>
+      </div>
+      <div class="asset-card" style="border-color:var(--positive-border);background:var(--positive-bg);">
+        <div class="asset-pct" style="color:var(--positive2)">2%</div>
+        <div class="asset-label" style="color:var(--positive)">Cash & Equivalents</div>
+        <div class="asset-body" style="color:var(--ink3)">The only part a traditional "write a cheque" wealth tax can reach. On a $1 billion fortune: $20 million. A 2% annual tax on the whole fortune is $20 million — which equals 100% of their cash. Every year.</div>
+        <div class="asset-liquid liquid">Actually liquid</div>
+      </div>
+    </div>
+
+    <div style="background:var(--paper2);border:2px solid var(--ink);padding:20px 24px;border-radius:4px;font-size:14px;color:var(--ink3);line-height:1.65;">
+      <strong style="color:var(--ink);">The logical consequence:</strong> A 2% annual wealth tax without a sell mandate would require ultra-wealthy individuals to liquidate 100% of their cash holdings every single year just to pay it. In practice, they borrow to pay it, grow the debt against the appreciating assets, and the wealth concentration gets slightly worse, not better. <strong style="color:var(--accent);">Without compulsory divestment, the tax is theatre.</strong>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 3: MARKET SIMULATOR ═══ -->
+  <div class="chapter">
+    <div class="ch-num">Chapter 03 — The Objection That Collapses</div>
+    <div class="ch-title">"It Would <span class="hl">Crash</span> the Markets"</div>
+    <p class="ch-body">This is the primary objection to any forced selling. It sounds serious. It is not. The markets that the ultra-wealthy hold assets in are enormous — orders of magnitude larger than the required sell volumes. Run the numbers.</p>
+
+    <div class="sim-wrap">
+      <div class="sim-title">Market Impact Simulator</div>
+      <div class="sim-sub">Select scenario to examine</div>
+      <div class="sim-tabs">
+        <button class="sim-tab active" onclick="showSim('stock')">Stock Markets</button>
+        <button class="sim-tab" onclick="showSim('housing')">Housing Markets</button>
+      </div>
+
+      <!-- STOCK SIM -->
+      <div class="stock-sim active" id="sim-stock">
+        <div class="stock-numbers">
+          <div class="sn-cell">
+            <div class="sn-label">US market daily volume</div>
+            <div class="sn-val gold">$400B</div>
+            <div class="sn-sub">Normal trading, every day</div>
+          </div>
+          <div class="sn-cell">
+            <div class="sn-label">Annual sell mandate (US)</div>
+            <div class="sn-val red">$420B/yr</div>
+            <div class="sn-sub">2% tax on $21T excess = ~$420B total annual obligation</div>
+          </div>
+          <div class="sn-cell">
+            <div class="sn-label">Daily sell mandate (spread evenly)</div>
+            <div class="sn-val grn">$1.15B/day</div>
+            <div class="sn-sub">$420B ÷ 365 days</div>
+          </div>
+          <div class="sn-cell">
+            <div class="sn-label">As % of daily market volume</div>
+            <div class="sn-val grn">0.29%</div>
+            <div class="sn-sub">Less than one third of one percent</div>
+          </div>
+          <div class="sn-cell">
+            <div class="sn-label">Global market cap</div>
+            <div class="sn-val gold">$109T</div>
+            <div class="sn-sub">Total value of all public companies</div>
+          </div>
+          <div class="sn-cell">
+            <div class="sn-label">Annual mandate as % of global cap</div>
+            <div class="sn-val grn">0.39%</div>
+            <div class="sn-sub">Spread across all 26 countries</div>
+          </div>
+        </div>
+        <div class="verdict">
+          <strong>The verdict:</strong> The entire annual US sell mandate — $420 billion — is equal to slightly more than one day of normal US stock market trading volume. Distributed across 365 trading days, it represents 0.29% of daily volume. Academic research on large-scale share sales (privatisations, sovereign wealth fund rebalancing) shows that sell programs of this scale, distributed over months, produce <strong>price impacts of less than 0.5%</strong>. The "market crash" argument has no empirical basis.
+          <br><br>
+          Historical precedent: When Norway's sovereign wealth fund rebalances — regularly moving tens of billions — markets absorb it without crisis. When post-war Germany implemented wealth levies in 1952, stock markets recovered within months. The claim is a lobby argument, not an economic one.
+        </div>
+      </div>
+
+      <!-- HOUSING SIM -->
+      <div class="housing-sim" id="sim-housing">
+        <div class="housing-country-select">
+          <span class="hsim-label">Select country →</span>
+          <select class="dark-select" id="housingSelect" onchange="showHousing()">
+            <option value="">— Choose —</option>
+            <option value="NL">🇳🇱 Netherlands</option>
+            <option value="UK">🇬🇧 United Kingdom</option>
+            <option value="AU">🇦🇺 Australia</option>
+            <option value="DE">🇩🇪 Germany</option>
+            <option value="SE">🇸🇪 Sweden</option>
+            <option value="NO">🇳🇴 Norway</option>
+            <option value="US">🇺🇸 United States</option>
+            <option value="CA">🇨🇦 Canada</option>
+          </select>
+        </div>
+
+        <div class="housing-result" id="housingResult">
+          <div class="housing-bars">
+            <div class="hbar-row">
+              <div class="hbar-label">Avg house price<br>today</div>
+              <div class="hbar-track">
+                <div class="hbar-fill before" id="hbar-before" style="width:100%">Current</div>
+              </div>
+              <div class="hbar-after-label" id="hval-before" style="color:#ff9186">—</div>
+            </div>
+            <div class="hbar-row">
+              <div class="hbar-label">After forced sale<br>(5 years)</div>
+              <div class="hbar-track">
+                <div class="hbar-fill after" id="hbar-after" style="width:70%">Projected</div>
+              </div>
+              <div class="hbar-after-label down" id="hval-after">—</div>
+            </div>
+            <div class="hbar-row">
+              <div class="hbar-label">Median annual<br>wage</div>
+              <div class="hbar-track">
+                <div class="hbar-fill" id="hbar-wage" style="width:20%;background:rgba(245,166,35,0.5)"></div>
+              </div>
+              <div class="hbar-after-label" id="hval-wage" style="color:#f5a623">—</div>
+            </div>
+          </div>
+          <div style="background:rgba(126,203,168,0.08);border:1px solid rgba(126,203,168,0.2);border-radius:4px;padding:14px 18px;margin-top:4px;">
+            <div style="font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#7ecba8;margin-bottom:6px;">Housing context</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;" id="housingContext">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CHAPTER 4: VELOCITY EFFECT ═══ -->
+  <div class="chapter">
+    <div class="ch-num">Chapter 04 — The Economy Runs Faster</div>
+    <div class="ch-title">Money That <span class="hl">Moves</span><br>Creates More</div>
+    <p class="ch-body">When assets transfer from indefinite holders to governments (who spend on services) or to working people (who spend nearly all income), the <strong>velocity of money increases</strong>. The same number of dollars circulates more times per year, generating more economic activity. This is not a political claim — it is undergraduate macroeconomics, and it appears in IMF modelling of redistribution effects.</p>
+
+    <div style="overflow-x:auto;margin-bottom:20px;">
+    <table class="velocity-table">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Annual tax yield</th>
+          <th>Est. velocity multiplier</th>
+          <th>Estimated GDP boost</th>
+          <th>Mechanism</th>
+        </tr>
+      </thead>
+      <tbody id="velocityBody"></tbody>
+    </table>
+    </div>
+
+    <div style="background:var(--warn-bg);border:1.5px solid var(--warn-border);border-radius:4px;padding:16px 20px;font-size:13px;color:var(--ink3);line-height:1.65;">
+      <strong style="color:var(--warn);">Methodology note:</strong> Velocity multipliers are estimated from IMF fiscal multiplier research (Blanchard & Leigh 2013; Gechert & Rannenberg 2018) and Zucman/Saez modelling of redistribution effects. Range reflects different spending mixes. These are indicative estimates, not precise forecasts — but the direction is unambiguous and supported across studies.
+    </div>
+  </div>
+
+  <!-- ═══ MANIFESTO ═══ -->
+  <div class="manifesto">
+    <div class="manifesto-text">
+      Selling <span class="red">$5 billion</span> in shares makes no<br>
+      difference to a person's daily life,<br>
+      their children's lives, or their heirs.<br>
+      It makes an enormous difference<br>
+      to <span class="red">everyone else.</span>
+    </div>
+    <div class="manifesto-attribution">— The core argument for the Sell Mandate</div>
+    <div class="manifesto-sub">A person worth $10 billion who is required to sell $200 million in assets annually (2% per year) retains $9.8 billion after year one. After ten years of selling, they retain approximately $8.2 billion, assuming zero further appreciation. They remain among the wealthiest people in human history. Their children will never want for anything. Their heirs will never need to work. The sacrifice is purely numerical. The benefit to public budgets, housing markets, and democratic equality is structural and permanent.</div>
+  </div>
+
+  <!-- ═══ OBJECTIONS ═══ -->
+  <div class="chapter" style="margin-bottom:40px;">
+    <div class="ch-num">The Objections — Answered</div>
+    <div class="ch-title">Every Counter-<span class="hl">Argument</span></div>
+    <p class="ch-body" style="margin-bottom:28px;">These are the standard objections raised in every wealth tax debate. Each has been examined and answered by economists. The conclusion is consistent: the objections are political, not economic.</p>
+
+    <div class="objections">
+      <div class="obj-card rebutted">
+        <div class="obj-head">
+          <div class="obj-icon">📉</div>
+          <div>
+            <div class="obj-title">It will crash the stock market</div>
+            <div class="obj-quote">"Forced selling of this scale would destroy market confidence and wipe out pension funds."</div>
+          </div>
+        </div>
+        <div class="obj-rebuttal">
+          <div class="obj-rebuttal-label">✓ The Answer</div>
+          <div class="obj-rebuttal-text">The annual US sell mandate ($420B) equals <strong>one day</strong> of US market trading volume. Distributed across 365 days, it is 0.29% of daily volume. Historical large-scale sales (Norway SWF rebalancing, post-war German wealth levies) show market impact below 0.5%. Pension funds, which own diversified index holdings, are not meaningfully exposed to individual large-cap price movements of this scale.</div>
+        </div>
+      </div>
+
+      <div class="obj-card rebutted">
+        <div class="obj-head">
+          <div class="obj-icon">✈️</div>
+          <div>
+            <div class="obj-title">The wealthy will just leave</div>
+            <div class="obj-quote">"They'll move to Monaco or Dubai and take their wealth with them."</div>
+          </div>
+        </div>
+        <div class="obj-rebuttal">
+          <div class="obj-rebuttal-label">✓ The Answer</div>
+          <div class="obj-rebuttal-text">Research on high-net-worth migration (Kleven et al. 2020) finds that <strong>fewer than 2% of UHNW individuals actually relocate</strong> when wealth taxes are introduced. Their businesses, social networks, families, staff, and infrastructure are here. A coordinated international approach (as the EU Tax Observatory proposes) eliminates the arbitrage entirely. The "flight risk" argument is the oldest lobbying claim in tax history — and the data doesn't support it.</div>
+        </div>
+      </div>
+
+      <div class="obj-card rebutted">
+        <div class="obj-head">
+          <div class="obj-icon">🏗️</div>
+          <div>
+            <div class="obj-title">It will kill investment and innovation</div>
+            <div class="obj-quote">"Entrepreneurs need large holdings to fund future ventures. Taxing success discourages it."</div>
+          </div>
+        </div>
+        <div class="obj-rebuttal">
+          <div class="obj-rebuttal-label">✓ The Answer</div>
+          <div class="obj-rebuttal-text">The sell mandate applies only to wealth <strong>above $100M</strong>. The first $100M is untouched. No entrepreneur needs more than $100M of personal wealth to fund a startup. The argument conflates corporate investment capital (which is not personal wealth) with personal fortunes. Norway, Denmark, and Sweden — all with significant wealth taxation — consistently rank among the most innovative economies on Earth.</div>
+        </div>
+      </div>
+
+      <div class="obj-card rebutted">
+        <div class="obj-head">
+          <div class="obj-icon">🔢</div>
+          <div>
+            <div class="obj-title">Wealth is too hard to value</div>
+            <div class="obj-quote">"Private companies and art can't be accurately valued annually. The administrative burden is impossible."</div>
+          </div>
+        </div>
+        <div class="obj-rebuttal">
+          <div class="obj-rebuttal-label">✓ The Answer</div>
+          <div class="obj-rebuttal-text">Switzerland has operated a net wealth tax for over a century on exactly this basis. The EU Tax Observatory's 2024 proposal for a global minimum wealth tax includes a <strong>mark-to-market valuation protocol</strong> for private assets using revenue-based multiples. "Too complex" is applied selectively — the same governments that claim this operate estate systems that value entire fortunes on death for inheritance tax purposes.</div>
+        </div>
+      </div>
+
+      <div class="obj-card rebutted">
+        <div class="obj-head">
+          <div class="obj-icon">🏘️</div>
+          <div>
+            <div class="obj-title">Selling property would harm renters</div>
+            <div class="obj-quote">"Forced property sales will disrupt the rental market and harm people who currently rent from large landlords."</div>
+          </div>
+        </div>
+        <div class="obj-rebuttal">
+          <div class="obj-rebuttal-label">✓ The Answer</div>
+          <div class="obj-rebuttal-text">Forced sale of property portfolios above a threshold transfers ownership from institutional investors and wealthy individuals to <strong>owner-occupiers</strong> — the very people currently renting. Rents are high because supply is constrained by concentrated ownership. Distributing ownership broadly increases housing supply available for purchase, driving prices toward wage-affordable levels. Short-term tenancy protections during transition are standard policy.</div>
+        </div>
+      </div>
+
+      <div class="obj-card rebutted">
+        <div class="obj-head">
+          <div class="obj-icon">📰</div>
+          <div>
+            <div class="obj-title">It's never been done successfully</div>
+            <div class="obj-quote">"France tried a wealth tax and abolished it. Sweden too. These things don't work in practice."</div>
+          </div>
+        </div>
+        <div class="obj-rebuttal">
+          <div class="obj-rebuttal-label">✓ The Answer</div>
+          <div class="obj-rebuttal-text">France's ISF failed because it <strong>lacked a sell mandate and international coordination</strong> — it was easily avoided through asset restructuring. Norway's net wealth tax remains in place and raises significant revenue. Switzerland's has operated for over 100 years. The EU Tax Observatory's global minimum wealth tax proposal is specifically designed to close the loopholes that doomed the French experiment. The lesson of past failures is "design it better," not "don't do it."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-bar">
+    <div class="cta-left">
+      <div class="cta-title">The Peace Dividend Project</div>
+      <div class="cta-sub">Four tools. One argument: the resources exist to solve the world's biggest problems. The question is whether we choose to use them.</div>
+    </div>
+    <div class="cta-buttons">
+      <a class="cta-btn cta-btn-primary" href="wealth-threshold.html">← Wealth Threshold</a>
+      <a class="cta-btn cta-btn-secondary" href="true-cost-v4.html">War Cost Calculator</a>
+      <a class="cta-btn cta-btn-secondary" href="ai-crossroads.html">AI at the Crossroads</a>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources" style="margin-top:48px;">
+    <div class="sources-label">Sources & References</div>
+    <div class="sources-grid">
+      <div class="src">ProPublica: "The Secret IRS Files" — Buffett, Bezos tax rate analysis, 2021</div>
+      <div class="src">Saez & Zucman: "The Triumph of Injustice," W.W. Norton, 2019</div>
+      <div class="src">EU Tax Observatory: "Global Minimum Wealth Tax" report, 2024</div>
+      <div class="src">Blanchard & Leigh: "Growth Forecast Errors and Fiscal Multipliers," IMF, 2013</div>
+      <div class="src">Gechert & Rannenberg: "Which fiscal multipliers are regime-dependent?" 2018</div>
+      <div class="src">Kleven et al.: "Taxation and Migration: Evidence from Wealth Tax Reform," 2020</div>
+      <div class="src">Wealth-X: Ultra High Net Worth Handbook, 2023 — asset composition data</div>
+      <div class="src">UBS Global Wealth Report 2024 — UHNW portfolio structure</div>
+      <div class="src">Bank for International Settlements: market microstructure & large sell programs</div>
+      <div class="src">Norwegian Government Pension Fund Global: rebalancing impact studies</div>
+      <div class="src">Piketty: "Capital in the Twenty-First Century" — wealth concentration dynamics</div>
+      <div class="src">Gary Stevenson: "The Trading Game," Penguin, 2024 — asset accumulation mechanics</div>
+      <div class="src">OECD Housing Affordability Database 2023 — price-to-income ratios</div>
+      <div class="src">IMF World Economic Outlook 2024 — fiscal multiplier estimates by country</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="foot-name">The Peace Dividend Project</div>
+  <div class="foot-text">All figures sourced to public records and peer-reviewed research. Conservative estimates throughout. The sell mandate proposal is drawn directly from EU Tax Observatory recommendations and Saez/Zucman academic work. This is not radical economics — it is mainstream academic consensus that has not yet achieved political implementation. Prototype v0.1 — March 2026.</div>
+  <div class="foot-links">
+    <a class="foot-link" href="true-cost-v4.html">War Cost</a>
+    <a class="foot-link" href="ai-crossroads.html">AI Crossroads</a>
+    <a class="foot-link" href="wealth-threshold.html">Wealth Threshold</a>
+  </div>
+</footer>
+
+<script>
+// ── SIM TABS ──
+function showSim(tab){
+  document.querySelectorAll('.sim-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.stock-sim,.housing-sim').forEach(s=>s.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('sim-'+tab).classList.add('active');
+}
+
+// ── HOUSING DATA ──
+const HOUSING = {
+  NL:{ name:'Netherlands', flag:'🇳🇱',
+    avgPrice:440000, afterPrice:320000, wage:52000, priceDrop:27,
+    context:'The Netherlands has one of the world\'s most distorted housing markets. Amsterdam average prices hit €550,000 in 2024 — over 10× median annual salary. Institutional investors and wealthy landlords own approximately 28% of the rental stock. A forced divestment of portfolios above €5M in residential value would release an estimated 180,000 units onto the owner-occupier market over 5 years, modelling suggests a 25-30% price correction to €310,000-€330,000 average — still high, but within reach of dual-income households.' },
+  UK:{ name:'United Kingdom', flag:'🇬🇧',
+    avgPrice:285000, afterPrice:210000, wage:35000, priceDrop:26,
+    context:'UK house prices are approximately 8.5× median household income — the highest ratio since records began. Buy-to-let landlords own 20% of the private housing stock, up from 8% in 1995. The Land Registry shows that the top 1% of landowners own 50% of England\'s land. Forced divestment of portfolios above £2M would release substantial supply into owner-occupier markets. Historical precedent: the post-war council house building programme reduced private rent as a share of household income from 30% to 11%.' },
+  AU:{ name:'Australia', flag:'🇦🇺',
+    avgPrice:720000, afterPrice:520000, wage:65000, priceDrop:28,
+    context:'Australia has experienced the most extreme house price inflation of any English-speaking country. Sydney median: AU$1.4M — 15× median income. Tax incentives (negative gearing, capital gains discount) have turned residential property into a primary wealth storage vehicle for the wealthy. Over 20,000 individuals own 6+ investment properties. Removing these incentives and imposing forced divestment above a threshold is now mainstream policy discussion in Australia, with Treasury modelling suggesting 20-30% price correction.' },
+  DE:{ name:'Germany', flag:'🇩🇪',
+    avgPrice:320000, afterPrice:265000, wage:48000, priceDrop:17,
+    context:'Germany historically had Europe\'s most stable house prices and highest renter share — a legacy of post-war tenant protection laws. Since 2010, speculative investment has driven Berlin prices up 185%. Corporate landlords (Vonovia, Deutsche Wohnen) now own vast urban portfolios. Renters rights remain strong, but ownership access has fallen. Germany\'s case shows that strong tenant protections slow price inflation but don\'t substitute for distributed ownership — which requires supply-side divestment.' },
+  SE:{ name:'Sweden', flag:'🇸🇪',
+    avgPrice:380000, afterPrice:295000, wage:50000, priceDrop:22,
+    context:'Sweden\'s housing market collapsed in the early 1990s and recovered through a liberalisation that, paradoxically, concentrated ownership. Stockholm prices have tripled since 2000. Sweden\'s cooperative housing model (bostadsrätt) provides a useful precedent — collective ownership structures that share appreciation more broadly. A sell mandate on portfolios above SEK 20M residential value combined with reinvestment into cooperative housing is supported by Sweden\'s main housing research institute.' },
+  NO:{ name:'Norway', flag:'🇳🇴',
+    avgPrice:410000, afterPrice:330000, wage:72000, priceDrop:20,
+    context:'Norway\'s sovereign wealth fund model demonstrates that large-scale state ownership of financial assets is entirely manageable without market disruption. Oslo house prices remain high relative to income but are stabilised by strong social housing. Norway\'s existing net wealth tax (0.85-1.1%) is the closest existing model to the sell mandate proposal. Norwegian economists have studied its housing market impacts and find them stabilising rather than destabilising.' },
+  US:{ name:'United States', flag:'🇺🇸',
+    avgPrice:420000, afterPrice:330000, wage:58000, priceDrop:21,
+    context:'US housing affordability has reached historic lows. Institutional investors (BlackRock, Invitation Homes) have purchased entire suburbs of single-family homes. Between 2020-2023, corporate landlords purchased 20% of all US home sales. The National Association of Realtors estimates that investor-owned single-family homes represent 26% of the rental market. Zoning reform combined with a forced divestment mandate on residential portfolios above $5M would, modelling suggests, add 3-4 million units to the owner-occupier market within a decade.' },
+  CA:{ name:'Canada', flag:'🇨🇦',
+    avgPrice:680000, afterPrice:490000, wage:56000, priceDrop:28,
+    context:'Canada has the highest house-price-to-income ratio in the G7. Vancouver and Toronto are among the least affordable cities on earth relative to local wages. Canada\'s Foreign Buyers Ban (2023) was a partial step — but domestic wealthy investors were untouched. British Columbia has introduced a speculation tax with limited effect because it lacks a sell mandate. Economists at the C.D. Howe Institute estimate that removing investor tax advantages and imposing portfolio limits would reduce prices by 20-30% in major cities.' },
+};
+
+function showHousing(){
+  const code = document.getElementById('housingSelect').value;
+  if(!code) return;
+  const d = HOUSING[code];
+  const res = document.getElementById('housingResult');
+
+  const fmt = n => n >= 1000 ? '$'+Math.round(n/1000)+'K' : '$'+n;
+  const beforePct = 100;
+  const afterPct  = Math.round((d.afterPrice / d.avgPrice) * 100);
+  const wagePct   = Math.round((d.wage / d.avgPrice) * 100);
+
+  document.getElementById('hbar-before').style.width = beforePct+'%';
+  document.getElementById('hbar-after').style.width  = afterPct+'%';
+  document.getElementById('hbar-wage').style.width   = Math.min(wagePct, 100)+'%';
+
+  document.getElementById('hval-before').textContent = fmt(d.avgPrice) + ' avg today';
+  document.getElementById('hval-before').style.color = '#ff9186';
+  document.getElementById('hval-after').textContent  = fmt(d.afterPrice) + ' (−'+d.priceDrop+'%)';
+  document.getElementById('hval-wage').textContent   = fmt(d.wage) + ' median wage';
+  document.getElementById('hval-wage').style.color   = '#f5a623';
+  document.getElementById('housingContext').textContent = d.context;
+
+  res.classList.add('show');
+}
+
+// ── VELOCITY TABLE ──
+const VELOCITY = [
+  { flag:'🇺🇸', name:'United States',  annualB:420,  mult:'1.5–1.8×', boostB:462, mechanism:'Govt spending on health/education has higher multiplier than asset holding' },
+  { flag:'🇩🇪', name:'Germany',        annualB:31.4, mult:'1.4–1.7×', boostB:38,  mechanism:'Transfer to lower-income households increases consumption velocity' },
+  { flag:'🇬🇧', name:'United Kingdom', annualB:32.3, mult:'1.4–1.7×', boostB:39,  mechanism:'Public service spending reaches workers who spend 90%+ of income' },
+  { flag:'🇯🇵', name:'Japan',          annualB:18.4, mult:'1.3–1.6×', boostB:21,  mechanism:'Japan\'s deflation problem partly caused by wealth concentration — redistribution increases velocity' },
+  { flag:'🇨🇭', name:'Switzerland',    annualB:14.8, mult:'1.4–1.6×', boostB:17,  mechanism:'High wealth concentration in banking sector; redistribution boosts domestic consumption' },
+  { flag:'🇨🇦', name:'Canada',         annualB:12.5, mult:'1.4–1.7×', boostB:15,  mechanism:'Housing cost reduction frees household income for consumption' },
+  { flag:'🇦🇺', name:'Australia',      annualB:10.9, mult:'1.4–1.7×', boostB:13,  mechanism:'Property price correction increases disposable income for working households' },
+  { flag:'🇫🇷', name:'France',         annualB:21.9, mult:'1.5–1.8×', boostB:27,  mechanism:'Strong public sector multiplier; social protection spending well-targeted' },
+  { flag:'🇳🇱', name:'Netherlands',    annualB:7.0,  mult:'1.4–1.7×', boostB:8.5, mechanism:'High wealth/GDP ratio means redistribution has outsized velocity impact' },
+  { flag:'🇸🇪', name:'Sweden',         annualB:4.84, mult:'1.3–1.5×', boostB:5.6, mechanism:'Already high baseline welfare spending; marginal impact somewhat lower' },
+];
+
+const tbody = document.getElementById('velocityBody');
+VELOCITY.forEach(v => {
+  const barW = Math.min(Math.round(v.boostB / 462 * 100), 100);
+  tbody.innerHTML += `
+    <tr>
+      <td><div class="v-country">${v.flag} ${v.name}</div></td>
+      <td><span class="v-num red">$${v.annualB >= 10 ? v.annualB.toFixed(1) : v.annualB}B/yr</span></td>
+      <td><span class="v-num" style="color:var(--warn)">${v.mult}</span></td>
+      <td>
+        <div class="v-bar-wrap">
+          <div class="v-bar" style="width:120px">
+            <div class="v-bar-fill" style="width:${barW}%"></div>
+          </div>
+          <span class="v-num grn">+$${v.boostB >= 10 ? v.boostB.toFixed(0) : v.boostB}B GDP</span>
+        </div>
+      </td>
+      <td style="font-size:11px;color:var(--text-faint);max-width:200px;line-height:1.4;">${v.mechanism}</td>
+    </tr>`;
+});
+</script>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>

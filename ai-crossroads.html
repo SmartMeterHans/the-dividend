@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI at the Crossroads — The Peace Dividend Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#ffffff; --bg2:#f5f9f6; --bg3:#eaf3ee; --bg4:#f0f7f2;
+  --ink:#0f1f15; --ink2:#1e3028; --ink3:#3a5040; --ink4:#5a7060;
+  --green:#0d7a40; --green2:#0f9450; --green3:#12b060; --green-bg:#eaf5ef; --green-border:#9dd4b4;
+  --red:#b52010; --red2:#d42515; --red-bg:#fdf0ee; --red-border:#e8b0a8;
+  --amber:#9a6200; --amber-bg:#fdf5e6; --amber-border:#e8c87a;
+  --border:#d8e6dd; --border-strong:#b0ccba;
+  --shadow:0 2px 12px rgba(15,31,21,0.07); --shadow-lg:0 6px 32px rgba(15,31,21,0.11);
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{background:#fff;border-bottom:2px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:var(--shadow);}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:20px;color:var(--ink);text-decoration:none;font-weight:400;}
+.nav-logo span{color:var(--green);font-style:italic;}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.nav-home{background:var(--green);color:#fff;font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:10px 20px;border-radius:4px;text-decoration:none;transition:background 0.2s;white-space:nowrap;font-weight:600;}
+.nav-home:hover{background:var(--green2);}
+.nav-links{display:flex;gap:4px;margin-right:8px;}
+.nav-link{font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--ink2);text-decoration:none;padding:7px 14px;border-radius:3px;transition:all 0.2s;font-weight:500;}
+.nav-link:hover{background:var(--green-bg);color:var(--green);}
+.nav-link.active{background:var(--green-bg);color:var(--green);font-weight:500;}
+
+/* ── HERO ── */
+.hero{background:var(--ink);padding:80px 48px 72px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#0f1f15 0%,#162a1e 50%,#0a1a10 100%);}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green3),var(--green),var(--green3));}
+.hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.hero-tag{font-family:var(--mono);font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--green3);margin-bottom:28px;display:flex;align-items:center;gap:14px;font-weight:500;}
+.hero-tag::before{content:'';width:40px;height:2px;background:var(--green3);}
+.hero-headline{font-family:'Instrument Serif',serif;font-size:clamp(56px,9vw,120px);font-weight:400;line-height:0.95;letter-spacing:-2px;margin-bottom:32px;}
+.hero-headline .line-war{color:#ff7060;font-style:italic;display:block;}
+.hero-headline .line-or{color:rgba(255,255,255,0.2);display:block;font-size:0.32em;letter-spacing:8px;font-family:var(--mono);font-style:normal;margin:16px 0;text-transform:uppercase;}
+.hero-headline .line-peace{color:var(--green3);display:block;}
+.hero-statement{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,0.7);line-height:1.7;max-width:580px;margin-bottom:48px;font-weight:400;}
+.hero-statement strong{color:#fff;font-weight:600;}
+.hero-stats{display:flex;gap:2px;flex-wrap:wrap;}
+.hstat{padding:20px 28px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);}
+.hstat-num{font-family:'Instrument Serif',serif;font-size:clamp(32px,4vw,48px);line-height:1;margin-bottom:6px;}
+.hstat-num.red{color:#ff7060;}
+.hstat-num.green{color:var(--green3);}
+.hstat-num.amber{color:#f0b84a;}
+.hstat-label{font-family:var(--mono);font-size:13px;letter-spacing:0px;color:rgba(255,255,255,0.6);line-height:1.5;}
+
+/* ── SECTIONS ── */
+section{padding:88px 48px;}
+.sec-inner{max-width:1100px;margin:0 auto;}
+.sec-tag{font-family:var(--mono);font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.sec-tag::before{content:'';width:28px;height:2px;background:var(--green);}
+.sec-title{font-family:'Instrument Serif',serif;font-size:clamp(36px,5vw,60px);line-height:1.0;letter-spacing:-1px;color:var(--ink);margin-bottom:16px;}
+.sec-title em{font-style:italic;color:var(--green);}
+.sec-title .red{color:var(--red);}
+.sec-body{font-size:17px;color:var(--ink3);line-height:1.75;max-width:680px;margin-bottom:40px;}
+.sec-body strong{color:var(--ink);font-weight:600;}
+
+/* ── SECTION 1: TIMELINE ── */
+.timeline-section{background:var(--bg2);}
+.tl-years{display:flex;justify-content:space-between;margin-bottom:8px;font-family:var(--mono);font-size:13px;letter-spacing:1px;color:var(--ink3);font-weight:500;}
+.tl-track{border:2px solid var(--border-strong);border-radius:6px;overflow:hidden;margin-bottom:24px;}
+.tl-row{height:60px;position:relative;display:flex;align-items:center;border-bottom:1px solid var(--border);}
+.tl-row:last-child{border-bottom:none;}
+.tl-bar{height:100%;position:absolute;left:0;display:flex;align-items:center;padding-left:16px;}
+.tl-bar.r{background:linear-gradient(to right,#fde8e6,#f5c0b8);width:62%;}
+.tl-bar.g{background:linear-gradient(to right,var(--green-bg),#c0e8d0);width:62%;}
+.tl-bar-lbl{font-family:var(--mono);font-size:14px;letter-spacing:0px;font-weight:600;}
+.tl-bar.r .tl-bar-lbl{color:var(--red);}
+.tl-bar.g .tl-bar-lbl{color:var(--green);}
+.tl-now{position:absolute;top:0;bottom:0;width:3px;background:var(--amber);left:62%;}
+.tl-now-tag{position:absolute;top:6px;left:62%;transform:translateX(-50%);font-family:var(--mono);font-size:13px;letter-spacing:0px;color:var(--amber);background:#fff;padding:3px 10px;border:2px solid var(--amber-border);border-radius:3px;font-weight:700;}
+.proj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.proj-cell{padding:22px 20px;background:#fff;border:2px solid var(--border);}
+.proj-cell.now{border-color:var(--amber-border);background:var(--amber-bg);}
+.proj-year{font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;font-weight:600;}
+.proj-cell.now .proj-year{color:var(--amber);}
+.proj-mil{font-family:'Instrument Serif',serif;font-size:36px;color:var(--red);line-height:1;margin-bottom:4px;}
+.proj-hum{font-family:'Instrument Serif',serif;font-size:24px;color:var(--green);line-height:1;margin-bottom:6px;}
+.proj-ratio{font-family:var(--mono);font-size:13px;color:var(--ink3);font-weight:600;}
+.proj-cell.now .proj-ratio{color:var(--amber);font-weight:700;}
+.win-warn{margin-top:24px;padding:20px 24px;border:2px solid var(--red-border);background:var(--red-bg);border-radius:6px;font-size:15px;color:var(--ink2);line-height:1.7;display:flex;gap:16px;align-items:flex-start;}
+.win-warn strong{color:var(--red);}
+
+/* ── SECTION 2: RATIO ── */
+.ratio-section{background:#fff;}
+.ratio-stmt{font-family:'Instrument Serif',serif;font-size:clamp(28px,4.5vw,54px);line-height:1.1;letter-spacing:-0.5px;max-width:860px;margin-bottom:28px;color:var(--ink);}
+.ratio-stmt .red{color:var(--red);}
+.ratio-stmt .green{color:var(--green);}
+.ratio-stmt em{font-style:italic;}
+.ratio-bar-visual{display:flex;align-items:flex-end;gap:24px;margin:36px 0;height:160px;}
+.rbv-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.rbv-bar{width:80px;border-radius:5px 5px 0 0;}
+.rbv-bar.mil{background:linear-gradient(to top,var(--red),#e84030);height:100%;}
+.rbv-bar.hum{background:linear-gradient(to top,var(--green),var(--green3));height:calc(100%/43);min-height:10px;}
+.rbv-lbl{font-family:var(--mono);font-size:14px;letter-spacing:0px;text-transform:uppercase;text-align:center;line-height:1.5;font-weight:600;}
+.rbv-lbl.r{color:var(--red);}
+.rbv-lbl.g{color:var(--green);}
+.ratio-facts{display:flex;gap:3px;flex-wrap:wrap;margin-top:32px;}
+.rf{padding:20px 24px;background:var(--bg2);border:2px solid var(--border);}
+.rf-num{font-family:'Instrument Serif',serif;font-size:40px;line-height:1;margin-bottom:6px;}
+.rf-lbl{font-family:var(--mono);font-size:13px;letter-spacing:0px;color:var(--ink3);line-height:1.5;}
+
+/* ── SECTION 3: PAIRINGS ── */
+.pairings-section{background:var(--bg2);}
+.pairings-list{display:flex;flex-direction:column;gap:3px;margin-top:40px;}
+.pairing{display:grid;grid-template-columns:1fr 56px 1fr;}
+.pairing:hover .p-side{opacity:0.5;}
+.pairing:hover .p-side:hover{opacity:1;}
+.p-side{padding:24px 28px;transition:opacity 0.2s;}
+.p-side.war{background:#fff;border:2px solid var(--red-border);}
+.p-side.peace{background:#fff;border:2px solid var(--green-border);}
+.p-tag{font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-weight:600;}
+.p-side.war .p-tag{color:var(--red);}
+.p-side.peace .p-tag{color:var(--green);}
+.p-name{font-size:clamp(14px,1.6vw,17px);font-weight:700;color:var(--ink);margin-bottom:7px;line-height:1.25;}
+.p-budget{font-family:var(--mono);font-size:13px;margin-bottom:8px;font-weight:500;}
+.p-side.war .p-budget{color:var(--red);}
+.p-side.peace .p-budget{color:var(--green);}
+.p-detail{font-size:14px;color:var(--ink3);line-height:1.6;}
+.p-outcome{font-size:13px;margin-top:10px;padding:8px 12px;border-radius:4px;font-family:var(--mono);line-height:1.5;background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
+.p-mid{display:flex;align-items:center;justify-content:center;background:var(--bg3);border-top:2px solid var(--border);border-bottom:2px solid var(--border);}
+.p-vs{font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;color:var(--ink4);}
+
+/* ── SECTION 4: STARVED ── */
+.starved-section{background:#fff;}
+.starved-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.sc{background:var(--bg2);border:2px solid var(--border);border-radius:8px;padding:24px;transition:border-color 0.25s,box-shadow 0.25s;position:relative;overflow:hidden;}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 0.35s;}
+.sc:hover{border-color:var(--green-border);box-shadow:var(--shadow-lg);}
+.sc:hover::before{transform:scaleX(1);}
+.sc-org{font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:10px;font-weight:600;}
+.sc-name{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:9px;line-height:1.3;}
+.sc-what{font-size:14px;color:var(--ink3);line-height:1.65;margin-bottom:14px;}
+.sc-money{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.sc-m{padding:12px 14px;border-radius:5px;}
+.sc-m.have{background:var(--red-bg);border:1.5px solid var(--red-border);}
+.sc-m.need{background:var(--green-bg);border:1.5px solid var(--green-border);}
+.sc-m-lbl{font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.sc-m.have .sc-m-lbl{color:var(--red);}
+.sc-m.need .sc-m-lbl{color:var(--green);}
+.sc-m-val{font-family:'Instrument Serif',serif;font-size:24px;line-height:1;margin-bottom:3px;}
+.sc-m.have .sc-m-val{color:var(--red);}
+.sc-m.need .sc-m-val{color:var(--green);}
+.sc-m-sub{font-size:12px;color:var(--ink4);line-height:1.3;}
+
+/* ── SECTION 5: CALCULATOR ── */
+.calc-section{background:var(--bg2);}
+.calc-wrap{border:2px solid var(--border-strong);border-radius:8px;overflow:hidden;margin-top:40px;background:#fff;box-shadow:var(--shadow);}
+.calc-top{display:grid;grid-template-columns:1fr 1fr;}
+.calc-side{padding:32px;}
+.calc-side.left{border-right:2px solid var(--border);}
+.calc-stag{font-family:var(--mono);font-size:14px;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;font-weight:600;}
+.calc-side.left .calc-stag{color:var(--green);}
+.calc-side.right .calc-stag{color:var(--red);}
+.calc-lbl{font-size:14px;color:var(--ink3);margin-bottom:8px;}
+select.dsel{width:100%;background:#fff;border:2px solid var(--border-strong);color:var(--ink);font-family:var(--mono);font-size:13px;padding:11px 14px;border-radius:5px;outline:none;appearance:none;cursor:pointer;margin-bottom:16px;transition:border-color 0.2s;}
+select.dsel:focus{border-color:var(--green);}
+.ai-divider{font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:10px;margin-top:4px;display:flex;align-items:center;gap:10px;font-weight:600;}
+.ai-divider::after{content:'';flex:1;height:1px;background:var(--green-border);}
+.ai-inp{width:100%;background:#fff;border:2px solid var(--border-strong);color:var(--ink);font-family:'Syne',sans-serif;font-size:14px;padding:11px 14px;border-radius:5px;outline:none;margin-bottom:10px;transition:border-color 0.2s;}
+.ai-inp:focus{border-color:var(--green);}
+.ai-inp::placeholder{color:var(--ink4);}
+.ai-btn{width:100%;padding:12px;background:var(--green);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:5px;cursor:pointer;font-weight:500;transition:background 0.2s;}
+.ai-btn:hover{background:var(--green2);}
+.ai-loading{display:none;text-align:center;padding:14px;font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--green);}
+.ai-res{display:none;margin-top:12px;padding:16px;background:var(--green-bg);border:1.5px solid var(--green-border);border-radius:5px;font-size:14px;color:var(--ink2);line-height:1.7;}
+.ai-res strong{color:var(--green);}
+.calc-result{display:none;padding:28px 32px;background:var(--green-bg);border-top:2px solid var(--green-border);}
+.calc-result.show{display:block;}
+.cr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:18px;}
+.cr-cell{padding:16px 20px;background:#fff;border:2px solid var(--border);}
+.cr-lbl{font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);margin-bottom:6px;font-weight:500;}
+.cr-val{font-family:'Instrument Serif',serif;font-size:32px;line-height:1;}
+.cr-val.red{color:var(--red);}
+.cr-val.green{color:var(--green);}
+.cr-val.amber{color:var(--amber);}
+.cr-verdict{font-size:15px;color:var(--ink2);line-height:1.7;padding:16px 20px;background:#fff;border:1.5px solid var(--green-border);border-radius:5px;}
+.cr-verdict strong{color:var(--green);}
+
+/* ── SECTION 6: MIND SHIFT ── */
+.mindshift-section{background:var(--bg3);}
+.mindshift-section .sec-tag{color:var(--green);}
+.mindshift-section .sec-tag::before{background:var(--green);}
+.mindshift-section .sec-title{color:var(--ink);}
+.mindshift-section .sec-title em{color:var(--green);}
+.mindshift-section .sec-body{color:var(--ink3);}
+.mindshift-section .sec-body strong{color:var(--ink);}
+.roles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;margin-top:0;}
+.role-card{border:2px solid var(--border);overflow:hidden;border-radius:6px;background:#fff;}
+.role-war{padding:20px 24px;background:var(--red-bg);border-bottom:2px solid var(--red-border);}
+.role-peace{padding:20px 24px;background:var(--green-bg);}
+.role-tag{font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;font-weight:500;}
+.role-war .role-tag{color:var(--red);}
+.role-peace .role-tag{color:var(--green);}
+.role-skill{font-family:var(--mono);font-size:13px;color:var(--amber);margin-bottom:7px;letter-spacing:0px;font-weight:700;}
+.role-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px;line-height:1.25;}
+.role-desc{font-size:13px;color:var(--ink3);line-height:1.6;}
+.direct-addr{margin-top:3px;padding:36px 40px;background:var(--green-bg);border:2px solid var(--green-border);border-radius:6px;}
+.da-text{font-family:'Instrument Serif',serif;font-size:clamp(22px,3vw,36px);line-height:1.15;margin-bottom:20px;color:var(--ink);letter-spacing:-0.3px;}
+.da-text em{font-style:italic;color:var(--green);}
+.da-body{font-size:15px;color:var(--ink3);line-height:1.8;max-width:680px;}
+.da-body strong{color:var(--ink);font-weight:600;}
+
+/* ── SECTION 7: AGENDA ── */
+.agenda-section{background:var(--bg2);}
+.agenda-list{display:flex;flex-direction:column;gap:3px;margin-top:40px;}
+.ag-item{display:grid;grid-template-columns:80px 1fr 210px;background:#fff;border:2px solid var(--border);transition:border-color 0.2s,box-shadow 0.2s;}
+.ag-item:hover{border-color:var(--green-border);box-shadow:var(--shadow);}
+.ag-num{padding:28px 16px;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:44px;color:var(--border-strong);border-right:2px solid var(--border);font-style:italic;}
+.ag-body{padding:24px 28px;border-right:2px solid var(--border);}
+.ag-tag{font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:8px;font-weight:600;}
+.ag-title{font-size:clamp(15px,1.8vw,19px);font-weight:700;color:var(--ink);margin-bottom:7px;line-height:1.25;}
+.ag-desc{font-size:14px;color:var(--ink3);line-height:1.65;}
+.ag-meta{padding:24px 20px;display:flex;flex-direction:column;justify-content:center;gap:12px;}
+.ag-prec{font-size:13px;color:var(--ink3);line-height:1.5;}
+.ag-prec strong{display:block;font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;font-weight:600;}
+.ag-feas{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:0px;padding:6px 12px;border-radius:3px;display:inline-block;}
+.ag-feas.high{color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);}
+.ag-feas.med{color:var(--amber);background:var(--amber-bg);border:1px solid var(--amber-border);}
+
+/* ── CTA ── */
+.cta-section{background:var(--green);padding:88px 48px;}
+.cta-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.cta-title{font-family:'Instrument Serif',serif;font-size:clamp(36px,5vw,62px);line-height:0.97;letter-spacing:-1px;color:#fff;margin-bottom:18px;}
+.cta-title em{font-style:italic;color:#a0f0c0;}
+.cta-body{font-size:16px;color:rgba(255,255,255,0.8);line-height:1.75;margin-bottom:28px;}
+.cta-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.cta-btn{padding:13px 24px;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;border-radius:5px;text-decoration:none;transition:all 0.2s;border:2px solid transparent;}
+.cta-btn.p{background:#fff;color:var(--green);border-color:#fff;}
+.cta-btn.p:hover{background:var(--green-bg);}
+.cta-btn.s{background:transparent;color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.4);}
+.cta-btn.s:hover{color:#fff;border-color:#fff;}
+.stat-stack{display:flex;flex-direction:column;gap:3px;}
+.stat-row{padding:16px 22px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);display:flex;justify-content:space-between;align-items:center;border-radius:3px;}
+.sr-lbl{font-family:var(--mono);font-size:14px;letter-spacing:0px;color:rgba(255,255,255,0.85);}
+.sr-val{font-family:'Instrument Serif',serif;font-size:26px;}
+.sr-val.red{color:#ffb0a8;}
+.sr-val.wht{color:#fff;}
+.sr-val.lt{color:#a0f0c0;}
+
+/* footer */
+footer{background:var(--ink);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.foot-logo{font-family:'Instrument Serif',serif;font-size:17px;color:rgba(255,255,255,0.4);}
+.foot-logo span{color:var(--green3);font-style:italic;}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap;}
+.foot-link{font-family:var(--mono);font-size:13px;letter-spacing:0px;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.foot-link:hover{color:rgba(255,255,255,0.8);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 18px;}.nav-links{display:none;}
+  .hero,section,.cta-section{padding-left:18px;padding-right:18px;}
+  .pairing{grid-template-columns:1fr;}.p-mid{display:none;}
+  .starved-grid,.roles-grid{grid-template-columns:1fr;}
+  .calc-top{grid-template-columns:1fr;}.calc-side.left{border-right:none;border-bottom:2px solid var(--border);}
+  .ag-item{grid-template-columns:1fr;}.ag-num{display:none;}.ag-meta{border-top:2px solid var(--border);}
+  .cta-inner{grid-template-columns:1fr;}
+  .proj-grid{grid-template-columns:1fr 1fr;}
+  footer{padding:20px 18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">Peace Dividend <span>Project</span></a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a class="nav-link active" href="ai-crossroads.html">AI Crossroads</a>
+      <a class="nav-link" href="true-cost-v4.html">War Cost</a>
+      <a class="nav-link" href="wealth-threshold.html">Wealth</a>
+      <a class="nav-link" href="sell-mandate.html">Sell Mandate</a>
+    </div>
+    <a class="nav-home" href="index.html">← Home</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">AI at the Crossroads — 2026</div>
+    <div class="hero-headline">
+      <span class="line-war">Weapon.</span>
+      <span class="line-or">or</span>
+      <span class="line-peace">Cure.</span>
+    </div>
+    <p class="hero-statement">The most powerful technology in human history is being built right now. The decisions made <strong>in the next five years</strong> will determine what it becomes — and whether it serves the few, or saves the many.</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num red">$96B</div><div class="hstat-label">Military AI<br>investment 2024</div></div>
+      <div class="hstat"><div class="hstat-num green">$2.2B</div><div class="hstat-label">Humanitarian AI<br>investment 2024</div></div>
+      <div class="hstat"><div class="hstat-num amber">$10M</div><div class="hstat-label">AlphaFold total cost —<br>transformed all drug discovery</div></div>
+      <div class="hstat"><div class="hstat-num red">43×</div><div class="hstat-label">More spent on weapons AI<br>than on healing AI</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: THE WINDOW -->
+<section class="timeline-section">
+  <div class="sec-inner">
+    <div class="sec-tag">Section 01 — The Window Is Closing</div>
+    <div class="sec-title">The fork is <em>now.</em><br>Not in ten years.</div>
+    <p class="sec-body">Military AI is growing at <strong>24% per year</strong>. At that rate, by 2030 the talent pipelines, procurement systems, and institutional habits are locked in. Redirecting becomes orders of magnitude harder. The window to shape what AI becomes is open right now — and it is closing fast.</p>
+    <div class="tl-years">
+      <span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024 ← NOW</span><span>2026</span><span>2028</span><span>2030</span>
+    </div>
+    <div class="tl-track">
+      <div class="tl-row">
+        <div class="tl-bar r"><div class="tl-bar-lbl">Military AI — $96B in 2024, growing at 24% per year</div></div>
+        <div class="tl-now"><div class="tl-now-tag">NOW</div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-bar g"><div class="tl-bar-lbl">Humanitarian AI — $2.2B in 2024, growing at 8% per year</div></div>
+      </div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-cell">
+        <div class="proj-year">2022</div>
+        <div class="proj-mil">$62B</div>
+        <div class="proj-hum">$1.7B</div>
+        <div class="proj-ratio">Ratio: 36 to 1</div>
+      </div>
+      <div class="proj-cell now">
+        <div class="proj-year">2024 — Today</div>
+        <div class="proj-mil">$96B</div>
+        <div class="proj-hum">$2.2B</div>
+        <div class="proj-ratio">Ratio: 43 to 1</div>
+      </div>
+      <div class="proj-cell">
+        <div class="proj-year">2027 — If nothing changes</div>
+        <div class="proj-mil" style="opacity:0.75">$181B</div>
+        <div class="proj-hum">$2.8B</div>
+        <div class="proj-ratio">Ratio: 65 to 1</div>
+      </div>
+      <div class="proj-cell">
+        <div class="proj-year">2030 — If nothing changes</div>
+        <div class="proj-mil" style="opacity:0.55">$340B</div>
+        <div class="proj-hum">$3.4B</div>
+        <div class="proj-ratio">Ratio: 100 to 1</div>
+      </div>
+    </div>
+    <div class="win-warn">
+      <span style="font-size:24px;flex-shrink:0;">⚠</span>
+      <div>By 2030, if current trends hold, <strong>one hundred dollars in military AI for every one dollar in humanitarian AI.</strong> The engineers trained on weapons systems won't retrain easily. The companies built around defence contracts won't pivot voluntarily. The institutional knowledge compounds in one direction. This is why 2026 is the inflection point.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: RATIO -->
+<section class="ratio-section">
+  <div class="sec-inner">
+    <div class="sec-tag">Section 02 — The 43 to 1 Reality</div>
+    <div class="ratio-stmt">For every <span class="red">$43</span> we spend making weapons smarter, we spend <span class="green">$1</span> making <em>people</em> healthier.</div>
+    <p class="sec-body">This is not a political statement. It is the output of global investment data from SIPRI, the World Bank, and the OECD. Nobody decided this ratio was correct. It accumulated — through budget cycles, procurement processes, and the institutional gravity of military-industrial infrastructure built over 80 years.</p>
+    <div class="ratio-bar-visual">
+      <div class="rbv-wrap">
+        <div class="rbv-bar mil"><span style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6);padding:8px;">$96B</span></div>
+        <div class="rbv-lbl r">Military AI<br>2024</div>
+      </div>
+      <div style="flex:1;padding:0 32px;">
+        <div style="font-family:'Instrument Serif',serif;font-size:clamp(56px,9vw,108px);font-weight:400;line-height:1;color:var(--red);margin-bottom:8px;">43×</div>
+        <div style="font-size:16px;color:var(--ink3);line-height:1.7;max-width:500px;">The entire AlphaFold project — which transformed drug discovery for all of humanity — cost <strong style="color:var(--ink);">$10 million</strong>. The US DoD spends that amount on military AI in the next <strong style="color:var(--ink);">12 minutes</strong>.</div>
+      </div>
+      <div class="rbv-wrap">
+        <div class="rbv-bar hum"><span style="font-family:var(--mono);font-size:10px;color:var(--green);padding:4px;white-space:nowrap;">$2.2B</span></div>
+        <div class="rbv-lbl g">Humanitarian<br>AI 2024</div>
+      </div>
+    </div>
+    <div class="ratio-facts">
+      <div class="rf"><div class="rf-num" style="color:var(--amber);">$10M</div><div class="rf-lbl">AlphaFold total<br>development cost</div></div>
+      <div class="rf"><div class="rf-num" style="color:var(--green);">200M+</div><div class="rf-lbl">Protein structures<br>now freely available</div></div>
+      <div class="rf"><div class="rf-num" style="color:var(--ink3);">12 min</div><div class="rf-lbl">US DoD takes to spend<br>an AlphaFold on mil-AI</div></div>
+      <div class="rf"><div class="rf-num" style="color:var(--red);">230+</div><div class="rf-lbl">Diseases AI could<br>accelerate cures for</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PAIRINGS -->
+<section class="pairings-section">
+  <div class="sec-inner">
+    <div class="sec-tag">Section 03 — The Same Technology. Opposite Choices.</div>
+    <div class="sec-title">What the money<br>is actually buying.</div>
+    <p class="sec-body">Every military AI application below uses the same foundational technology as its humanitarian counterpart — computer vision, reinforcement learning, large language models, sensor fusion. The difference is not the science. It is the decision.</p>
+    <div class="pairings-list" id="pairingsGrid"></div>
+  </div>
+</section>
+
+<!-- SECTION 4: STARVED -->
+<section class="starved-section">
+  <div class="sec-inner">
+    <div class="sec-tag">Section 04 — Real Projects. No Money.</div>
+    <div class="sec-title">They exist. They work.<br><span class="red">They're starved.</span></div>
+    <p class="sec-body">These organisations are running today. They have produced results that, with adequate funding, could change the lives of hundreds of millions. Each operates on a budget smaller than a single military AI subsystem.</p>
+    <div class="starved-grid" id="starvedGrid"></div>
+  </div>
+</section>
+
+<!-- SECTION 5: CALCULATOR -->
+<section class="calc-section">
+  <div class="sec-inner">
+    <div class="sec-tag">Section 05 — What Would It Take?</div>
+    <div class="sec-title">Pick a goal.<br>See the cost.<br><em>See the comparison.</em></div>
+    <p class="sec-body">Choose a humanitarian AI goal and a military programme to compare it against. The numbers do the rest.</p>
+    <div class="calc-wrap">
+      <div class="calc-top">
+        <div class="calc-side left">
+          <div class="calc-stag">Humanitarian Goal</div>
+          <div class="calc-lbl">What do you want AI to achieve?</div>
+          <select class="dsel" id="goalSel" onchange="runCalc()">
+            <option value="">— Choose a goal —</option>
+            <option value="malaria">Eliminate malaria (AI-assisted)</option>
+            <option value="tb">End tuberculosis globally</option>
+            <option value="hunger">Prevent famine — 800M people</option>
+            <option value="water">Clean water AI for 2.2 billion people</option>
+            <option value="als">Cure ALS within 10 years</option>
+            <option value="ntd">Eliminate all neglected tropical diseases</option>
+            <option value="climate">AI climate early warning — 1B at risk</option>
+            <option value="mental">Global mental health AI triage</option>
+          </select>
+          <div class="ai-divider">Or describe your own goal</div>
+          <input class="ai-inp" id="customGoal" placeholder="e.g. AI for earthquake-resistant housing design...">
+          <button class="ai-btn" onclick="runCustom()">Analyse with AI →</button>
+          <div class="ai-loading" id="aiLoading">Analysing... ◈</div>
+          <div class="ai-res" id="aiRes"></div>
+        </div>
+        <div class="calc-side right">
+          <div class="calc-stag">Compare Against</div>
+          <div class="calc-lbl">Which military AI programme?</div>
+          <select class="dsel" id="milSel" onchange="runCalc()">
+            <option value="">— Choose a programme —</option>
+            <option value="drone">US Autonomous Drone Targeting</option>
+            <option value="cyber">US Cyber Command AI Platform</option>
+            <option value="hypersonic">Hypersonic Missile Guidance AI</option>
+            <option value="submarine">Autonomous Submarine AI (Orca)</option>
+            <option value="surveillance">Battlefield Surveillance AI</option>
+            <option value="disinfo">AI Disinformation Operations</option>
+            <option value="c2">AI Command & Control (JADC2)</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-result" id="calcResult">
+        <div class="cr-grid">
+          <div class="cr-cell"><div class="cr-lbl">Humanitarian AI cost</div><div class="cr-val green" id="crHum">—</div></div>
+          <div class="cr-cell"><div class="cr-lbl">Military programme cost</div><div class="cr-val red" id="crMil">—</div></div>
+          <div class="cr-cell"><div class="cr-lbl">Military cost covers</div><div class="cr-val amber" id="crRatio">—</div></div>
+        </div>
+        <div class="cr-verdict" id="crVerdict"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: MIND SHIFT -->
+<section class="mindshift-section">
+  <div class="sec-inner">
+    <div class="sec-tag">Section 06 — The Mind Shift</div>
+    <div class="sec-title">You have the skills.<br><em>Here is what else<br>you could build.</em></div>
+    <p class="sec-body">Written directly to the people who build AI systems. Most of you went into this field to build things that matter. Here is what your specific skills could do if pointed in a different direction.</p>
+    <div class="roles-grid" id="rolesGrid"></div>
+    <div class="direct-addr">
+      <div class="da-text">The technology is the same.<br>The training is the same.<br><em>The choice is different.</em></div>
+      <p class="da-body">If you work in computer vision: the same algorithms that identify targets can identify tumours, track disease vectors, and detect structural failure in buildings before earthquakes collapse them. <strong>The code is almost identical. The outcome is entirely different.</strong><br><br>
+      If you work in reinforcement learning: the same methods that train autonomous weapons can optimise vaccine cold chains, route emergency food aid, and allocate medical resources during pandemics — with a precision that saves thousands of lives per decision.<br><br>
+      We are not asking you to abandon your career. We are asking you to consider where it points.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: AGENDA -->
+<section class="agenda-section">
+  <div class="sec-inner">
+    <div class="sec-tag">Section 07 — The Peace AI Agenda</div>
+    <div class="sec-title">Five things that would<br>change the ratio.</div>
+    <p class="sec-body">Not utopian demands. Each has a precedent, a current sponsor, and a realistic pathway. Together they would move the ratio from 43:1 toward something defensible.</p>
+    <div class="agenda-list" id="agendaList"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-title">The window<br>is open.<br><em>Now.</em></div>
+      <p class="cta-body">The decisions being made in 2025–2026 about AI investment will compound for decades. The talent pipelines being built now define what gets built in 2035. This is the moment where the ratio can still change.</p>
+      <div class="cta-btns">
+        <a class="cta-btn p" href="index.html#contact">Join the project</a>
+        <a class="cta-btn s" href="index.html">← Back to home</a>
+        <a class="cta-btn s" href="true-cost-v4.html">War costs →</a>
+      </div>
+    </div>
+    <div class="stat-stack">
+      <div class="stat-row"><div class="sr-lbl">Military AI 2030 (projected)</div><div class="sr-val red">$340B/yr</div></div>
+      <div class="stat-row"><div class="sr-lbl">Humanitarian AI 2030 (projected)</div><div class="sr-val lt">$3.4B/yr</div></div>
+      <div class="stat-row"><div class="sr-lbl">AlphaFold — full development cost</div><div class="sr-val wht">$10M</div></div>
+      <div class="stat-row"><div class="sr-lbl">Diseases AI could accelerate cures for</div><div class="sr-val lt">230+</div></div>
+      <div class="stat-row"><div class="sr-lbl">People affected by neglected diseases</div><div class="sr-val red">1 billion</div></div>
+      <div class="stat-row"><div class="sr-lbl">Full cost to eliminate all NTDs</div><div class="sr-val lt">$15B once</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">Peace Dividend <span>Project</span> — AI at the Crossroads</div>
+  <div class="foot-links">
+    <a class="foot-link" href="index.html">← Home</a>
+    <a class="foot-link" href="true-cost-v4.html">War Cost</a>
+    <a class="foot-link" href="wealth-threshold.html">Wealth Threshold</a>
+    <a class="foot-link" href="sell-mandate.html">Sell Mandate</a>
+    <a class="foot-link" href="plain-truth.html">Plain Truth</a>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('mainNav')?.classList.toggle('scrolled',scrollY>60));
+
+const PAIRINGS=[
+  {wt:'Computer Vision + Swarm RL',wn:'Autonomous Lethal Drone Swarms',wb:'$6.8B/yr (US + allies)',wd:'AI coordinates hundreds of drones to identify, select, and engage targets without human confirmation. Multiple active programmes across US, China, Russia, Israel, and Turkey.',pt:'Drug Discovery AI',pn:'ALS & Motor Neurone Disease AI',pb:'$100M/yr globally',pd:'ALS kills every person who gets it. No effective treatment exists. AI protein folding and drug candidate screening could find treatments within a decade.',po:'120,000 diagnosed annually. Death within 2–5 years. Equivalent investment likely yields a cure within 10 years.'},
+  {wt:'Generative AI + NLP',wn:'AI-Powered Disinformation Platforms',wb:'$4.2B/yr (estimated)',wd:'Military AI that generates synthetic media, manufactures fake personas, and destabilises political systems at scale. Every major power runs these programmes.',pt:'Predictive AI + Logistics',pn:'Global Food System Optimisation',pb:'$800M total needed',pd:'AI that predicts crop failures 18 months in advance and routes food aid before crises become famines.',po:'800 million people chronically hungry. Famine prediction AI could protect 200 million per year. Full cost: $800M once.'},
+  {wt:'Sensor Fusion + Control AI',wn:'Hypersonic Missile Guidance AI',wb:'$3.8B/yr (US programme)',wd:'AI navigation for missiles travelling at Mach 5+. Each missile costs $50–100M. The guidance AI costs more to develop than the entire AlphaFold project.',pt:'Remote Sensing AI',pn:'Clean Water Detection for Rural Populations',pb:'$500M total needed',pd:'AI analysis of satellite imagery to identify safe groundwater sources for the 2.2 billion people who lack clean water.',po:'AI-guided drilling programmes could provide clean water to 500 million people within 5 years.'},
+  {wt:'Autonomous Navigation AI',wn:'Autonomous Submarine Combat AI (Orca)',wb:'$2.6B programme',wd:'Unmanned undersea vehicles with AI decision-making for combat missions. Designed to operate independently for months without human oversight.',pt:'Environmental AI',pn:'Ocean Plastic & Pollution Cleanup AI',pb:'$300M total needed',pd:'AI to track ocean plastic accumulation, optimise cleanup vessel routing, and identify pollution sources using satellite and sensor fusion.',po:'10 million tonnes of plastic enter oceans annually. AI-optimised cleanup could remove 40% within a decade at this funding level.'},
+  {wt:'Computer Vision + Tracking',wn:'Battlefield Surveillance & Targeting AI',wb:'$5.1B/yr (multi-nation)',wd:'Persistent AI surveillance of conflict zones — tracking individuals, predicting movement, cueing lethal systems. Deployed in multiple active conflicts.',pt:'Medical Imaging AI',pn:'Cancer Early Detection in Underserved Populations',pb:'$400M/yr needed',pd:'AI screening tools deployable via smartphone for cervical, breast, and skin cancer in clinics with no pathologist access.',po:'70% of cancer deaths occur in low-income countries. AI screening could detect 3 million additional cases per year at early, treatable stages.'},
+  {wt:'Adversarial AI + Systems',wn:'AI Cyber Warfare & Infrastructure Attack',wb:'$7.4B/yr (US Cybercom + allies)',wd:'Offensive AI designed to disrupt power grids, financial systems, and critical infrastructure of adversary nations.',pt:'Molecular AI + Drug Design',pn:'Antibiotic Resistance Drug Discovery',pb:'$250M/yr needed',pd:'AI-accelerated discovery of new antibiotic compounds. WHO calls antibiotic resistance the greatest public health threat of the 21st century.',po:'10 million people per year could die from AMR by 2050. AI drug discovery could produce 3–5 new antibiotic classes within 5 years.'},
+  {wt:'Ballistic Modelling AI',wn:'AI-Directed Artillery & Precision Strike',wb:'$2.1B/yr',wd:'Machine learning systems that calculate fire solutions and adjust for atmospheric conditions in real time. Actively deployed in Ukraine and other conflicts.',pt:'Structural Engineering AI',pn:'Earthquake-Resistant Housing AI Design',pb:'$180M total needed',pd:'AI structural optimisation generating low-cost, earthquake-resistant building designs using locally available materials — for Turkey, Nepal, Indonesia, and 40 other high-risk countries.',po:'2 million people killed by earthquakes since 2000. AI-designed resilient housing could cut deaths by 60% in high-risk zones.'},
+  {wt:'Systems Integration AI',wn:'Military AI Command & Control (JADC2)',wb:'$11B programme (US)',wd:'AI integration of all military sensors and decision-making across land, sea, air, space, and cyber domains into one unified command system.',pt:'Epidemiological AI',pn:'Global Pandemic Early Warning AI',pb:'$600M/yr needed',pd:'AI surveillance of 195 countries — hospital admissions, pharmacy sales, wastewater, social media — to detect novel outbreaks 6–8 weeks before current systems.',po:'COVID-19 cost $12.5 trillion. Early warning 6 weeks sooner could reduce that cost by 40%. Return on investment: 2,000 to 1.'},
+  {wt:'Signal Processing AI',wn:'AI-Powered Electronic Warfare',wb:'$3.2B/yr',wd:'AI systems that identify, jam, and spoof enemy communications and radar in real time. Deployed on aircraft, ships, and ground systems.',pt:'Clinical NLP + Detection',pn:'Mental Health Crisis Detection & Triage',pb:'$350M/yr needed',pd:'AI systems detecting mental health crisis signals in clinical data, enabling targeted outreach before hospitalisation or suicide attempt.',po:'800 million live with mental health conditions. 700,000 die by suicide annually. AI triage could route 50 million people to care who currently receive none.'},
+  {wt:'Ground Penetrating Radar AI',wn:'Autonomous Mine & IED Detection (military)',wb:'$1.4B/yr',wd:'AI-guided robots detecting buried explosives for military use in active conflict zones.',pt:'Ground Penetrating Radar AI',pn:'Humanitarian Demining of Civilian Land',pb:'$120M/yr needed',pd:'The exact same technology, applied to the 110 million landmines still sitting in civilian land across 60 countries.',po:'5,000 civilian casualties per year, mostly children. At adequate funding, civilian clearance takes 8 years instead of 80.'},
+  {wt:'Multi-sensor Fusion AI',wn:'AI Targeting for Naval Missile Systems',wb:'$2.8B/yr',wd:'AI-enhanced targeting and evasion for ship-launched and submarine-launched missiles, including countermeasure and terminal guidance systems.',pt:'Molecular AI',pn:'Neglected Tropical Disease Drug Discovery',pb:'$200M/yr needed',pd:'AI-accelerated drug discovery for 20 diseases that collectively disable 1 billion people but attract almost no pharmaceutical investment.',po:'1 billion people affected. Cure costs: $0.20–$1.50 per person. These diseases persist due to neglect, not scientific difficulty.'},
+  {wt:'Physics Simulation AI',wn:'AI-Assisted Nuclear Weapons Modernisation',wb:'$2.5B/yr (US programme)',wd:'AI for nuclear command and control, warhead simulation, and delivery vehicle guidance — part of the $1.7 trillion US nuclear modernisation programme.',pt:'Climate Simulation AI',pn:'Climate Tipping Point Prediction AI',pb:'$500M/yr needed',pd:'AI climate modelling to predict feedback loops and regional impacts — enabling governments to protect vulnerable populations before irreversible change.',po:'1 billion people in climate-vulnerable zones. Accurate 10-year regional predictions could save $4 trillion in reactive disaster costs.'},
+];
+
+const STARVED=[
+  {org:'FIND — Foundation for Innovative New Diagnostics',n:'AI Diagnostic Tools for Low-Income Countries',w:'Develops AI-powered diagnostic tests for TB, malaria, hepatitis, and COVID where laboratory infrastructure barely exists. Smartphone-based AI diagnoses TB from chest X-rays with radiologist-level accuracy.',h:'$45M/yr',hs:'Current budget',nd:'$200M/yr',ns:'To scale to all 47 high-burden countries'},
+  {org:'Wadhwani AI — Mumbai',n:'AI for 800 Million Smallholder Farmers',w:'Crop disease detection and yield optimisation for smallholder farmers — deployable via basic Android phone with no internet connection. Currently reaches 4 million farmers in India.',h:'$12M/yr',hs:'Current budget',nd:'$80M/yr',ns:'To reach 100 million farmers in 20 countries'},
+  {org:'InVision AI — Global',n:'Cervical Cancer AI Screening',w:'AI-powered cervical cancer screening via smartphone camera. Achieves 91% sensitivity — better than human visual inspection — in clinics with no pathologist access. Active in 10 countries.',h:'$8M/yr',hs:'Current budget',nd:'$60M/yr',ns:'To screen 50 million women in sub-Saharan Africa annually'},
+  {org:'Planet Labs + GiveDirectly Partnership',n:'Poverty Mapping AI for Direct Aid',w:'AI analysis of satellite imagery to identify extreme poverty at household level — enabling direct cash transfers to reach the most vulnerable 6 weeks faster than survey-based methods.',h:'$22M/yr',hs:'Combined programme budget',nd:'$90M/yr',ns:'To cover all 47 least-developed countries'},
+  {org:'Flowminder — Stockholm',n:'Population Movement AI for Disaster Response',w:'AI modelling of population displacement using anonymised mobile data — predicts where people will move after floods, earthquakes, and conflict. Enables aid pre-positioning that saves lives in the first 72 hours.',h:'$6M/yr',hs:'Current budget',nd:'$35M/yr',ns:'For real-time global coverage during all major disasters'},
+  {org:'Global Fishing Watch',n:'AI Ocean Surveillance for Food Security',w:'AI analysis of satellite and vessel tracking data to detect illegal fishing and protect marine reserves that feed 3.3 billion people. Currently covers 60% of global waters.',h:'$18M/yr',hs:'Current budget',nd:'$55M/yr',ns:'For 100% coverage and coastal community early warning'},
+];
+
+const GOALS={malaria:{n:'Eliminate malaria',c:'$800M',cf:800,d:'AI-accelerated drug discovery plus distribution optimisation for the final elimination push. WHO estimates $800M in targeted AI investment would accelerate elimination by 15 years.'},tb:{n:'End tuberculosis globally',c:'$1.2B',cf:1200,d:'AI diagnostics, drug resistance detection, and treatment adherence monitoring. 1.6 million people die from TB annually — a disease with a known cure.'},hunger:{n:'Prevent famine for 800M people',c:'$600M',cf:600,d:'AI crop forecasting, logistics optimisation, and early warning systems. Full deployment for global coverage.'},water:{n:'Clean water for 2.2 billion people',c:'$500M',cf:500,d:'AI groundwater detection and purification optimisation. One-time investment to find and develop safe water sources for all unserved populations.'},als:{n:'Cure ALS',c:'$300M/yr × 10yr',cf:300,d:'$300M/yr for 10 years of focused AI drug discovery — the AlphaFold approach applied to ALS. AlphaFold cost $10M. ALS research needs 30 times that, annually.'},ntd:{n:'Eliminate all neglected tropical diseases',c:'$15B once',cf:15000,d:'All 20 NTDs combined. 1 billion people affected. AI distribution and drug discovery. This is the full elimination programme cost.'},climate:{n:'AI climate early warning — global',c:'$500M/yr',cf:500,d:'Global early warning system for 1 billion climate-vulnerable people. Annual operating cost.'},mental:{n:'Mental health crisis AI triage',c:'$350M/yr',cf:350,d:'AI triage system to route 50 million people annually to appropriate mental health care who currently receive none.'}};
+
+const MIL={drone:{n:'US Autonomous Drone Targeting',c:'$6.8B/yr',cf:6800},cyber:{n:'US Cyber Command AI',c:'$7.4B/yr',cf:7400},hypersonic:{n:'Hypersonic Missile Guidance AI',c:'$3.8B/yr',cf:3800},submarine:{n:'Autonomous Submarine AI (Orca)',c:'$2.6B total',cf:2600},surveillance:{n:'Battlefield Surveillance AI',c:'$5.1B/yr',cf:5100},disinfo:{n:'AI Disinformation Operations',c:'$4.2B/yr',cf:4200},c2:{n:'AI Command & Control (JADC2)',c:'$11B programme',cf:11000}};
+
+function runCalc(){
+  const g=document.getElementById('goalSel').value,m=document.getElementById('milSel').value;
+  if(!g||!m)return;
+  const goal=GOALS[g],mil=MIL[m],ratio=Math.round(mil.cf/goal.cf);
+  document.getElementById('crHum').textContent=goal.c;
+  document.getElementById('crMil').textContent=mil.c;
+  document.getElementById('crRatio').textContent=ratio+'× the cost';
+  document.getElementById('crVerdict').innerHTML=`<strong>${mil.n}</strong> costs ${ratio} times more than the full AI investment needed to <strong style="color:var(--green)">${goal.n.toLowerCase()}</strong>. ${goal.d}`;
+  document.getElementById('calcResult').classList.add('show');
+}
+
+async function runCustom(){
+  const goal=document.getElementById('customGoal').value.trim();
+  if(!goal){alert('Please describe a humanitarian goal first.');return;}
+  document.getElementById('aiLoading').style.display='block';
+  document.getElementById('aiRes').style.display='none';
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:'You are an analyst for the Peace Dividend Project. For a humanitarian AI goal, provide: (1) Specific AI investment needed, citing comparable programmes, (2) Which military AI programme that cost is equivalent to, (3) The human impact achievable, (4) A one-sentence verdict on the opportunity cost. Be concise, specific, and use real figures. Short paragraphs, no headers.',messages:[{role:'user',content:`Humanitarian AI goal: "${goal}"\n\nProvide investment estimate, military comparison, human impact, and verdict.`}]})});
+    const d=await r.json();
+    const t=d.content?.[0]?.text||'Analysis unavailable.';
+    document.getElementById('aiRes').innerHTML='<strong>AI Analysis:</strong><br><br>'+t.replace(/\n\n/g,'<br><br>');
+    document.getElementById('aiRes').style.display='block';
+  }catch(e){document.getElementById('aiRes').innerHTML='Analysis temporarily unavailable. Please try again shortly.';document.getElementById('aiRes').style.display='block';}
+  document.getElementById('aiLoading').style.display='none';
+}
+
+const ROLES=[
+  {sk:'Computer Vision Engineer',wt:'Autonomous targeting — identifying humans for lethal engagement',wd:'Training models to distinguish combatants from civilians. Optimising kill chains. The endpoint of this work is a decision to end a life.',pt:'Cancer detection AI — identifying tumours in underserved hospitals',pd:'The same convolutional networks, the same training methodology. The endpoint is a radiologist-level diagnosis in a clinic that has no radiologist.'},
+  {sk:'Reinforcement Learning Researcher',wt:'Drone swarm coordination — maximising area denial',wd:'RL agents that learn to coordinate lethal systems at scale, faster than human decision-making, trained on conflict simulations.',pt:'Vaccine cold chain optimisation — getting doses to the last mile',pd:'RL agents routing vaccines through unreliable logistics networks. Same reward engineering. Outcome: children who would have died from preventable disease, who don\'t.'},
+  {sk:'NLP / LLM Engineer',wt:'AI disinformation — synthetic persona networks at scale',wd:'Large language models trained to generate convincing fake news, manipulate social media, and polarise civilian populations.',pt:'Medical diagnosis AI for low-literacy populations',pd:'LLMs taking patient-described symptoms in local dialects and producing differential diagnoses — giving 2 billion people without doctor access their first medical opinion.'},
+  {sk:'Robotics & Autonomous Systems',wt:'Autonomous mine-laying and explosive systems',wd:'Robots that navigate complex terrain to place or detonate explosive devices without human operators.',pt:'Humanitarian demining — clearing civilian land of legacy mines',pd:'The exact same locomotion AI, the exact same terrain navigation. Applied to the 110 million landmines still killing and maiming civilians in 60 countries.'},
+];
+
+const AGENDA=[
+  {tag:'International Governance',t:'A Global Treaty on Lethal Autonomous Weapons',d:'Ban AI systems that select and engage human targets without meaningful human control. 70 countries have already called for this at the UN. The technical definition is agreed. Political will is what is missing.',prec:'Ottawa Treaty (landmines, 1997): 164 signatories, rapidly negotiated once civil society built the case.',feas:'high',fl:'High feasibility'},
+  {tag:'Investment Policy',t:'Mandatory 10% Humanitarian AI Allocation',d:'Any government funding military AI must allocate at least 10% to humanitarian applications. Self-enforcing through procurement rules. Would immediately add $9.6 billion per year to humanitarian AI.',prec:'NATO\'s 2% GDP defence pledge — governments already accept spending mandates in principle.',feas:'med',fl:'Medium feasibility'},
+  {tag:'Corporate Accountability',t:'AI Company Disclosure of Military Contract Revenue',d:'Require publicly traded AI companies to disclose the proportion of revenue from lethal autonomous systems — the same way pharmaceutical companies must disclose drug revenues.',prec:'Conflict minerals disclosure under Dodd-Frank Section 1502. Already enforced for supply chains.',feas:'high',fl:'High feasibility'},
+  {tag:'Research Funding',t:'A CERN-Scale Humanitarian AI Research Institute',d:'A $2B/year international institute dedicated solely to AI for global health, food security, and climate adaptation — open-source outputs, freely available globally. One AlphaFold was transformative. 200 would be civilisational.',prec:'CERN ($1.3B/yr, 23 nations) demonstrates international scientific cooperation at this scale is achievable.',feas:'med',fl:'Medium feasibility'},
+  {tag:'Talent Pipeline',t:'AI for Good Fellowship — 10,000 Engineers Redirected',d:'A funded fellowship placing top AI engineers from military contractors into humanitarian AI organisations for 2-year rotations — with salary parity guaranteed. Attack the talent asymmetry directly.',prec:'CDC Epidemic Intelligence Service: 70 years placing top scientists in public health roles. Model proven.',feas:'high',fl:'High feasibility'},
+];
+
+function buildPairings(){
+  const c=document.getElementById('pairingsGrid');
+  PAIRINGS.forEach(p=>{c.innerHTML+=`<div class="pairing"><div class="p-side war"><div class="p-tag">${p.wt}</div><div class="p-name">${p.wn}</div><div class="p-budget">${p.wb}</div><div class="p-detail">${p.wd}</div></div><div class="p-mid"><div class="p-vs">vs</div></div><div class="p-side peace"><div class="p-tag">${p.pt}</div><div class="p-name">${p.pn}</div><div class="p-budget">${p.pb}</div><div class="p-detail">${p.pd}</div><div class="p-outcome">${p.po}</div></div></div>`;});
+}
+function buildStarved(){
+  const c=document.getElementById('starvedGrid');
+  STARVED.forEach(p=>{c.innerHTML+=`<div class="sc"><div class="sc-org">${p.org}</div><div class="sc-name">${p.n}</div><div class="sc-what">${p.w}</div><div class="sc-money"><div class="sc-m have"><div class="sc-m-lbl">Has now</div><div class="sc-m-val">${p.h}</div><div class="sc-m-sub">${p.hs}</div></div><div class="sc-m need"><div class="sc-m-lbl">Needs</div><div class="sc-m-val">${p.nd}</div><div class="sc-m-sub">${p.ns}</div></div></div></div>`;});
+}
+function buildRoles(){
+  const c=document.getElementById('rolesGrid');
+  ROLES.forEach(r=>{c.innerHTML+=`<div class="role-card"><div class="role-war"><div class="role-tag">Currently used for</div><div class="role-skill">${r.sk}</div><div class="role-title">${r.wt}</div><div class="role-desc">${r.wd}</div></div><div class="role-peace"><div class="role-tag">Could be used for</div><div class="role-title">${r.pt}</div><div class="role-desc">${r.pd}</div></div></div>`;});
+}
+function buildAgenda(){
+  const c=document.getElementById('agendaList');
+  AGENDA.forEach((a,i)=>{c.innerHTML+=`<div class="ag-item"><div class="ag-num">${i+1}</div><div class="ag-body"><div class="ag-tag">${a.tag}</div><div class="ag-title">${a.t}</div><div class="ag-desc">${a.d}</div></div><div class="ag-meta"><div class="ag-prec"><strong>Precedent</strong>${a.prec}</div><div class="ag-feas ${a.feas}">${a.fl}</div></div></div>`;});
+}
+
+buildPairings();buildStarved();buildRoles();buildAgenda();
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';obs.unobserve(e.target);}});},{threshold:0.04});
+document.querySelectorAll('.sc,.pairing,.ag-item,.role-card,.proj-cell,.rf').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(14px)';el.style.transition='opacity 0.55s ease,transform 0.55s ease';obs.observe(el);
+});
+</script>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why You Can't Afford a House — The Plain Truth</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fefcf8;--ink:#17150f;--ink2:#2e2a1e;--ink3:#5a5244;--green:#1a6b3c;--green2:#228b4f;--green-bg:#edf7f2;--amber:#b5620a;--amber-bg:#fef7ec;--red:#b52010;--red-bg:#fef4f2;--border:#ddd7c8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+nav{background:var(--ink);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Fraunces',serif;font-size:20px;color:#fff;text-decoration:none;font-weight:600;}
+.nav-logo span{color:#7ecba8;font-style:italic;}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#fff;text-decoration:none;transition:all 0.2s;padding:8px 16px;border:1.5px solid rgba(255,255,255,0.35);border-radius:4px;font-weight:600;}.nav-back:hover{background:rgba(255,255,255,0.12);}
+
+
+.hero{background:linear-gradient(160deg,#1a0f00 0%,#2a1500 100%);padding:80px 48px 64px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 70% 30%,rgba(181,98,10,0.2),transparent 60%);}
+.hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(240,180,80,0.6);margin-bottom:20px;}
+h1{font-family:'Fraunces',serif;font-size:clamp(40px,7vw,80px);font-weight:900;color:#fff;line-height:0.97;margin-bottom:24px;letter-spacing:-1px;}
+h1 em{font-style:italic;color:#f0b450;}
+.hero-open{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,0.7);line-height:1.7;max-width:640px;font-weight:300;}
+.hero-open strong{color:#fff;font-weight:600;}
+
+.article{max-width:740px;margin:0 auto;padding:60px 40px 100px;}
+.drop-cap::first-letter{font-family:'Fraunces',serif;font-size:5.5em;font-weight:900;float:left;line-height:0.8;margin-right:8px;margin-top:8px;color:var(--amber);}
+p.body{font-size:17px;line-height:1.85;color:var(--ink2);margin-bottom:22px;}
+p.body strong{color:var(--ink);font-weight:600;}
+h2{font-family:'Fraunces',serif;font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--ink);line-height:1.1;margin:48px 0 16px;letter-spacing:-0.3px;}
+h2 em{font-style:italic;}
+.pull{font-family:'Fraunces',serif;font-size:clamp(22px,3.5vw,34px);font-weight:700;color:var(--ink);line-height:1.2;margin:44px 0;padding:28px 0;border-top:3px solid var(--ink);border-bottom:1px solid var(--border);letter-spacing:-0.3px;}
+.pull em{font-style:italic;color:var(--green2);}
+
+.stadium{background:var(--ink);border-radius:8px;padding:32px;margin:36px 0;text-align:center;}
+.stadium-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px;}
+.stadium-num{font-family:'Fraunces',serif;font-size:clamp(48px,8vw,96px);font-weight:900;color:#f0b450;line-height:1;margin-bottom:8px;}
+.stadium-label{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6;max-width:480px;margin:0 auto;}
+.stadium-label strong{color:#fff;}
+
+.country-bars{display:flex;flex-direction:column;gap:10px;margin:36px 0;}
+.cbar{display:grid;grid-template-columns:110px 1fr 120px;gap:12px;align-items:center;}
+.cbar-label{font-size:13px;color:var(--ink2);font-weight:500;}
+.cbar-track{height:28px;background:var(--amber-bg);border-radius:3px;overflow:hidden;border:1px solid var(--amber-bg);}
+.cbar-fill{height:100%;background:linear-gradient(90deg,var(--amber),#f0b450);border-radius:3px;display:flex;align-items:center;padding:0 8px;}
+.cbar-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);font-weight:500;}
+
+.callout{border-radius:8px;padding:24px 28px;margin:36px 0;}
+.callout.amber{background:var(--amber-bg);border-left:4px solid var(--amber);}
+.callout.green{background:var(--green-bg);border-left:4px solid var(--green2);}
+.callout.red{background:var(--red-bg);border-left:4px solid var(--red);}
+.callout-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.callout.amber .callout-label{color:var(--amber);}
+.callout.green .callout-label{color:var(--green2);}
+.callout.red .callout-label{color:var(--red);}
+.callout-title{font-family:'Fraunces',serif;font-size:clamp(18px,2.5vw,24px);font-weight:700;margin-bottom:8px;line-height:1.1;}
+.callout.amber .callout-title{color:var(--amber);}
+.callout.green .callout-title{color:var(--green);}
+.callout.red .callout-title{color:var(--red);}
+.callout-body{font-size:14px;color:var(--ink3);line-height:1.65;}
+
+.big-what{background:var(--green);border-radius:8px;padding:36px;margin:36px 0;}
+.big-what-title{font-family:'Fraunces',serif;font-size:clamp(20px,3vw,30px);font-weight:700;color:#fff;line-height:1.15;margin-bottom:20px;}
+.big-what-title em{font-style:italic;color:#a8e6c4;}
+.what-items{display:flex;flex-direction:column;gap:14px;}
+.what-item{display:flex;gap:14px;align-items:flex-start;}
+.what-icon{font-size:20px;flex-shrink:0;}
+.what-text{font-size:14px;color:rgba(255,255,255,0.8);line-height:1.6;}
+.what-text strong{color:#fff;font-weight:600;}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--ink);padding-top:28px;margin-top:40px;flex-wrap:wrap;gap:16px;}
+.art-nav-link{text-decoration:none;display:flex;flex-direction:column;gap:4px;}
+.art-nav-dir{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);}
+.art-nav-title{font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:var(--ink);}
+.art-nav-title:hover{color:var(--green);}
+
+@media(max-width:600px){nav{padding:0 18px;}.hero,.article{padding-left:20px;padding-right:20px;}.cbar{grid-template-columns:80px 1fr 90px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Dividend</span></a>
+  <a class="nav-back" href="plain-truth.html">← The Plain Truth</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Plain Truth 03 — Where the Money Is</div>
+    <h1>Why you can't<br>afford a house —<br><em>and who has<br>your money</em></h1>
+    <p class="hero-open">The world isn't poor. You probably know that. But here's the part that doesn't get said clearly enough: <strong>37,000 people hold more wealth than the bottom half of all humanity combined.</strong> Here's what that means, in plain language.</p>
+  </div>
+</div>
+
+<article class="article">
+
+<p class="body drop-cap">Let's start with something concrete. If you're renting a flat in Amsterdam, London, Sydney, or almost any major Western city, you are paying a larger share of your income on housing than your parents did. And your parents paid more than their parents did. This is not a coincidence.</p>
+
+<p class="body">It's not because there aren't enough houses. The Netherlands built housing for decades. England has millions of empty properties. The problem isn't supply — it's ownership. A small number of people own an enormous amount of property and have every reason to keep prices high.</p>
+
+<p class="body">But let's zoom out, because housing is just one symptom of something much bigger.</p>
+
+<div class="stadium">
+  <div class="stadium-title">The number you need to know</div>
+  <div class="stadium-num">36,970</div>
+  <div class="stadium-label">People on earth with more than $100 million. That is fewer people than fit inside Wembley Stadium in London. Together, they hold wealth above the $100M threshold totalling <strong>$42 trillion</strong>.</div>
+</div>
+
+<h2>What does $42 trillion actually mean?</h2>
+
+<p class="body">Numbers this big are almost impossible to visualise. So let's be specific.</p>
+
+<p class="body">$42 trillion is more than the combined annual GDP of the United States, China, and Germany. It is roughly 400 times the entire annual budget of the United Nations. It is enough to give every single person on earth — all 8 billion of us — $5,250 each.</p>
+
+<p class="body">And that's just the wealth held <em>above</em> the $100 million threshold. The first $100 million each person owns isn't counted in that figure. These are the gains above and beyond being a centimillionaire.</p>
+
+<div class="callout red">
+  <div class="callout-label">The comparison that stops people cold</div>
+  <div class="callout-title">The bottom 50% of humanity owns less than the top 36,970 people.</div>
+  <div class="callout-body">The bottom 50% of the world's population — approximately 4 billion people — collectively owns around $2.8 trillion in net wealth. The 36,970 people above the $100M threshold hold $42 trillion. That's a ratio of 15 to 1. The group that fits inside one football stadium holds 15 times more than the half of humanity combined.</div>
+</div>
+
+<h2>Where this wealth sits — country by country.</h2>
+
+<p class="body">This isn't a problem of "billionaires in faraway countries." This wealth is concentrated in the same countries where most of you reading this live.</p>
+
+<div class="country-bars">
+  <div class="cbar"><div class="cbar-label">🇺🇸 USA</div><div class="cbar-track"><div class="cbar-fill" style="width:100%"></div></div><div class="cbar-val">$21T excess</div></div>
+  <div class="cbar"><div class="cbar-label">🇨🇳 China</div><div class="cbar-track"><div class="cbar-fill" style="width:47%"></div></div><div class="cbar-val">$9.9T excess</div></div>
+  <div class="cbar"><div class="cbar-label">🇬🇧 UK</div><div class="cbar-track"><div class="cbar-fill" style="width:8%"></div></div><div class="cbar-val">$1.6T excess</div></div>
+  <div class="cbar"><div class="cbar-label">🇩🇪 Germany</div><div class="cbar-track"><div class="cbar-fill" style="width:7%"></div></div><div class="cbar-val">$1.6T excess</div></div>
+  <div class="cbar"><div class="cbar-label">🇨🇭 Switzerland</div><div class="cbar-track"><div class="cbar-fill" style="width:4%"></div></div><div class="cbar-val">$740B excess</div></div>
+  <div class="cbar"><div class="cbar-label">🇳🇱 Netherlands</div><div class="cbar-track"><div class="cbar-fill" style="width:2%"></div></div><div class="cbar-val">$260B excess</div></div>
+</div>
+
+<p class="body">In the United States, the excess wealth held above $100M — by 9,850 people — is <strong>$21 trillion</strong>. That is three times the entire annual federal budget of the United States. It is held by a group smaller than a medium-sized town.</p>
+
+<div class="pull">
+  US excess wealth: $21 trillion. Held by 9,850 people. That's <em>three times</em> the entire annual US federal budget.
+</div>
+
+<h2>But don't they pay lots of taxes already?</h2>
+
+<p class="body">Here's where it gets interesting.</p>
+
+<p class="body">In 2021, ProPublica obtained actual IRS data on America's 25 wealthiest individuals. What they found was remarkable: the average true tax rate — meaning taxes paid divided by wealth gained — was <strong>3.4%</strong>.</p>
+
+<p class="body">Warren Buffett: 0.1%. Jeff Bezos: 0.98%. Elon Musk: 3.27%. Meanwhile, a teacher or a nurse in America pays an effective rate of around 28%.</p>
+
+<p class="body">The reason isn't illegal. It isn't tax evasion. It's a strategy so common among the ultra-wealthy that economists have given it a name: <strong>Buy, Borrow, Die.</strong> We explain exactly how it works in Plain Truth 4 — but the short version is: they never sell their assets, so they never trigger a tax bill. They borrow money against their assets to live on. And when they die, the tax bill disappears entirely.</p>
+
+<div class="callout amber">
+  <div class="callout-label">What a 2% wealth tax would raise</div>
+  <div class="callout-title">$842 billion. Every year. From 36,970 people.</div>
+  <div class="callout-body">A 2% annual tax on wealth above $100 million — leaving the first $100 million of every person completely untouched — would raise $842 billion per year across the 26 countries we've analysed. That's 56% of the combined defence spending of all those countries. It's enough to eliminate malnutrition globally 14 times over. This is not a radical proposal — it's what the EU Tax Observatory has formally recommended.</div>
+</div>
+
+<h2>Here's the hopeful part.</h2>
+
+<p class="body">None of this is fixed. None of it is natural law. It is the result of tax policies, property laws, and political decisions made over decades — and all of those things can change.</p>
+
+<p class="body">Countries like Norway have wealth taxes. Switzerland has had one for over a century. The EU Tax Observatory — a serious, mainstream academic institution — proposed a global minimum wealth tax in 2024. This is not a fringe idea. It's a policy question.</p>
+
+<div class="big-what">
+  <div class="big-what-title">What $842 billion a year could <em>actually</em> buy</div>
+  <div class="what-items">
+    <div class="what-item"><div class="what-icon">🏥</div><div class="what-text"><strong>168,400 fully equipped hospitals</strong> — one per year, enough to transform healthcare access in every low-income country on earth.</div></div>
+    <div class="what-item"><div class="what-icon">📚</div><div class="what-text"><strong>10 years of primary school</strong> for every child on earth who currently has none. Every year, forever.</div></div>
+    <div class="what-item"><div class="what-icon">💧</div><div class="what-text"><strong>Clean water</strong> for every person alive who currently drinks unsafe water. Not once — every single year.</div></div>
+    <div class="what-item"><div class="what-icon">🌍</div><div class="what-text"><strong>56 times the full cost</strong> of eliminating all neglected tropical diseases globally — diseases that affect a billion people and cost almost nothing to cure.</div></div>
+  </div>
+</div>
+
+<div class="article-nav">
+  <a class="art-nav-link" href="pt-ai.html">
+    <div class="art-nav-dir">← Previous</div>
+    <div class="art-nav-title">The AI Choice</div>
+  </a>
+  <a class="art-nav-link" href="pt-sell.html" style="text-align:right;">
+    <div class="art-nav-dir">Next →</div>
+    <div class="art-nav-title">Make Them Sell</div>
+  </a>
+</div>
+
+</article>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>

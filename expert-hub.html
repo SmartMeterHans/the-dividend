@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In-Depth Expert Analysis — The Peace Dividend Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1f3a;--navy2:#112748;--cream:#faf8f3;--cream2:#f2efe8;--gold:#c4922a;--gold-light:#e0b050;--green:#1a6b4a;--red:#b52a1e;--text:#1a1916;--text-dim:#5a5650;--border:#ddd8ce;--shadow:0 2px 16px rgba(11,31,58,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+nav{background:var(--navy);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;text-decoration:none;font-weight:600;}
+.nav-logo span{color:var(--gold-light);}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.nav-back:hover{color:#fff;}
+
+.hero{background:var(--navy);padding:80px 48px 64px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-inner{max-width:960px;margin:0 auto;position:relative;z-index:1;}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-light);margin-bottom:20px;opacity:0.7;}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,7vw,88px);font-weight:700;color:#fff;line-height:0.97;margin-bottom:24px;letter-spacing:-1px;}
+h1 em{font-style:italic;color:var(--gold-light);}
+.hero-open{font-size:clamp(15px,1.8vw,18px);color:rgba(255,255,255,0.6);line-height:1.7;max-width:640px;font-weight:300;}
+.hero-open strong{color:rgba(255,255,255,0.9);font-weight:500;}
+
+.tools{max-width:960px;margin:0 auto;padding:72px 40px 100px;}
+.tools-intro{margin-bottom:48px;}
+.ti-label{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.ti-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:600;color:var(--navy);line-height:1.05;margin-bottom:12px;}
+.ti-body{font-size:15px;color:var(--text-dim);line-height:1.7;max-width:640px;}
+
+.tool-list{display:flex;flex-direction:column;gap:2px;}
+.tool{display:grid;grid-template-columns:80px 1fr 260px;gap:0;border:1.5px solid var(--border);background:#fff;text-decoration:none;box-shadow:var(--shadow);transition:all 0.25s;}
+.tool:hover{border-color:var(--navy);box-shadow:0 4px 24px rgba(11,31,58,0.12);transform:translateX(4px);}
+.tool-number{background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:rgba(255,255,255,0.15);}
+.tool-main{padding:28px 32px;}
+.tool-tag{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.tool-name{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,28px);font-weight:700;color:var(--navy);line-height:1.1;margin-bottom:8px;}
+.tool-desc{font-size:13px;color:var(--text-dim);line-height:1.6;}
+.tool-meta{padding:28px 24px;border-left:1.5px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;}
+.tool-features{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.tool-feature{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:1px;color:var(--text-dim);display:flex;align-items:flex-start;gap:6px;}
+.tool-feature::before{content:'→';color:var(--green);flex-shrink:0;}
+.tool-cta{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:6px;transition:gap 0.2s;}
+.tool:hover .tool-cta{gap:10px;}
+
+.plain-link{margin-top:64px;background:var(--navy);border-radius:6px;padding:36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.pl-left{}
+.pl-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:6px;}
+.pl-body{font-size:13px;color:rgba(255,255,255,0.5);max-width:480px;line-height:1.6;}
+.pl-btn{padding:12px 22px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;border-radius:3px;text-decoration:none;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);transition:all 0.2s;white-space:nowrap;}
+.pl-btn:hover{background:rgba(255,255,255,0.18);color:#fff;}
+
+.methodology{margin-top:48px;padding:28px 32px;background:var(--cream2);border:1.5px solid var(--border);border-radius:4px;}
+.meth-label{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.meth-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--navy);margin-bottom:10px;}
+.meth-body{font-size:14px;color:var(--text-dim);line-height:1.7;}
+.meth-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;}
+.meth-p{font-size:12px;color:var(--text-dim);line-height:1.55;}
+.meth-p strong{display:block;font-size:13px;color:var(--text);font-weight:500;margin-bottom:4px;}
+
+footer{background:var(--navy);padding:24px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.foot-logo{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.35);font-weight:600;}
+.foot-logo span{color:rgba(196,146,42,0.5);}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap;}
+.foot-link{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s;}
+.foot-link:hover{color:rgba(255,255,255,0.6);}
+
+@media(max-width:768px){
+  nav{padding:0 18px;}
+  .hero{padding:64px 20px 48px;}
+  .tools{padding:48px 20px 64px;}
+  .tool{grid-template-columns:60px 1fr;}
+  .tool-meta{display:none;}
+  footer{padding:20px;}
+  .meth-principles{grid-template-columns:1fr;}
+  .plain-link{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Dividend</span></a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">In-Depth Expert Analysis</div>
+    <h1>The evidence.<br><em>All of it.</em></h1>
+    <p class="hero-open">Four analytical tools built for economists, policymakers, journalists, and researchers. Every figure is sourced. Every methodology is documented. <strong>We use conservative estimates throughout and explicitly invite challenge.</strong></p>
+  </div>
+</div>
+
+<div class="tools">
+  <div class="tools-intro">
+    <div class="ti-label">Four tools. One argument.</div>
+    <div class="ti-title">The resources to end humanity's biggest crises already exist.</div>
+    <p class="ti-body">These tools don't make that argument through rhetoric. They make it through data — the same kind of rigorous cost-benefit analysis that military planners have always applied to conflict, applied instead to the question of peace.</p>
+  </div>
+
+  <div class="tool-list">
+
+    <a class="tool" href="true-cost-v4.html">
+      <div class="tool-number">I</div>
+      <div class="tool-main">
+        <div class="tool-tag">Conflict Economics</div>
+        <div class="tool-name">The True Cost — War Calculator</div>
+        <div class="tool-desc">Full economic cost modelling for 8 active conflicts. 10-year GDP projection comparing war vs. peace trajectories. Human dividend calculator. EU displacement analysis across 30 countries. AI-powered custom conflict input.</div>
+      </div>
+      <div class="tool-meta">
+        <div class="tool-features">
+          <div class="tool-feature">8 preset conflicts with full data</div>
+          <div class="tool-feature">10-year GDP projection slider</div>
+          <div class="tool-feature">EU displacement — 30 countries</div>
+          <div class="tool-feature">Human equivalent calculator</div>
+          <div class="tool-feature">AI-powered custom analysis</div>
+        </div>
+        <div class="tool-cta">Open tool →</div>
+      </div>
+    </a>
+
+    <a class="tool" href="ai-crossroads.html">
+      <div class="tool-number">II</div>
+      <div class="tool-main">
+        <div class="tool-tag">Technology Investment Analysis</div>
+        <div class="tool-name">AI at the Crossroads</div>
+        <div class="tool-desc">8 verified investment comparisons between military AI applications and humanitarian equivalents. $43-to-$1 investment ratio with SIPRI sourcing. Full methodology for each comparison. AI-powered input for custom application analysis.</div>
+      </div>
+      <div class="tool-meta">
+        <div class="tool-features">
+          <div class="tool-feature">8 curated military vs. humanitarian pairs</div>
+          <div class="tool-feature">Verified investment figures per programme</div>
+          <div class="tool-feature">$43:$1 ratio analysis — SIPRI sourced</div>
+          <div class="tool-feature">AI-powered custom input</div>
+          <div class="tool-feature">Magazine-grade data visualisation</div>
+        </div>
+        <div class="tool-cta">Open tool →</div>
+      </div>
+    </a>
+
+    <a class="tool" href="wealth-threshold.html">
+      <div class="tool-number">III</div>
+      <div class="tool-main">
+        <div class="tool-tag">Wealth Concentration Analysis</div>
+        <div class="tool-name">The Wealth Threshold</div>
+        <div class="tool-desc">Full analysis of UHNW wealth above $100M for 25 Western countries plus Russia. Two scenarios: one-time pool and annual 2% tax yield. Welfare uplift modelling. Russia oligarch case study. Global totals with human equivalents.</div>
+      </div>
+      <div class="tool-meta">
+        <div class="tool-features">
+          <div class="tool-feature">26 countries — full data</div>
+          <div class="tool-feature">One-time pool + annual tax scenarios</div>
+          <div class="tool-feature">Health, education, welfare uplift %</div>
+          <div class="tool-feature">Russia oligarch paradox</div>
+          <div class="tool-feature">Full budget breakdown per country</div>
+        </div>
+        <div class="tool-cta">Open tool →</div>
+      </div>
+    </a>
+
+    <a class="tool" href="sell-mandate.html">
+      <div class="tool-number">IV</div>
+      <div class="tool-main">
+        <div class="tool-tag">Policy Mechanism Analysis</div>
+        <div class="tool-name">The Sell Mandate</div>
+        <div class="tool-desc">The mechanism that makes wealth taxation functional. Buy-Borrow-Die explained. Asset composition analysis. Interactive market impact simulator for equities and housing. Velocity effect modelling. Six standard objections answered with sourced rebuttals.</div>
+      </div>
+      <div class="tool-meta">
+        <div class="tool-features">
+          <div class="tool-feature">Buy-Borrow-Die — mechanism diagram</div>
+          <div class="tool-feature">Market impact simulator (8 countries)</div>
+          <div class="tool-feature">Velocity effect — GDP boost table</div>
+          <div class="tool-feature">6 objections with sourced rebuttals</div>
+          <div class="tool-feature">ProPublica IRS data sourced</div>
+        </div>
+        <div class="tool-cta">Open tool →</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="plain-link">
+    <div class="pl-left">
+      <div class="pl-title">Prefer plain language?</div>
+      <p class="pl-body">The same argument, written for everyone. No economics degree required. All figures are the same — only the language changes.</p>
+    </div>
+    <a class="pl-btn" href="plain-truth.html">→ Read The Plain Truth</a>
+  </div>
+
+  <div class="methodology">
+    <div class="meth-label">Methodology</div>
+    <div class="meth-title">How we work with data</div>
+    <div class="meth-body">These tools are built as a first draft — serious enough to be challenged, transparent enough to be improved. Every figure links to its source. We explicitly invite economists and researchers to identify errors.</div>
+    <div class="meth-principles">
+      <div class="meth-p"><strong>Conservative estimates throughout</strong>When a range of credible figures exists, we use the lower end. We would rather understate the case than risk overstating it.</div>
+      <div class="meth-p"><strong>Primary sources preferred</strong>SIPRI, World Bank, IMF, OECD, EU Tax Observatory, ProPublica IRS data, Wealth-X, UBS Global Wealth Report, and peer-reviewed academic papers.</div>
+      <div class="meth-p"><strong>AI-assisted, human-verified</strong>Analysis is powered by Claude (Anthropic). All AI-generated content is clearly labelled and subject to expert review. Accuracy is the point — not the appearance of accuracy.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-logo">The <span>Dividend</span> — Expert Analysis</div>
+  <div class="foot-links">
+    <a class="foot-link" href="index.html">Home</a>
+    <a class="foot-link" href="plain-truth.html">The Plain Truth</a>
+    <a class="foot-link" href="index.html#contact">Contact</a>
+    <a class="foot-link" href="true-cost-v4.html">War Cost</a>
+    <a class="foot-link" href="ai-crossroads.html">AI Crossroads</a>
+    <a class="foot-link" href="wealth-threshold.html">Wealth Threshold</a>
+    <a class="foot-link" href="sell-mandate.html">Sell Mandate</a>
+  </div>
+</footer>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>

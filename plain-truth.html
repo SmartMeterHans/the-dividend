@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Plain Truth — The Peace Dividend Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fefcf8; --bg2:#f7f4ed; --bg3:#ede9de;
+  --ink:#17150f; --ink2:#2e2a1e; --ink3:#5a5244;
+  --green:#1a6b3c; --green2:#228b4f; --green-bg:#edf7f2; --green-border:#b8d8c5;
+  --amber:#b5620a; --amber-bg:#fef7ec; --amber-border:#f0d090;
+  --red:#b52010; --red-bg:#fef4f2;
+  --border:#ddd7c8; --shadow:0 2px 16px rgba(23,21,15,0.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+nav{background:var(--ink);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Fraunces',serif;font-size:18px;color:#fff;text-decoration:none;}
+.nav-logo span{color:#7ecba8;font-style:italic;}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.nav-back:hover{color:#fff;}
+
+/* HERO */
+.hero{background:var(--green);min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:80px 48px 64px;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#7ecba8,#1a6b3c,#7ecba8);}
+.hero-badge{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:20px;}
+.hero-inner{max-width:960px;margin:0 auto;width:100%;}
+h1{font-family:'Fraunces',serif;font-size:clamp(48px,8vw,100px);font-weight:900;color:#fff;line-height:0.95;margin-bottom:28px;letter-spacing:-1px;}
+h1 em{font-style:italic;color:#a8e6c4;}
+.hero-standfirst{font-size:clamp(17px,2.2vw,22px);color:rgba(255,255,255,0.75);line-height:1.65;max-width:640px;margin-bottom:40px;font-weight:300;}
+.hero-standfirst strong{color:#fff;font-weight:600;}
+.hero-note{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;max-width:600px;}
+
+/* INTRO SECTION */
+.intro{padding:80px 48px;background:var(--bg);}
+.intro-inner{max-width:960px;margin:0 auto;}
+.intro-pull{font-family:'Fraunces',serif;font-size:clamp(24px,3.5vw,40px);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:24px;max-width:720px;}
+.intro-pull em{font-style:italic;color:var(--green2);}
+.intro-body{font-size:16px;color:var(--ink3);line-height:1.8;max-width:660px;margin-bottom:16px;}
+
+/* TOOLS */
+.tools{padding:0 48px 80px;}
+.tools-inner{max-width:960px;margin:0 auto;}
+.tools-label{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--amber);margin-bottom:24px;}
+.tool-cards{display:flex;flex-direction:column;gap:20px;}
+
+.tool-card{display:grid;grid-template-columns:72px 1fr auto;gap:0;border:2px solid var(--border);border-radius:10px;overflow:hidden;text-decoration:none;background:#fff;box-shadow:var(--shadow);transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;}
+.tool-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(23,21,15,0.12);border-color:var(--green);}
+.tool-num{background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32px;font-weight:900;color:rgba(255,255,255,0.2);}
+.tool-body{padding:24px 28px;}
+.tool-tag{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+.tool-title{font-family:'Fraunces',serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:8px;}
+.tool-desc{font-size:14px;color:var(--ink3);line-height:1.6;}
+.tool-arrow{display:flex;align-items:center;padding:0 28px;font-family:'JetBrains Mono',monospace;font-size:20px;color:var(--border);transition:color 0.2s;}
+.tool-card:hover .tool-arrow{color:var(--green);}
+
+/* PROMISE */
+.promise{background:var(--ink);padding:64px 48px;}
+.promise-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.promise-title{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px;}
+.promise-title em{font-style:italic;color:#a8e6c4;}
+.promise-body{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.8;}
+.promise-list{display:flex;flex-direction:column;gap:14px;}
+.promise-item{display:flex;gap:14px;align-items:flex-start;}
+.promise-tick{color:#7ecba8;font-size:16px;flex-shrink:0;margin-top:1px;}
+.promise-text{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;}
+.promise-text strong{color:#fff;font-weight:500;}
+
+footer{background:#0a0d0a;padding:24px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.foot-logo{font-family:'Fraunces',serif;font-size:16px;color:rgba(255,255,255,0.35);}
+.foot-logo em{font-style:italic;color:#7ecba8;}
+.foot-link{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s;}
+.foot-link:hover{color:rgba(255,255,255,0.6);}
+
+@media(max-width:768px){
+  .hero,.intro,.tools,.promise{padding-left:20px;padding-right:20px;}
+  nav{padding:0 20px;}
+  .tool-card{grid-template-columns:56px 1fr auto;}
+  .tool-arrow{padding:0 16px;}
+  .promise-inner{grid-template-columns:1fr;}
+  footer{padding:20px;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Dividend</span></a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">The Plain Truth — People's Edition</div>
+    <h1>No jargon.<br>No spin.<br><em>Just the facts.</em></h1>
+    <p class="hero-standfirst">You've probably felt it. The sense that the world is broken, but the money is clearly there to fix it. <strong>You're right. Here's the proof.</strong> Four short, honest reads — one for each piece of the puzzle.</p>
+    <p class="hero-note">Written for everyone. No economics degree required. All figures are sourced and conservative. If anything is wrong, we want to know.</p>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="intro-inner">
+    <p class="intro-pull">The same argument, told four different ways. <em>Start anywhere.</em></p>
+    <p class="intro-body">Each piece covers one part of the same big picture: why the world seems broken, why it doesn't have to be, and — most importantly — exactly what would need to change. We're not asking you to trust us. We're asking you to look at the numbers and decide for yourself.</p>
+    <p class="intro-body">If you want the full technical data, the academic sources, and the detailed methodology behind every claim — that's in our <a href="expert-hub.html" style="color:var(--green);font-weight:500;">Expert Analysis section</a>. But start here.</p>
+  </div>
+</section>
+
+<section class="tools">
+  <div class="tools-inner">
+    <div class="tools-label">The Four Plain Truths</div>
+    <div class="tool-cards">
+
+      <a class="tool-card" href="pt-war.html">
+        <div class="tool-num">1</div>
+        <div class="tool-body">
+          <div class="tool-tag">Wars & their cost</div>
+          <div class="tool-title">What wars actually cost — and what we could buy instead</div>
+          <div class="tool-desc">The numbers governments don't put on posters. What one day of the Sudan conflict costs. What that money could build. Why it matters to you even if you live thousands of miles away.</div>
+        </div>
+        <div class="tool-arrow">→</div>
+      </a>
+
+      <a class="tool-card" href="pt-ai.html">
+        <div class="tool-num">2</div>
+        <div class="tool-body">
+          <div class="tool-tag">The AI choice</div>
+          <div class="tool-title">The most powerful technology ever built — and what we're using it for</div>
+          <div class="tool-desc">AI could cure diseases your doctor has never heard of. It could feed the world. Instead, we're spending 43 times more making weapons smarter. This is not inevitable. It's a choice.</div>
+        </div>
+        <div class="tool-arrow">→</div>
+      </a>
+
+      <a class="tool-card" href="pt-wealth.html">
+        <div class="tool-num">3</div>
+        <div class="tool-body">
+          <div class="tool-tag">Where the money is</div>
+          <div class="tool-title">Why you can't afford a house — and who has your money</div>
+          <div class="tool-desc">37,000 people. That's it. That's how many people own more than $100 million. Together they hold more wealth than the bottom half of humanity. This is what that actually means.</div>
+        </div>
+        <div class="tool-arrow">→</div>
+      </a>
+
+      <a class="tool-card" href="pt-sell.html">
+        <div class="tool-num">4</div>
+        <div class="tool-body">
+          <div class="tool-tag">The mechanism</div>
+          <div class="tool-title">They don't hold cash. Here's why that matters — and how to fix it.</div>
+          <div class="tool-desc">The ultra-wealthy never pay taxes on most of their wealth because they never sell anything. They borrow instead. This is the legal trick that keeps the system frozen. And here's how to unfreeze it.</div>
+        </div>
+        <div class="tool-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="promise">
+  <div class="promise-inner">
+    <div>
+      <div class="promise-title">This is not<br>a political campaign.<br><em>It's arithmetic.</em></div>
+      <p class="promise-body">We're not asking you to vote for anyone, march anywhere, or sign anything. We're just asking you to look at the numbers. What you do with them is entirely up to you.</p>
+    </div>
+    <div class="promise-list">
+      <div class="promise-item"><div class="promise-tick">✓</div><div class="promise-text"><strong>Every number is sourced.</strong> We link to the original data so you can check it yourself.</div></div>
+      <div class="promise-item"><div class="promise-tick">✓</div><div class="promise-text"><strong>We use conservative estimates.</strong> When figures are contested, we use the smaller number.</div></div>
+      <div class="promise-item"><div class="promise-tick">✓</div><div class="promise-text"><strong>We want to be corrected.</strong> If something is wrong, email us. Accuracy is the whole point.</div></div>
+      <div class="promise-item"><div class="promise-tick">✓</div><div class="promise-text"><strong>We're not affiliated with anyone.</strong> No government. No party. No corporate sponsor.</div></div>
+      <div class="promise-item"><div class="promise-tick">✓</div><div class="promise-text"><strong>This is free, forever.</strong> Share it. Translate it. Use it however you like.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">The Plain Truth — <em>The Dividend</em></div>
+  <div style="display:flex;gap:20px;flex-wrap:wrap;">
+    <a class="foot-link" href="index.html">Home</a>
+    <a class="foot-link" href="expert-hub.html">Expert Analysis</a>
+    <a class="foot-link" href="index.html#contact">Contact</a>
+  </div>
+</footer>
+
+<!-- FLOATING HOME BUTTON -->
+<a href="index.html" id="homeBtn" style="position:fixed;bottom:28px;left:28px;z-index:999;display:flex;align-items:center;gap:9px;background:#fff;color:#0d7a40;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:11px 18px 11px 14px;border-radius:50px;border:2px solid #9dd4b4;box-shadow:0 4px 20px rgba(15,31,21,0.13);transition:all 0.25s;" onmouseover="this.style.background='#0d7a40';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(13,122,64,0.3)'" onmouseout="this.style.background='#fff';this.style.color='#0d7a40';this.style.transform='';this.style.boxShadow='0 4px 20px rgba(15,31,21,0.13)'">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  The Dividend
+</a>
+</body>
+</html>
