@@ -283,10 +283,10 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
     </div>
     <div>
       <div class="hero-stats">
-        <div class="hstat"><div class="hstat-num">$2,887B</div><div class="hstat-label">World military spending, 2025 (SIPRI)</div></div>
-        <div class="hstat"><div class="hstat-num">$63.8T</div><div class="hstat-label">Net worth of 556,850 people worth $30M+ (Altrata, 2025)</div></div>
-        <div class="hstat"><div class="hstat-num">$13.4B</div><div class="hstat-label">US FY2026 request for AI and autonomy</div></div>
-        <div class="hstat"><div class="hstat-num">8.6M</div><div class="hstat-label">Displaced inside Sudan, Oct 2026 (IOM)</div></div>
+        <div class="hstat"><div class="hstat-num" data-fig="mil_spend_2025" data-show="compact"></div><div class="hstat-label">World military spending, 2025 (SIPRI)</div></div>
+        <div class="hstat"><div class="hstat-num" data-fig="ua_damage_2025" data-show="compact"></div><div class="hstat-label">Direct war damage in Ukraine to end 2025 (World Bank, EU, UN)</div></div>
+        <div class="hstat"><div class="hstat-num" data-fig="us_dod_ai_autonomy_fy26" data-show="compact"></div><div class="hstat-label">US FY2026 request for autonomous and remotely operated systems (DoD)</div></div>
+        <div class="hstat"><div class="hstat-num" data-fig="sd_idp_end2025" data-show="compact"></div><div class="hstat-label">Internally displaced in Sudan, end 2025 (UNHCR)</div></div>
       </div>
       <div class="hero-tagline"><p>“The argument for peace deserves the same analytical rigour that <strong>war has always enjoyed.</strong>”</p></div>
     </div>
@@ -311,7 +311,7 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
         <div class="door-tools">
           <div class="door-tool"><div class="door-tool-icon">⚔️</div><div class="door-tool-text"><div class="door-tool-name">What Wars Actually Cost Us</div><div class="door-tool-sub">Told in hospitals, schools & lives</div></div></div>
           <div class="door-tool"><div class="door-tool-icon">🤖</div><div class="door-tool-text"><div class="door-tool-name">AI: Killer Drones or Cure for ALS?</div><div class="door-tool-sub">The same technology, opposite choices</div></div></div>
-          <div class="door-tool"><div class="door-tool-icon">🏠</div><div class="door-tool-text"><div class="door-tool-name">Why You Can't Afford a House</div><div class="door-tool-sub">37,000 people. Everything you need to know.</div></div></div>
+          <div class="door-tool"><div class="door-tool-icon">🏠</div><div class="door-tool-text"><div class="door-tool-name">Why You Can't Afford a House</div><div class="door-tool-sub">Who holds the wealth, and what it would take</div></div></div>
           <div class="door-tool"><div class="door-tool-icon">💰</div><div class="door-tool-text"><div class="door-tool-name">Make Them Sell</div><div class="door-tool-sub">How wealth actually works — and how to fix it</div></div></div>
         </div>
         <div class="door-cta">Enter The Plain Truth →</div>
@@ -340,15 +340,13 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
     <div style="margin-bottom:32px;">
       <div class="sec-eye">Checked figures</div>
       <div class="sec-title">What the sources support.</div>
-      <p class="sec-body">Each tile opens its source in a new tab. <strong>A</strong> = we opened the primary source. <strong>B</strong> = we checked a reliable secondary source and still need to link the primary. Retrieved 22 November 2026.</p>
+      <p class="sec-body">Only figures from official sources (governments, UN agencies, World Bank, EU, recognised research institutes) that we opened ourselves. Each tile opens the source document; hover to see the page or paragraph. Full list: <a href="sources.html" style="color:var(--green);font-weight:600;">sources</a>.</p>
     </div>
     <div class="status-strip">
-      <div><b>6</b>grade A</div><div><b>8</b>grade B</div><div><b>2</b>indicative only (C)</div><div><b>13</b>earlier claims retracted</div>
-      <div style="display:flex;align-items:center;"><a href="data/figures.json" style="color:var(--green);font-weight:600;">Open the register (JSON)</a>&nbsp;·&nbsp;<a href="data/figures.csv" style="color:var(--green);font-weight:600;">CSV</a></div>
+      <div><b data-fig-count="ok"></b>figures meet the policy</div><div><b data-fig-count="sources"></b>official sources</div><div><b data-fig-count="not_ok"></b>awaiting an official source</div><div><b data-fig-count="retracted"></b>earlier claims retracted</div>
+      <div style="display:flex;align-items:center;"><a href="sources.html" style="color:var(--green);font-weight:600;">Sources</a>&nbsp;·&nbsp;<a href="data/figures.json" style="color:var(--green);font-weight:600;">JSON</a>&nbsp;·&nbsp;<a href="data/figures.csv" style="color:var(--green);font-weight:600;">CSV</a></div>
     </div>
-    <div class="verified-grid">
-      <a href="https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge a">A · primary source</span><div class="nt-category war">Military spending</div><div class="nt-num red">$2,887B</div><div class="nt-label">World military spending in 2025, up 2.9% in real terms.</div><div class="src-line">SIPRI, 27 Apr 2026</div></a><a href="https://www.cdomagazine.tech/us-federal-news-bureau/pentagon-seeks-13-4-bn-for-ai-and-autonomy-fy-2026-budget-request" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge b">B · secondary source</span><div class="nt-category ai">Military AI</div><div class="nt-num red">$13.4B</div><div class="nt-label">US Defense Department FY2026 request for AI and autonomy. $9.4B of it is for aerial drones.</div><div class="src-line">CDO Magazine, citing defense.gov budget briefing</div></a><a href="https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge a">A · primary source</span><div class="nt-category wealth">Wealth</div><div class="nt-num red">117,000+</div><div class="nt-label">People with a net worth above $100 million in 2025.</div><div class="src-line">Altrata, World Ultra Wealth Report 2026, p.1</div></a><a href="https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge a">A · primary source</span><div class="nt-category wealth">Wealth</div><div class="nt-num gold">$63.8T</div><div class="nt-label">Combined net worth of the 556,850 people worth $30 million or more (2025).</div><div class="src-line">Altrata, World Ultra Wealth Report 2026, p.1</div></a><a href="https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge a">A · primary source</span><div class="nt-category sell">Tax</div><div class="nt-num red">3.4%</div><div class="nt-label">‘True tax rate’ of the 25 richest Americans, 2014–2018: $13.6B in taxes on $401B of wealth growth. Warren Buffett: 0.1%.</div><div class="src-line">ProPublica, The Secret IRS Files (2021)</div></a><a href="https://allafrica.com/stories/202611180008.html" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge b">B · secondary source</span><div class="nt-category war">Sudan</div><div class="nt-num red">8.6M</div><div class="nt-label">People internally displaced in Sudan, October 2026. Down 26% from the January 2025 peak of 11.58M.</div><div class="src-line">IOM, reported by allAfrica, 18 Nov 2026</div></a><a href="https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge b">B · secondary source</span><div class="nt-category war">Sudan</div><div class="nt-num red">≈12M</div><div class="nt-label">Forcibly displaced from Sudan including refugees and returnees (April 2026). Over 6.8M of them are inside Sudan.</div><div class="src-line">UNHCR data, via Council on Foreign Relations</div></a><a href="https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge b">B · secondary source</span><div class="nt-category war">Sudan</div><div class="nt-num gold">Unknown</div><div class="nt-label">Number killed in Sudan’s war. Estimates range from tens of thousands to hundreds of thousands.</div><div class="src-line">Council on Foreign Relations, Apr 2026</div></a>
-    </div>
+    <div class="verified-grid" data-fig-tiles="homepage"></div>
   </div>
 </section>
 
@@ -359,7 +357,7 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
     <p class="sec-body">An earlier version of this site stated these as fact. When we checked them against sources, they did not hold. We publish them because a project that asks experts to find its errors should show the ones it has found itself. The numbers on the draft pages behind the two doors have not all been fixed yet.</p>
     <table class="corr">
       <thead><tr><th>Earlier claim</th><th>What the sources show</th><th>Action</th></tr></thead>
-      <tbody><tr><td>Sudan war cost $693B (≈$80M per day)</td><td>No source. It contradicts itself: 1,316 days × $80M ≈ $105B. Sudan’s government estimates reconstruction needs at $200B (Dec 2024).</td><td>Removed</td></tr><tr><td>150,000+ dead in Sudan</td><td>CFR (Apr 2026): death toll unknown; estimates run from tens of thousands to hundreds of thousands.</td><td>Replaced by ‘Unknown’</td></tr><tr><td>11 million displaced inside Sudan</td><td>IOM: 8.59M in Oct 2026 (peak 11.58M in Jan 2025). UNHCR (Apr 2026): over 6.8M.</td><td>Updated</td></tr><tr><td>46M+ displaced, ‘more than the population of Spain’</td><td>Spain has 49.8M inhabitants (INE, Jul 2026), so 46M is less. The 46M itself had no source.</td><td>Removed</td></tr><tr><td>Global military spending $2.3T</td><td>SIPRI: $2,887B in 2025.</td><td>Updated</td></tr><tr><td>Military AI $96B vs humanitarian AI $2.2B = 43:1 (credited to SIPRI)</td><td>SIPRI publishes no such figure and we found no other source. Closest: a $15.3B market estimate for 2024 (publisher unnamed) and the $13.4B US request. We found no humanitarian comparator. Does a defensible one exist? That is now our open question.</td><td>Removed; charts removed</td></tr><tr><td>US DoD AI budget 2024: $17.9B</td><td>FY2026 request for AI and autonomy: $13.4B, mostly drones. We found no source for $17.9B.</td><td>Replaced</td></tr><tr><td>AlphaFold cost $10M in total</td><td>No total has been published. One independent estimate puts training compute alone at about $200K.</td><td>Removed</td></tr><tr><td>‘The US DoD spends $10M on military AI in 12 minutes’</td><td>Arithmetic error. At $17.9B a year it takes about 4.9 hours; at $13.4B about 6.5 hours.</td><td>Removed</td></tr><tr><td>36,970 people hold $42T above $100M</td><td>Altrata counts more than 117,000 people above $100M. Wealth above that line is not published, so $42T (and the $842B tax yield built on it) cannot be checked.</td><td>Replaced; wealth pages marked draft</td></tr></tbody>
+      <tbody data-retracted-table></tbody>
     </table>
     <p class="sec-body" style="margin-top:18px;">Full list with pages affected: <a href="data/retracted.csv" style="color:var(--green);font-weight:600;">retracted.csv</a>.</p>
   </div>
@@ -439,6 +437,7 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
   <div class="foot-copy">© 2026 Peace Dividend Project — Open source, free to share</div>
 </footer>
 <script src="assets/config.js"></script>
+<script src="assets/figures.js"></script>
 <script>
 (function () {
   var c = window.PD_CONFIG || {};

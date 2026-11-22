@@ -25,13 +25,20 @@ for f in d['figures']:                       # deep_url standaard = document-URL
     if f.get('source_id') in S:
         f['source'] = f.get('source') or f"{S[f['source_id']]['publisher']}, {S[f['source_id']]['title']}"
         f['url'] = f.get('url') or S[f['source_id']]['url']
-json.dump(d, open('data/figures.json', 'w', encoding='utf-8', newline='\n'), ensure_ascii=False, indent=2)
+        f['source_short'] = S[f['source_id']].get('short', '')
 
 F = {f['id']: f for f in d['figures']}
 bad = {i: problems(f) for i, f in F.items() if problems(f)}
+d['meta']['counts'] = {'ok': len(F) - len(bad), 'not_ok': len(bad), 'retracted': len(d['retracted']),
+    'sources': len({F[i]['source_id'] for i in F if i not in bad})}
+json.dump(d, open('data/figures.json', 'w', encoding='utf-8', newline='\n'), ensure_ascii=False, indent=2)
 used = {}
 for page in glob.glob('*.html'):
-    for i in re.findall(r'data-fig="([^"]+)"', open(page, encoding='utf-8').read()):
+    txt = open(page, encoding='utf-8').read()
+    ids = re.findall(r'data-fig="([^"]+)"', txt)
+    for key in re.findall(r'data-fig-tiles="([^"]+)"', txt):   # tegelset uit meta[key]
+        ids += d['meta'].get(key, [])
+    for i in ids:
         used.setdefault(i, set()).add(page)
 fail = 0
 print(f"== {len(F)} cijfers, {len(F)-len(bad)} voldoen, {len(bad)} voldoen niet")

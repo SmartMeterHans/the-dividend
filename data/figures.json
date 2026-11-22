@@ -7,7 +7,29 @@
       "B": "secondary source checked, primary still to be linked",
       "C": "estimate or indicative only"
     },
-    "policy": "Only figures from official or institutional primary sources, opened and located (page/table/paragraph). See data/sources.csv."
+    "policy": "Only figures from official or institutional primary sources, opened and located (page/table/paragraph). See data/sources.csv.",
+    "homepage": [
+      "mil_spend_2025",
+      "us_dod_ai_autonomy_fy26",
+      "ua_damage_2025",
+      "gaza_damage_2024",
+      "sd_idp_end2025",
+      "sd_fled_neighbours_end2025"
+    ],
+    "labels": {
+      "mil_spend_2025": "Military spending",
+      "us_dod_ai_autonomy_fy26": "Military autonomy",
+      "ua_damage_2025": "Ukraine",
+      "gaza_damage_2024": "Gaza",
+      "sd_idp_end2025": "Sudan",
+      "sd_fled_neighbours_end2025": "Sudan"
+    },
+    "counts": {
+      "ok": 10,
+      "not_ok": 14,
+      "retracted": 22,
+      "sources": 5
+    }
   },
   "figures": [
     {
@@ -21,22 +43,24 @@
       "source": "SIPRI press release, 27 Apr 2026: Global military spending rise continues as European and Asian expenditures surge",
       "url": "https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025",
       "source_id": "sipri_milex_2025",
-      "locator": "",
-      "deep_url": "https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025"
+      "locator": "paragraph 1",
+      "deep_url": "https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025",
+      "source_short": "SIPRI, 27 Apr 2026"
     },
     {
       "id": "us_dod_ai_autonomy_fy26",
-      "claim": "US DoD FY2026 budget request for AI and autonomy",
+      "claim": "US DoD FY2026 budget request: autonomous and remotely operated systems (air, land and sea)",
       "value": 13.4,
       "unit": "USD bn",
       "period": "FY2026 request",
-      "cls": "B",
-      "note": "Of which aerial drones 9.4; maritime 1.7; software/integration 1.2; underwater 0.734; ground 0.21; AI and automation technologies 0.2. Request, not outlay.",
-      "source": "CDO Magazine, citing the defense.gov 'Background Briefing on FY 2026 Defense Budget' (primary to be linked)",
-      "url": "https://www.cdomagazine.tech/us-federal-news-bureau/pentagon-seeks-13-4-bn-for-ai-and-autonomy-fy-2026-budget-request",
-      "source_id": "",
-      "locator": "",
-      "deep_url": ""
+      "cls": "A",
+      "note": "Request, not outlay. Covers autonomy in general, not AI specifically.",
+      "source": "US Department of Defense, Office of the Under Secretary of Defense (Comptroller), Defense Budget Overview - Fiscal Year 2026 Budget Request (briefing)",
+      "url": "https://comptroller.defense.gov/Portals/45/Documents/defbudget/FY2026/FY2026_Budget_Request.pdf",
+      "source_id": "dod_fy26_budget_request",
+      "locator": "slide 7, \"Rebuild Our Military\"",
+      "deep_url": "https://comptroller.defense.gov/Portals/45/Documents/defbudget/FY2026/FY2026_Budget_Request.pdf",
+      "source_short": "DoD Comptroller, FY2026 budget request"
     },
     {
       "id": "centi_millionaires_2025",
@@ -50,7 +74,8 @@
       "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf",
       "source_id": "altrata_wuwr_2026",
       "locator": "",
-      "deep_url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
+      "deep_url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf",
+      "source_short": "Altrata, World Ultra Wealth Report 2026"
     },
     {
       "id": "uhnw_count_2025",
@@ -64,7 +89,8 @@
       "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf",
       "source_id": "altrata_wuwr_2026",
       "locator": "",
-      "deep_url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
+      "deep_url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf",
+      "source_short": "Altrata, World Ultra Wealth Report 2026"
     },
     {
       "id": "uhnw_wealth_2025",
@@ -78,7 +104,8 @@
       "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf",
       "source_id": "altrata_wuwr_2026",
       "locator": "",
-      "deep_url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
+      "deep_url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf",
+      "source_short": "Altrata, World Ultra Wealth Report 2026"
     },
     {
       "id": "propublica_true_rate_top25",
@@ -92,7 +119,8 @@
       "url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax",
       "source_id": "propublica_irs_2021",
       "locator": "",
-      "deep_url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax"
+      "deep_url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax",
+      "source_short": "ProPublica, 2021"
     },
     {
       "id": "propublica_true_rate_buffett",
@@ -106,7 +134,8 @@
       "url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax",
       "source_id": "propublica_irs_2021",
       "locator": "",
-      "deep_url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax"
+      "deep_url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax",
+      "source_short": "ProPublica, 2021"
     },
     {
       "id": "sudan_idp_iom_oct2026",
@@ -246,7 +275,8 @@
       "url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf",
       "source_id": "wb_rdna5_ukraine",
       "locator": "printed p. 19; Table 1 p. 16",
-      "deep_url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf"
+      "deep_url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf",
+      "source_short": "World Bank, EU, UN, Government of Ukraine: RDNA5 (Feb 2026)"
     },
     {
       "id": "ua_losses_2025",
@@ -260,7 +290,8 @@
       "url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf",
       "source_id": "wb_rdna5_ukraine",
       "locator": "printed p. 20; Table 1 p. 16",
-      "deep_url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf"
+      "deep_url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf",
+      "source_short": "World Bank, EU, UN, Government of Ukraine: RDNA5 (Feb 2026)"
     },
     {
       "id": "ua_needs_2026_35",
@@ -274,7 +305,8 @@
       "url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf",
       "source_id": "wb_rdna5_ukraine",
       "locator": "printed p. 22; Table 1 p. 16",
-      "deep_url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf"
+      "deep_url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf",
+      "source_short": "World Bank, EU, UN, Government of Ukraine: RDNA5 (Feb 2026)"
     },
     {
       "id": "gaza_damage_2024",
@@ -288,7 +320,8 @@
       "url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf",
       "source_id": "wb_irdna_gaza",
       "locator": "printed p. 3 para 8; Table 1 p. 4 (29,880 USD m)",
-      "deep_url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf"
+      "deep_url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf",
+      "source_short": "World Bank, EU, UN: Gaza IRDNA (Feb 2025)"
     },
     {
       "id": "gaza_losses_2024",
@@ -302,7 +335,8 @@
       "url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf",
       "source_id": "wb_irdna_gaza",
       "locator": "printed p. 3 para 8; Table 1 p. 4 (19,059 USD m)",
-      "deep_url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf"
+      "deep_url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf",
+      "source_short": "World Bank, EU, UN: Gaza IRDNA (Feb 2025)"
     },
     {
       "id": "gaza_needs",
@@ -316,7 +350,8 @@
       "url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf",
       "source_id": "wb_irdna_gaza",
       "locator": "printed p. 3 para 8; p. 5 para 11; Table 3 p. 6",
-      "deep_url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf"
+      "deep_url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf",
+      "source_short": "World Bank, EU, UN: Gaza IRDNA (Feb 2025)"
     },
     {
       "id": "sd_idp_end2025",
@@ -330,7 +365,8 @@
       "url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf",
       "source_id": "unhcr_gr2025_sudan",
       "locator": "p. 1, 2025 year-end population figures",
-      "deep_url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf"
+      "deep_url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf",
+      "source_short": "UNHCR Global Report 2025"
     },
     {
       "id": "sd_fled_neighbours_end2025",
@@ -344,14 +380,15 @@
       "url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf",
       "source_id": "unhcr_gr2025_sudan",
       "locator": "p. 1, Context",
-      "deep_url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf"
+      "deep_url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf",
+      "source_short": "UNHCR Global Report 2025"
     }
   ],
   "retracted": [
     {
       "id": "x_sudan_cost_693B",
       "earlier": "Sudan conflict cost $693B since April 2023",
-      "finding": "No source found. It also contradicts the page's own $80M/day: 1,316 days x $80M is about $105B. Sudan's government puts reconstruction need at $200B (Dec 2024).",
+      "finding": "No source found. It also contradicts the page's own $80M/day: 1,316 days x $80M is about $105B.",
       "action": "Removed from home page; draft pages flagged",
       "pages": "index, true-cost-v4"
     },
@@ -365,21 +402,21 @@
     {
       "id": "x_sudan_150k_dead",
       "earlier": "150,000+ dead in Sudan",
-      "finding": "CFR (Apr 2026): death toll unknown; estimates range from tens of thousands to hundreds of thousands.",
+      "finding": "No official death toll exists and estimates vary widely. We show none until an official source publishes one.",
       "action": "Home page says 'unknown'; draft pages flagged",
       "pages": "pt-war, true-cost-v4"
     },
     {
       "id": "x_sudan_idp_11M",
       "earlier": "11 million internally displaced in Sudan",
-      "finding": "IOM: 8.59M in Oct 2026 (peak 11.58M in Jan 2025). UNHCR (Apr 2026): more than 6.8M.",
+      "finding": "UNHCR Global Report 2025: 9.1 million internally displaced at the end of 2025.",
       "action": "Home page updated; draft pages flagged",
       "pages": "pt-war"
     },
     {
       "id": "x_displaced_46M_spain",
       "earlier": "46M+ displaced by conflict, more than the population of Spain",
-      "finding": "Spain has 49.8M (INE, Jul 2026), so 46M is less. The 46M itself has no source.",
+      "finding": "No source found for 46M.",
       "action": "Removed",
       "pages": "index"
     },
@@ -393,35 +430,35 @@
     {
       "id": "x_ai_ratio_43",
       "earlier": "Military AI $96B/yr vs humanitarian AI $2.2B (43:1), attributed to SIPRI",
-      "finding": "SIPRI publishes no such figure and we found no other source. Closest: a $15.3B military-AI market estimate for 2024 (publisher unnamed) and a $13.4B US request for AI and autonomy. No humanitarian comparator found.",
+      "finding": "SIPRI publishes no such figure, and we found no official source for it or for a humanitarian-AI comparator.",
       "action": "Removed from home page and AI Crossroads section 2 (now an open question); charts removed",
       "pages": "index, ai-crossroads, expert-hub, pt-ai, true-cost-v4"
     },
     {
       "id": "x_dod_ai_17_9B",
       "earlier": "US DoD AI budget 2024: $17.9B (1,790 AlphaFolds)",
-      "finding": "FY2026 request for AI and autonomy is $13.4B, of which $9.4B is aerial drones. No source for $17.9B.",
+      "finding": "No source for $17.9B. The DoD FY2026 budget request lists $13.4B for autonomous and remotely operated systems (slide 7).",
       "action": "pt-ai text replaced",
       "pages": "pt-ai"
     },
     {
       "id": "x_alphafold_10M",
       "earlier": "AlphaFold cost $10M in total",
-      "finding": "No published total. One independent estimate puts training compute alone at roughly $200K.",
+      "finding": "No official published total.",
       "action": "Removed from home page and AI Crossroads; draft pages flagged",
       "pages": "index, ai-crossroads, pt-ai, pt-sell"
     },
     {
       "id": "x_12_minutes",
       "earlier": "US DoD spends $10M on military AI in 12 minutes",
-      "finding": "Arithmetic error: at $17.9B/yr it takes about 4.9 hours; at $13.4B/yr about 6.5 hours.",
+      "finding": "Built on the unsupported $17.9B, and the arithmetic was wrong.",
       "action": "Removed",
       "pages": "ai-crossroads"
     },
     {
       "id": "x_36970_42T",
       "earlier": "36,970 people hold $42T above the $100M threshold",
-      "finding": "Altrata counts more than 117,000 people above $100M. Wealth above $100M is not published, so $42T cannot be checked.",
+      "finding": "No official source publishes the number of people or the total wealth above $100M, so neither can be checked.",
       "action": "Home page uses Altrata figures; wealth pages flagged as draft",
       "pages": "index, pt-wealth, wealth-threshold, sell-mandate, plain-truth"
     },
