@@ -16,5 +16,4 @@
 ## Nog open (eerlijk)
 - pt-wealth, wealth-threshold, sell-mandate, pt-war, true-cost-v4 bevatten nog ongecontroleerde modelcijfers (o.a. 36.970 mensen / $42T). Ze hebben alleen de concept-melding.
 - Echt contactadres ontbreekt (config.js, `email`).
-- `start.html` staat nog in de repo en moet weg.
 - Issues moet aan staan: repo → Settings → Features.
