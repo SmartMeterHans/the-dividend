@@ -25,7 +25,7 @@ for f in d['figures']:                       # deep_url standaard = document-URL
     if f.get('source_id') in S:
         f['source'] = f.get('source') or f"{S[f['source_id']]['publisher']}, {S[f['source_id']]['title']}"
         f['url'] = f.get('url') or S[f['source_id']]['url']
-json.dump(d, open('data/figures.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+json.dump(d, open('data/figures.json', 'w', encoding='utf-8', newline='\n'), ensure_ascii=False, indent=2)
 
 F = {f['id']: f for f in d['figures']}
 bad = {i: problems(f) for i, f in F.items() if problems(f)}
@@ -42,10 +42,10 @@ for i, pages in used.items():
 
 cols = ['id','claim','value','unit','period','cls','source_id','locator','deep_url','note','retrieved']
 with open('data/figures.csv','w',newline='',encoding='utf-8') as fh:
-    w = csv.writer(fh); w.writerow(cols)
+    w = csv.writer(fh, lineterminator='\n'); w.writerow(cols)
     for f in d['figures']: w.writerow([f.get(c, S.get(f.get('source_id'),{}).get('retrieved','') if c=='retrieved' else '') for c in cols])
 with open('data/retracted.csv','w',newline='',encoding='utf-8') as fh:
-    w = csv.writer(fh); w.writerow(['id','earlier_claim','what_sources_show','action','pages'])
+    w = csv.writer(fh, lineterminator='\n'); w.writerow(['id','earlier_claim','what_sources_show','action','pages'])
     for r in d['retracted']: w.writerow([r['id'], r['earlier'], r['finding'], r['action'], r['pages']])
 
 e = html.escape
@@ -59,7 +59,7 @@ for sid, s in S.items():
                 f"<p class=meta>{e(s['publisher'])} · {e(s['published'])} · type: {e(s['publisher_type'])}{'' if ok else ' — does not meet the sourcing policy; figures to be replaced'} · retrieved {e(s['retrieved'])}</p><ul>{items}</ul></section>")
 unsourced = [f for f in d['figures'] if f.get('source_id') not in S]
 tpl = open('scripts/sources.template.html', encoding='utf-8').read()
-open('sources.html','w',encoding='utf-8').write(tpl.replace('{{SOURCES}}', '\n'.join(rows))
+open('sources.html','w',encoding='utf-8',newline='\n').write(tpl.replace('{{SOURCES}}', '\n'.join(rows))
     .replace('{{COUNT}}', f"{len(S)} sources · {len(F)-len(bad)} figures meet the policy · {len(unsourced)} awaiting a primary source")
     .replace('{{RETRIEVED}}', d['meta']['retrieved']))
 print("== gegenereerd: data/figures.csv, data/retracted.csv, sources.html")
