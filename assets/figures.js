@@ -1,8 +1,7 @@
 // Herbruikbaar: alle cijfers op een pagina komen uit data/figures.json. Pagina's typen nooit zelf cijfers over.
 //  data-fig="id"            -> waarde (+eenheid) als link naar de bron. Optioneel data-show="compact|period|source|locator|claim|note"
 //  data-fig-tiles="key"     -> tegels voor de ids in meta[key] (bv. "homepage")
-//  data-fig-count="ok|not_ok|retracted|sources" (berekend door register.py) -> aantallen uit het register
-//  data-retracted-table     -> <tbody> gevuld met ingetrokken claims
+//  data-fig-count="ok|not_ok|sources" (berekend door register.py) -> aantallen uit het register
 (function () {
   var base = (document.currentScript && document.currentScript.dataset.base) || '';
   function esc(t) { var e = document.createElement('span'); e.textContent = t == null ? '' : String(t); return e.innerHTML; }
@@ -45,11 +44,6 @@
     });
     var n = d.meta.counts || {};
     document.querySelectorAll('[data-fig-count]').forEach(function (el) { el.textContent = n[el.dataset.figCount]; });
-    document.querySelectorAll('[data-retracted-table]').forEach(function (el) {
-      el.innerHTML = d.retracted.map(function (r) {
-        return '<tr><td>' + esc(r.earlier) + '</td><td>' + esc(r.finding) + '</td><td>' + esc(r.action) + '</td></tr>';
-      }).join('');
-    });
   }).catch(function () {
     document.querySelectorAll('[data-fig],[data-fig-tiles]').forEach(function (el) { el.innerHTML = '<a href="' + base + 'sources.html">see sources</a>'; });
   });

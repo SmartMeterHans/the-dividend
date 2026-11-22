@@ -3,7 +3,7 @@
   var s = document.currentScript;
   var mode = (s && s.dataset.status) || "model";
   var MSG = {
-    model: "<strong>Working draft.</strong> Model figures on this page are not yet verified against primary sources, and some are known to be wrong. Checked figures: <a href=\"index.html#verified\">home page</a> · <a href=\"index.html#corrections\">corrections log</a> · <a href=\"data/figures.json\">figures register</a>."
+    model: "<strong>Working draft.</strong> Model figures on this page are not yet verified against primary sources, Checked figures: <a href=\"index.html#verified\">home page</a> · <a href=\"sources.html\">sources</a> · <a href=\"data/figures.json\">figures register</a>."
   };
   var box = document.createElement("div");
   box.setAttribute("role", "note");

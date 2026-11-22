@@ -3,7 +3,7 @@
 1. Valideert data/figures.json tegen data/sources.csv (beleid: alleen officiële/institutionele
    primaire bronnen, met vindplaats).
 2. Controleert elke data-fig="id" in *.html: bestaat het cijfer en voldoet het aan het beleid?
-3. Genereert data/figures.csv, data/retracted.csv en sources.html (openbare bronnenlijst).
+3. Genereert data/figures.csv en sources.html (openbare bronnenlijst).
 Exit 1 als een pagina een cijfer toont dat niet voldoet."""
 import csv, json, re, glob, html, sys, os
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
@@ -29,7 +29,7 @@ for f in d['figures']:                       # deep_url standaard = document-URL
 
 F = {f['id']: f for f in d['figures']}
 bad = {i: problems(f) for i, f in F.items() if problems(f)}
-d['meta']['counts'] = {'ok': len(F) - len(bad), 'not_ok': len(bad), 'retracted': len(d['retracted']),
+d['meta']['counts'] = {'ok': len(F) - len(bad), 'not_ok': len(bad),
     'sources': len({F[i]['source_id'] for i in F if i not in bad})}
 json.dump(d, open('data/figures.json', 'w', encoding='utf-8', newline='\n'), ensure_ascii=False, indent=2)
 used = {}
@@ -51,9 +51,6 @@ cols = ['id','claim','value','unit','period','cls','source_id','locator','deep_u
 with open('data/figures.csv','w',newline='',encoding='utf-8') as fh:
     w = csv.writer(fh, lineterminator='\n'); w.writerow(cols)
     for f in d['figures']: w.writerow([f.get(c, S.get(f.get('source_id'),{}).get('retrieved','') if c=='retrieved' else '') for c in cols])
-with open('data/retracted.csv','w',newline='',encoding='utf-8') as fh:
-    w = csv.writer(fh, lineterminator='\n'); w.writerow(['id','earlier_claim','what_sources_show','action','pages'])
-    for r in d['retracted']: w.writerow([r['id'], r['earlier'], r['finding'], r['action'], r['pages']])
 
 e = html.escape
 fmt = lambda v: f'{v:,}' if isinstance(v,(int,float)) and not isinstance(v,bool) else str(v)
@@ -69,5 +66,5 @@ tpl = open('scripts/sources.template.html', encoding='utf-8').read()
 open('sources.html','w',encoding='utf-8',newline='\n').write(tpl.replace('{{SOURCES}}', '\n'.join(rows))
     .replace('{{COUNT}}', f"{len(S)} sources · {len(F)-len(bad)} figures meet the policy · {len(unsourced)} awaiting a primary source")
     .replace('{{RETRIEVED}}', d['meta']['retrieved']))
-print("== gegenereerd: data/figures.csv, data/retracted.csv, sources.html")
+print("== gegenereerd: data/figures.csv, sources.html")
 sys.exit(fail)

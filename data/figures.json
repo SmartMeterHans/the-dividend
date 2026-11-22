@@ -31,10 +31,9 @@
       "us_bottom50_share": "Wealth"
     },
     "counts": {
-      "ok": 19,
-      "not_ok": 14,
-      "retracted": 22,
-      "sources": 10
+      "ok": 23,
+      "not_ok": 13,
+      "sources": 13
     }
   },
   "figures": [
@@ -209,20 +208,6 @@
       "note": "A reconstruction estimate for areas regained by the army, not a total cost of the war",
       "source": "Africanews, 14 Jan 2026",
       "url": "https://www.africanews.com/2026/01/14/sudans-war-has-left-the-countrys-economy-shattered/",
-      "source_id": "",
-      "locator": "",
-      "deep_url": ""
-    },
-    {
-      "id": "spain_population_2026",
-      "claim": "Population of Spain",
-      "value": 49801559,
-      "unit": "people",
-      "period": "1 Jul 2026",
-      "cls": "B",
-      "note": "Provisional (INE); used to retract the 'more than the population of Spain' claim",
-      "source": "INE, as reported by idealista (7 Aug 2026)",
-      "url": "https://www.idealista.com/en/news/lifestyle-in-spain/2026/08/07/909455-spain-s-population-hits-a-record-49-8-million-as-foreign-residents-drive-growth",
       "source_id": "",
       "locator": "",
       "deep_url": ""
@@ -523,162 +508,66 @@
       "locator": "Abstract, primary analysis",
       "deep_url": "https://bidenwhitehouse.archives.gov/cea/written-materials/2021/09/23/what-is-the-average-federal-individual-income-tax-rate-on-the-wealthiest-americans/",
       "source_short": "White House CEA/OMB, 23 Sep 2021"
-    }
-  ],
-  "retracted": [
-    {
-      "id": "x_sudan_cost_693B",
-      "earlier": "Sudan conflict cost $693B since April 2023",
-      "finding": "No source found. It also contradicts the page's own $80M/day: 1,316 days x $80M is about $105B.",
-      "action": "Removed from home page; draft pages flagged",
-      "pages": "index, true-cost-v4"
     },
     {
-      "id": "x_sudan_80M_day",
-      "earlier": "Sudan war costs $80M per day",
-      "finding": "No source found.",
-      "action": "Draft pages flagged",
-      "pages": "ai-crossroads, pt-war, true-cost-v4"
+      "id": "alphafold_proteins",
+      "claim": "AlphaFold2: protein structures predicted",
+      "value": 200,
+      "unit": "million",
+      "period": "2020-2024",
+      "cls": "A",
+      "note": "Virtually all proteins researchers have identified",
+      "source": "Royal Swedish Academy of Sciences (Nobel Prize), The Nobel Prize in Chemistry 2024 - press release",
+      "url": "https://www.nobelprize.org/prizes/chemistry/2024/press-release/",
+      "source_id": "nobel_chem_2024",
+      "locator": "paragraph \"In 2020, Demis Hassabis and John Jumper presented an AI model called AlphaFold2\"",
+      "deep_url": "https://www.nobelprize.org/prizes/chemistry/2024/press-release/",
+      "source_short": "Nobel Prize in Chemistry 2024, press release"
     },
     {
-      "id": "x_sudan_150k_dead",
-      "earlier": "150,000+ dead in Sudan",
-      "finding": "No official death toll exists and estimates vary widely. We show none until an official source publishes one.",
-      "action": "Home page says 'unknown'; draft pages flagged",
-      "pages": "pt-war, true-cost-v4"
+      "id": "alphafold_users",
+      "claim": "AlphaFold2: users",
+      "value": 2,
+      "unit": "million people (more than)",
+      "period": "to Oct 2024",
+      "cls": "A",
+      "note": "From 190 countries",
+      "source": "Royal Swedish Academy of Sciences (Nobel Prize), The Nobel Prize in Chemistry 2024 - press release",
+      "url": "https://www.nobelprize.org/prizes/chemistry/2024/press-release/",
+      "source_id": "nobel_chem_2024",
+      "locator": "paragraph \"Since their breakthrough, AlphaFold2 has been used by more than two million people from 190 countries\"",
+      "deep_url": "https://www.nobelprize.org/prizes/chemistry/2024/press-release/",
+      "source_short": "Nobel Prize in Chemistry 2024, press release"
     },
     {
-      "id": "x_sudan_idp_11M",
-      "earlier": "11 million internally displaced in Sudan",
-      "finding": "UNHCR Global Report 2025: 9.1 million internally displaced at the end of 2025.",
-      "action": "Home page updated; draft pages flagged",
-      "pages": "pt-war"
+      "id": "hunger_2025",
+      "claim": "People facing hunger worldwide",
+      "value": 645,
+      "unit": "million people",
+      "period": "2025",
+      "cls": "A",
+      "note": "7.8 percent of the global population",
+      "source": "United Nations (FAO, IFAD, UNICEF, WFP, WHO: SOFI 2026), The State of Food Security and Nutrition in the World 2026 - UN news release",
+      "url": "https://www.un.org/es/node/246095",
+      "source_id": "un_sofi_2026",
+      "locator": "paragraph \"Estimates show that 7.8 per cent of the global population\"",
+      "deep_url": "https://www.un.org/es/node/246095",
+      "source_short": "UN, SOFI 2026"
     },
     {
-      "id": "x_displaced_46M_spain",
-      "earlier": "46M+ displaced by conflict, more than the population of Spain",
-      "finding": "No source found for 46M.",
-      "action": "Removed",
-      "pages": "index"
-    },
-    {
-      "id": "x_mil_spend_2_3T",
-      "earlier": "Global military spending $2.3T per year",
-      "finding": "SIPRI: $2,887B in 2025.",
-      "action": "Home page updated; draft pages flagged",
-      "pages": "index, pt-war, true-cost-v4"
-    },
-    {
-      "id": "x_ai_ratio_43",
-      "earlier": "Military AI $96B/yr vs humanitarian AI $2.2B (43:1), attributed to SIPRI",
-      "finding": "SIPRI publishes no such figure, and we found no official source for it or for a humanitarian-AI comparator.",
-      "action": "Removed from home page and AI Crossroads section 2 (now an open question); charts removed",
-      "pages": "index, ai-crossroads, expert-hub, pt-ai, true-cost-v4"
-    },
-    {
-      "id": "x_dod_ai_17_9B",
-      "earlier": "US DoD AI budget 2024: $17.9B (1,790 AlphaFolds)",
-      "finding": "No source for $17.9B. The DoD FY2026 budget request lists $13.4B for autonomous and remotely operated systems (slide 7).",
-      "action": "pt-ai text replaced",
-      "pages": "pt-ai"
-    },
-    {
-      "id": "x_alphafold_10M",
-      "earlier": "AlphaFold cost $10M in total",
-      "finding": "No official published total.",
-      "action": "Removed from home page and AI Crossroads; draft pages flagged",
-      "pages": "index, ai-crossroads, pt-ai, pt-sell"
-    },
-    {
-      "id": "x_12_minutes",
-      "earlier": "US DoD spends $10M on military AI in 12 minutes",
-      "finding": "Built on the unsupported $17.9B, and the arithmetic was wrong.",
-      "action": "Removed",
-      "pages": "ai-crossroads"
-    },
-    {
-      "id": "x_36970_42T",
-      "earlier": "36,970 people hold $42T above the $100M threshold",
-      "finding": "No official source publishes the number of people or the total wealth above $100M, so neither can be checked.",
-      "action": "Home page uses Altrata figures; wealth pages flagged as draft",
-      "pages": "index, pt-wealth, wealth-threshold, sell-mandate, plain-truth"
-    },
-    {
-      "id": "x_842B_112k_derived",
-      "earlier": "$842B/yr from a 2% tax; 112,000 hospitals",
-      "finding": "Derived from the unsupported $42T and $693B.",
-      "action": "Draft pages flagged",
-      "pages": "index, pt-sell, pt-wealth, true-cost-v4, wealth-threshold, pt-war"
-    },
-    {
-      "id": "x_sipri_attribution",
-      "earlier": "'Investment data from SIPRI, the World Bank, and the OECD'",
-      "finding": "Attribution to SIPRI/World Bank/OECD for the 43:1 ratio could not be confirmed.",
-      "action": "Sentence replaced",
-      "pages": "ai-crossroads, expert-hub"
-    },
-    {
-      "id": "x_tc_daily_cost",
-      "earlier": "true-cost-v4: war cost per day per conflict (Sudan $80M, Ukraine $900M, Gaza $350M, and 5 others)",
-      "finding": "No source for any daily figure. Ukraine $900M/day gives $1.32T; RDNA5 puts direct damage at $195.1B. Gaza $350M/day gives $308B; IRDNA puts physical damage at $29.9B.",
-      "action": "Page true-cost-v4 withdrawn",
-      "pages": "true-cost-v4"
-    },
-    {
-      "id": "x_tc_gdp_paths",
-      "earlier": "true-cost-v4: war vs peace GDP paths 2026-2035 for 8 conflicts",
-      "finding": "Invented scenarios, no source or method.",
-      "action": "Page true-cost-v4 withdrawn",
-      "pages": "true-cost-v4"
-    },
-    {
-      "id": "x_tc_human_multiplier",
-      "earlier": "true-cost-v4: human impact multipliers",
-      "finding": "No source or definition.",
-      "action": "Page true-cost-v4 withdrawn",
-      "pages": "true-cost-v4"
-    },
-    {
-      "id": "x_tc_hospitals",
-      "earlier": "true-cost-v4: 112,000 500-bed hospitals",
-      "finding": "Off by a factor 1000 versus the page's own formula; no unit cost source.",
-      "action": "Page true-cost-v4 withdrawn",
-      "pages": "true-cost-v4"
-    },
-    {
-      "id": "x_tc_eu_sudan_asylum",
-      "earlier": "true-cost-v4: 87,645 Sudanese asylum seekers in 30 European countries (Germany 18,420)",
-      "finding": "EUAA: just over 10,000 Sudanese applications in EU+ in 2024, France main receiver.",
-      "action": "Page true-cost-v4 withdrawn",
-      "pages": "true-cost-v4"
-    },
-    {
-      "id": "x_tc_sudan_border",
-      "earlier": "true-cost-v4: 1.73M people crossed Sudan's borders",
-      "finding": "UNHCR Global Report 2025: 3.6 million had fled to neighbouring countries by end 2025.",
-      "action": "Page true-cost-v4 withdrawn",
-      "pages": "true-cost-v4"
-    },
-    {
-      "id": "x_tc_ukraine_rest_europe",
-      "earlier": "true-cost-v4: Ukraine \"Rest of Europe 8,145,000\"",
-      "finding": "Balancing figure chosen so the regions add up to 14.6M; mixes IDPs and refugees.",
-      "action": "Page true-cost-v4 withdrawn",
-      "pages": "true-cost-v4"
-    },
-    {
-      "id": "x_tc_regional_costs",
-      "earlier": "true-cost-v4: host-country costs per conflict (~50 values)",
-      "finding": "Generic source list, no source per figure.",
-      "action": "Page true-cost-v4 withdrawn",
-      "pages": "true-cost-v4"
-    },
-    {
-      "id": "x_tc_ai_custom",
-      "earlier": "true-cost-v4: \"custom conflict\" figures generated by AI",
-      "finding": "AI-generated figures presented as database-backed. Feature removed.",
-      "action": "Page true-cost-v4 withdrawn",
-      "pages": "true-cost-v4"
+      "id": "water_2024",
+      "claim": "People without safely managed drinking water",
+      "value": 2.1,
+      "unit": "billion people",
+      "period": "2024",
+      "cls": "A",
+      "note": "",
+      "source": "WHO/UNICEF Joint Monitoring Programme (JMP), Progress on household drinking water, sanitation and hygiene 2000-2024",
+      "url": "https://data.unicef.org/resources/jmp-report-2025/",
+      "source_id": "who_unicef_jmp_2025",
+      "locator": "report landing page, \"1 in 4 people around the world lack safely managed drinking water\"",
+      "deep_url": "https://data.unicef.org/resources/jmp-report-2025/",
+      "source_short": "WHO/UNICEF JMP 2025"
     }
   ]
 }
