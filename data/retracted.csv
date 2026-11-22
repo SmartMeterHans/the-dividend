@@ -1,0 +1,14 @@
+id,earlier_claim,what_sources_show,action,pages
+x_sudan_cost_693B,Sudan conflict cost $693B since April 2023,"No source found. It also contradicts the page's own $80M/day: 1,316 days x $80M is about $105B. Sudan's government puts reconstruction need at $200B (Dec 2024).",Removed from home page; draft pages flagged,"index, true-cost-v4"
+x_sudan_80M_day,Sudan war costs $80M per day,No source found.,Draft pages flagged,"ai-crossroads, pt-war, true-cost-v4"
+x_sudan_150k_dead,"150,000+ dead in Sudan",CFR (Apr 2026): death toll unknown; estimates range from tens of thousands to hundreds of thousands.,Home page says 'unknown'; draft pages flagged,"pt-war, true-cost-v4"
+x_sudan_idp_11M,11 million internally displaced in Sudan,IOM: 8.59M in Oct 2026 (peak 11.58M in Jan 2025). UNHCR (Apr 2026): more than 6.8M.,Home page updated; draft pages flagged,pt-war
+x_displaced_46M_spain,"46M+ displaced by conflict, more than the population of Spain","Spain has 49.8M (INE, Jul 2026), so 46M is less. The 46M itself has no source.",Removed,index
+x_mil_spend_2_3T,Global military spending $2.3T per year,"SIPRI: $2,887B in 2025.",Home page updated; draft pages flagged,"index, pt-war, true-cost-v4"
+x_ai_ratio_43,"Military AI $96B/yr vs humanitarian AI $2.2B (43:1), attributed to SIPRI",SIPRI publishes no such figure and we found no other source. Closest: a $15.3B military-AI market estimate for 2024 (publisher unnamed) and a $13.4B US request for AI and autonomy. No humanitarian comparator found.,Removed from home page and AI Crossroads section 2 (now an open question); charts removed,"index, ai-crossroads, expert-hub, pt-ai, true-cost-v4"
+x_dod_ai_17_9B,"US DoD AI budget 2024: $17.9B (1,790 AlphaFolds)","FY2026 request for AI and autonomy is $13.4B, of which $9.4B is aerial drones. No source for $17.9B.",pt-ai text replaced,pt-ai
+x_alphafold_10M,AlphaFold cost $10M in total,No published total. One independent estimate puts training compute alone at roughly $200K.,Removed from home page and AI Crossroads; draft pages flagged,"index, ai-crossroads, pt-ai, pt-sell"
+x_12_minutes,US DoD spends $10M on military AI in 12 minutes,Arithmetic error: at $17.9B/yr it takes about 4.9 hours; at $13.4B/yr about 6.5 hours.,Removed,ai-crossroads
+x_36970_42T,"36,970 people hold $42T above the $100M threshold","Altrata counts more than 117,000 people above $100M. Wealth above $100M is not published, so $42T cannot be checked.",Home page uses Altrata figures; wealth pages flagged as draft,"index, pt-wealth, wealth-threshold, sell-mandate, plain-truth"
+x_842B_112k_derived,"$842B/yr from a 2% tax; 112,000 hospitals",Derived from the unsupported $42T and $693B.,Draft pages flagged,"index, pt-sell, pt-wealth, true-cost-v4, wealth-threshold, pt-war"
+x_sipri_attribution,"'Investment data from SIPRI, the World Bank, and the OECD'",Attribution to SIPRI/World Bank/OECD for the 43:1 ratio could not be confirmed.,Sentence replaced,"ai-crossroads, expert-hub"

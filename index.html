@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Dividend — The resources to fix the world already exist.</title>
+<title>The Dividend — a thesis, checked in public</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
 :root {
   --bg:#ffffff; --bg2:#f5f9f6; --bg3:#eaf3ee;
@@ -236,44 +236,59 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
   .hero-stats{grid-template-columns:1fr 1fr;}
   footer{padding:24px 18px;flex-direction:column;align-items:flex-start;}
 }
+
+.badge{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:50px;margin-bottom:10px}
+.badge.a{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.badge.b{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.src-tile::after{content:'↗ Source'!important}
+.src-line{font-family:var(--mono);font-size:11px;color:var(--ink4);margin-top:10px;line-height:1.5}
+.verified-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.corr{width:100%;border-collapse:separate;border-spacing:0 10px;font-size:14px}
+.corr th{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink4);text-align:left;padding:0 14px 4px;font-weight:600}
+.corr td{background:#fff;padding:14px;vertical-align:top;line-height:1.55;color:var(--ink3);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.corr td:first-child{border-left:1px solid var(--border);border-radius:12px 0 0 12px;color:var(--red);font-weight:500}
+.corr td:last-child{border-right:1px solid var(--border);border-radius:0 12px 12px 0;font-family:var(--mono);font-size:12px}
+.status-strip{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 28px}
+.status-strip div{background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px 18px;font-size:14px;color:var(--ink3)}
+.status-strip b{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--ink);display:block;line-height:1}
+.contact-btn{display:inline-block;margin:6px 0 14px;padding:14px 26px;background:var(--green);color:#fff;border-radius:50px;font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-decoration:none}
+.contact-btn:hover{background:var(--green2)}
+@media(max-width:900px){.verified-grid{grid-template-columns:1fr 1fr}.corr thead{display:none}.corr td{display:block;border:1px solid var(--border)!important;border-radius:0!important}}
 </style>
 </head>
 <body>
-
 <nav>
   <a class="nav-logo" href="#">The <span>Dividend</span></a>
   <div class="nav-right">
     <div class="nav-links">
-      <a class="nav-link" href="#tools">Tools</a>
-      <a class="nav-link" href="#numbers">Numbers</a>
+      <a class="nav-link" href="#tools">Pages</a>
+      <a class="nav-link" href="#verified">Verified</a>
+      <a class="nav-link" href="#corrections">Corrections</a>
       <a class="nav-link" href="#about">About</a>
     </div>
-    <a class="nav-cta" href="#contact">Get Involved</a>
+    <a class="nav-cta" href="#contact">Report an error</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-kicker rise rise-1">The Peace Dividend Project — March 2026</div>
-      <h1 class="rise rise-2">The resources<br>to fix the world<br><em>already exist.</em></h1>
-      <p class="hero-statement rise rise-3">This is not a utopian claim. It is a <strong>documented, auditable, conservative-estimate fact.</strong> The money to end hunger, fund universal healthcare, solve neglected diseases, and house every family is sitting — right now — in accounts owned by fewer people than fill a football stadium.</p>
-      <div class="hero-btns rise rise-4">
-        <a class="hero-btn primary" href="plain-truth.html">The Plain Truth →</a>
-        <a class="hero-btn secondary" href="expert-hub.html">Expert Analysis →</a>
+      <div class="hero-kicker">The Peace Dividend Project — working draft, November 2026</div>
+      <h1>The resources<br>to fix the world<br><em>already exist.</em></h1>
+      <p class="hero-statement">That is our <strong>thesis, not yet a proven fact.</strong> This site tests it in public: every number on this page links to its source, the models behind it are drafts, and the mistakes we have already found are listed below.</p>
+      <div class="hero-btns">
+        <a class="hero-btn primary" href="#verified">See the checked numbers →</a>
+        <a class="hero-btn secondary" href="#corrections">What we got wrong →</a>
       </div>
     </div>
-    <div class="rise rise-3">
+    <div>
       <div class="hero-stats">
-        <div class="hstat"><div class="hstat-num">$42T</div><div class="hstat-label">Ultra-wealth above the $100M threshold</div></div>
-        <div class="hstat"><div class="hstat-num">$842B/yr</div><div class="hstat-label">From a 2% annual wealth tax alone</div></div>
-        <div class="hstat"><div class="hstat-num">$96B/yr</div><div class="hstat-label">Global military AI investment</div></div>
-        <div class="hstat"><div class="hstat-num">$10M</div><div class="hstat-label">AlphaFold — transformed all drug discovery</div></div>
+        <div class="hstat"><div class="hstat-num">$2,887B</div><div class="hstat-label">World military spending, 2025 (SIPRI)</div></div>
+        <div class="hstat"><div class="hstat-num">$63.8T</div><div class="hstat-label">Net worth of 556,850 people worth $30M+ (Altrata, 2025)</div></div>
+        <div class="hstat"><div class="hstat-num">$13.4B</div><div class="hstat-label">US FY2026 request for AI and autonomy</div></div>
+        <div class="hstat"><div class="hstat-num">8.6M</div><div class="hstat-label">Displaced inside Sudan, Oct 2026 (IOM)</div></div>
       </div>
-      <div class="hero-tagline">
-        <p>"The argument for peace deserves the same analytical rigour<br>that <strong>war has always enjoyed.</strong>"</p>
-      </div>
+      <div class="hero-tagline"><p>“The argument for peace deserves the same analytical rigour that <strong>war has always enjoyed.</strong>”</p></div>
     </div>
   </div>
 </section>
@@ -283,8 +298,8 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
   <div class="sec-inner">
     <div class="doors-header">
       <div class="doors-eyebrow">Choose Your Path</div>
-      <div class="doors-title">The same truth. Two ways in.</div>
-      <p class="doors-sub">Our tools are built for two audiences. The argument is identical — only the language changes. Start wherever feels right.</p>
+      <div class="doors-title">Two ways in. Both are drafts.</div>
+      <p class="doors-sub">The pages behind these doors are working models. Numbers on them are not yet verified; some are known to be wrong (see the corrections log). The numbers on this page are checked.</p>
     </div>
     <div class="doors-grid">
       <a class="door door-people" href="plain-truth.html">
@@ -305,7 +320,7 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
         <div class="door-top">
           <div class="door-tag"><div class="door-tag-dot"></div>In-Depth Expert Analysis</div>
           <div class="door-name">The Full<br><em>Evidence</em></div>
-          <p class="door-desc">Sourced data. Academic references. Methodological transparency. Built for economists, policymakers, journalists, and researchers who need every number challengeable.</p>
+          <p class="door-desc">Working models and drafts for economists, policymakers, journalists and researchers. Figures are still being verified against primary sources; the register is public.</p>
         </div>
         <div class="door-tools">
           <div class="door-tool"><div class="door-tool-icon">📊</div><div class="door-tool-text"><div class="door-tool-name">The True Cost — War Calculator</div><div class="door-tool-sub">8 conflicts · GDP modelling · EU displacement</div></div></div>
@@ -319,77 +334,34 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
   </div>
 </section>
 
-<!-- CHARTS SECTION -->
-<section class="charts-section" id="numbers">
+
+<section class="numbers-section" id="verified">
   <div class="sec-inner">
-    <div class="sec-eye">The Evidence in Visual Form</div>
-    <div class="sec-title">The numbers that<br>change the argument.</div>
-    <p class="sec-body">Every chart below is built from sourced, conservative data. The methodology behind each figure is available in the expert tools. Click any chart card to explore deeper.</p>
-
-    <div class="charts-grid">
-
-      <!-- Chart 1: AI Investment Gap -->
-      <a class="chart-card" href="ai-crossroads.html" style="text-decoration:none;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(15,31,21,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div class="chart-title">The AI Investment Gap</div>
-        <div class="chart-sub">Military vs Humanitarian AI — annual spend ($B) · Click to explore →</div>
-        <div class="chart-wrap" style="height:200px;"><canvas id="chartAI"></canvas></div>
-      </a>
-
-      <!-- Chart 2: Wealth Concentration -->
-      <a class="chart-card" href="wealth-threshold.html" style="text-decoration:none;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(15,31,21,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div class="chart-title">Wealth Concentration by Country</div>
-        <div class="chart-sub">Excess wealth above $100M threshold ($T) · Click to explore →</div>
-        <div class="chart-wrap" style="height:200px;"><canvas id="chartWealth"></canvas></div>
-      </a>
-
-      <!-- Chart 3: War Costs Timeline - wide -->
-      <a class="chart-card wide" href="true-cost-v4.html" style="text-decoration:none;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(15,31,21,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div class="chart-title">Active Conflict Costs — Daily Burn Rate</div>
-        <div class="chart-sub">Estimated economic cost per day for major active conflicts ($M/day) · Click to explore →</div>
-        <div class="chart-wrap" style="height:220px;"><canvas id="chartConflicts"></canvas></div>
-      </a>
-
-      <!-- Chart 4: AI spending projection -->
-      <a class="chart-card wide" href="ai-crossroads.html" style="text-decoration:none;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(15,31,21,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div class="chart-title">The Diverging Path — AI Investment 2020–2030</div>
-        <div class="chart-sub">Military vs humanitarian AI: projected annual spend if current trends hold ($B) · Click to explore →</div>
-        <div class="chart-wrap" style="height:220px;"><canvas id="chartProjection"></canvas></div>
-      </a>
-
+    <div style="margin-bottom:32px;">
+      <div class="sec-eye">Checked figures</div>
+      <div class="sec-title">What the sources support.</div>
+      <p class="sec-body">Each tile opens its source in a new tab. <strong>A</strong> = we opened the primary source. <strong>B</strong> = we checked a reliable secondary source and still need to link the primary. Retrieved 22 November 2026.</p>
+    </div>
+    <div class="status-strip">
+      <div><b>6</b>grade A</div><div><b>8</b>grade B</div><div><b>2</b>indicative only (C)</div><div><b>13</b>earlier claims retracted</div>
+      <div style="display:flex;align-items:center;"><a href="data/figures.json" style="color:var(--green);font-weight:600;">Open the register (JSON)</a>&nbsp;·&nbsp;<a href="data/figures.csv" style="color:var(--green);font-weight:600;">CSV</a></div>
+    </div>
+    <div class="verified-grid">
+      <a href="https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge a">A · primary source</span><div class="nt-category war">Military spending</div><div class="nt-num red">$2,887B</div><div class="nt-label">World military spending in 2025, up 2.9% in real terms.</div><div class="src-line">SIPRI, 27 Apr 2026</div></a><a href="https://www.cdomagazine.tech/us-federal-news-bureau/pentagon-seeks-13-4-bn-for-ai-and-autonomy-fy-2026-budget-request" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge b">B · secondary source</span><div class="nt-category ai">Military AI</div><div class="nt-num red">$13.4B</div><div class="nt-label">US Defense Department FY2026 request for AI and autonomy. $9.4B of it is for aerial drones.</div><div class="src-line">CDO Magazine, citing defense.gov budget briefing</div></a><a href="https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge a">A · primary source</span><div class="nt-category wealth">Wealth</div><div class="nt-num red">117,000+</div><div class="nt-label">People with a net worth above $100 million in 2025.</div><div class="src-line">Altrata, World Ultra Wealth Report 2026, p.1</div></a><a href="https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge a">A · primary source</span><div class="nt-category wealth">Wealth</div><div class="nt-num gold">$63.8T</div><div class="nt-label">Combined net worth of the 556,850 people worth $30 million or more (2025).</div><div class="src-line">Altrata, World Ultra Wealth Report 2026, p.1</div></a><a href="https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge a">A · primary source</span><div class="nt-category sell">Tax</div><div class="nt-num red">3.4%</div><div class="nt-label">‘True tax rate’ of the 25 richest Americans, 2014–2018: $13.6B in taxes on $401B of wealth growth. Warren Buffett: 0.1%.</div><div class="src-line">ProPublica, The Secret IRS Files (2021)</div></a><a href="https://allafrica.com/stories/202611180008.html" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge b">B · secondary source</span><div class="nt-category war">Sudan</div><div class="nt-num red">8.6M</div><div class="nt-label">People internally displaced in Sudan, October 2026. Down 26% from the January 2025 peak of 11.58M.</div><div class="src-line">IOM, reported by allAfrica, 18 Nov 2026</div></a><a href="https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge b">B · secondary source</span><div class="nt-category war">Sudan</div><div class="nt-num red">≈12M</div><div class="nt-label">Forcibly displaced from Sudan including refugees and returnees (April 2026). Over 6.8M of them are inside Sudan.</div><div class="src-line">UNHCR data, via Council on Foreign Relations</div></a><a href="https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis" target="_blank" rel="noopener" class="num-tile src-tile"><span class="badge b">B · secondary source</span><div class="nt-category war">Sudan</div><div class="nt-num gold">Unknown</div><div class="nt-label">Number killed in Sudan’s war. Estimates range from tens of thousands to hundreds of thousands.</div><div class="src-line">Council on Foreign Relations, Apr 2026</div></a>
     </div>
   </div>
 </section>
 
-<!-- KEY NUMBERS TILES -->
-<section class="numbers-section">
+<section class="about" id="corrections">
   <div class="sec-inner">
-    <div style="margin-bottom:40px;">
-      <div class="sec-eye">Key Figures at a Glance</div>
-      <div class="sec-title">Every number. One place.</div>
-      <p class="sec-body">Each tile links directly to the relevant analysis. Hover to see the invitation to explore.</p>
-    </div>
-    <div class="numbers-grid">
-      <a href="true-cost-v4.html" class="num-tile"><div class="nt-category war">⚔ War Cost</div><div class="nt-num red">$693B</div><div class="nt-label">Sudan conflict cost since April 2023 alone. One of 8 active conflicts tracked.</div></a>
-      <a href="true-cost-v4.html" class="num-tile"><div class="nt-category war">⚔ War Cost</div><div class="nt-num red">$2.3T</div><div class="nt-label">Annual global military spending. Rising every year.</div></a>
-      <a href="true-cost-v4.html" class="num-tile"><div class="nt-category war">⚔ War Cost</div><div class="nt-num grn">112,000</div><div class="nt-label">Hospitals that could be built with Sudan's conflict costs alone.</div></a>
-      <a href="true-cost-v4.html" class="num-tile"><div class="nt-category war">⚔ War Cost</div><div class="nt-num red">46M+</div><div class="nt-label">People displaced globally by active conflicts. More than the population of Spain.</div></a>
-    </div>
-    <div class="numbers-grid" style="margin-top:14px;margin-bottom:14px;">
-      <a href="ai-crossroads.html" class="num-tile"><div class="nt-category ai">⚡ AI</div><div class="nt-num red">$96B/yr</div><div class="nt-label">Global military AI investment. Growing 24% per year.</div></a>
-      <a href="ai-crossroads.html" class="num-tile"><div class="nt-category ai">⚡ AI</div><div class="nt-num gold">$10M</div><div class="nt-label">AlphaFold's entire development cost — transformed drug discovery for all humanity.</div></a>
-      <a href="ai-crossroads.html" class="num-tile"><div class="nt-category ai">⚡ AI</div><div class="nt-num red">43×</div><div class="nt-label">More spent on military AI than on AI for global health and food security.</div></a>
-      <a href="ai-crossroads.html" class="num-tile"><div class="nt-category ai">⚡ AI</div><div class="nt-num grn">230+</div><div class="nt-label">Diseases where AlphaFold-scale investment could accelerate breakthroughs.</div></a>
-    </div>
-    <div class="numbers-grid2" style="margin-bottom:14px;">
-      <a href="wealth-threshold.html" class="num-tile"><div class="nt-category wealth">$ Wealth</div><div class="nt-num red">36,970</div><div class="nt-label">People worldwide with more than $100M. Fewer than fill Wembley Stadium.</div></a>
-      <a href="wealth-threshold.html" class="num-tile"><div class="nt-category wealth">$ Wealth</div><div class="nt-num red">$42T</div><div class="nt-label">Total wealth held above the $100M floor. First $100M of each person untouched.</div></a>
-      <a href="wealth-threshold.html" class="num-tile"><div class="nt-category wealth">$ Wealth</div><div class="nt-num grn">$842B/yr</div><div class="nt-label">Annual yield from a 2% wealth tax above $100M. Every year. Forever.</div></a>
-    </div>
-    <div class="numbers-grid2">
-      <a href="sell-mandate.html" class="num-tile"><div class="nt-category sell">⚖ Sell Mandate</div><div class="nt-num red">2%</div><div class="nt-label">Average cash share of ultra-high-net-worth portfolios. The rest is assets.</div></a>
-      <a href="sell-mandate.html" class="num-tile"><div class="nt-category sell">⚖ Sell Mandate</div><div class="nt-num grn">0.29%</div><div class="nt-label">US annual sell mandate as % of daily stock market volume. The crash argument fails.</div></a>
-      <a href="sell-mandate.html" class="num-tile"><div class="nt-category sell">⚖ Sell Mandate</div><div class="nt-num red">3.4%</div><div class="nt-label">Average true tax rate of America's 25 wealthiest. Median worker: 28%. (ProPublica/IRS)</div></a>
-    </div>
+    <div class="sec-eye">Corrections log</div>
+    <div class="sec-title">What we got wrong.</div>
+    <p class="sec-body">An earlier version of this site stated these as fact. When we checked them against sources, they did not hold. We publish them because a project that asks experts to find its errors should show the ones it has found itself. The numbers on the draft pages behind the two doors have not all been fixed yet.</p>
+    <table class="corr">
+      <thead><tr><th>Earlier claim</th><th>What the sources show</th><th>Action</th></tr></thead>
+      <tbody><tr><td>Sudan war cost $693B (≈$80M per day)</td><td>No source. It contradicts itself: 1,316 days × $80M ≈ $105B. Sudan’s government estimates reconstruction needs at $200B (Dec 2024).</td><td>Removed</td></tr><tr><td>150,000+ dead in Sudan</td><td>CFR (Apr 2026): death toll unknown; estimates run from tens of thousands to hundreds of thousands.</td><td>Replaced by ‘Unknown’</td></tr><tr><td>11 million displaced inside Sudan</td><td>IOM: 8.59M in Oct 2026 (peak 11.58M in Jan 2025). UNHCR (Apr 2026): over 6.8M.</td><td>Updated</td></tr><tr><td>46M+ displaced, ‘more than the population of Spain’</td><td>Spain has 49.8M inhabitants (INE, Jul 2026), so 46M is less. The 46M itself had no source.</td><td>Removed</td></tr><tr><td>Global military spending $2.3T</td><td>SIPRI: $2,887B in 2025.</td><td>Updated</td></tr><tr><td>Military AI $96B vs humanitarian AI $2.2B = 43:1 (credited to SIPRI)</td><td>SIPRI publishes no such figure and we found no other source. Closest: a $15.3B market estimate for 2024 (publisher unnamed) and the $13.4B US request. We found no humanitarian comparator. Does a defensible one exist? That is now our open question.</td><td>Removed; charts removed</td></tr><tr><td>US DoD AI budget 2024: $17.9B</td><td>FY2026 request for AI and autonomy: $13.4B, mostly drones. We found no source for $17.9B.</td><td>Replaced</td></tr><tr><td>AlphaFold cost $10M in total</td><td>No total has been published. One independent estimate puts training compute alone at about $200K.</td><td>Removed</td></tr><tr><td>‘The US DoD spends $10M on military AI in 12 minutes’</td><td>Arithmetic error. At $17.9B a year it takes about 4.9 hours; at $13.4B about 6.5 hours.</td><td>Removed</td></tr><tr><td>36,970 people hold $42T above $100M</td><td>Altrata counts more than 117,000 people above $100M. Wealth above that line is not published, so $42T (and the $842B tax yield built on it) cannot be checked.</td><td>Replaced; wealth pages marked draft</td></tr></tbody>
+    </table>
+    <p class="sec-body" style="margin-top:18px;">Full list with pages affected: <a href="data/retracted.csv" style="color:var(--green);font-weight:600;">retracted.csv</a>.</p>
   </div>
 </section>
 
@@ -401,12 +373,12 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
       <div class="about-title">What this is.<br>And what it isn't.</div>
       <p class="about-body">The Peace Dividend Project is an independent initiative to build the analytical infrastructure that peace has never had — and to make it freely available to every citizen, journalist, policymaker, and researcher on earth.</p>
       <p class="about-body">Every war has economists modelling its costs and benefits. Every military programme has analysts justifying its budget. <strong>Peace has never had the same rigour applied in its favour.</strong> This is our attempt to change that.</p>
-      <p class="about-body">Not a campaign. Not affiliated with any political party or government. Every figure is sourced, every methodology is public, and every analysis is explicitly open to correction.</p>
+      <p class="about-body">Not a campaign. Not affiliated with any political party or government. Our aim is that every figure is sourced, every method public and every analysis open to correction. Where we fall short, we say so.</p>
       <div class="about-principles">
-        <div class="principle"><div class="principle-num">01</div><div class="principle-text"><strong>Transparent by design.</strong> Every number links to its source. Conservative estimates throughout. Uncertainty flagged where it exists.</div></div>
+        <div class="principle"><div class="principle-num">01</div><div class="principle-text"><strong>Transparent by design.</strong> Every number on the home page links to its source and is graded A (primary), B (secondary) or C (indicative). Unverified numbers are flagged, and mistakes are published in the corrections log.</div></div>
         <div class="principle"><div class="principle-num">02</div><div class="principle-text"><strong>Open to challenge.</strong> We explicitly invite economists and researchers to find errors. The goal is accuracy, not advocacy.</div></div>
         <div class="principle"><div class="principle-num">03</div><div class="principle-text"><strong>Free, forever.</strong> No paywalls. No subscriptions. This is a public resource for anyone who needs it.</div></div>
-        <div class="principle"><div class="principle-num">04</div><div class="principle-text"><strong>AI-powered, human-verified.</strong> We use Claude (Anthropic) as our analytical engine. All AI content is labelled and subject to human review.</div></div>
+        <div class="principle"><div class="principle-num">04</div><div class="principle-text"><strong>AI-assisted, human-checked.</strong> We use Claude (Anthropic) to draft and research. A number counts as verified only after a human has checked it against its source.</div></div>
       </div>
     </div>
     <div>
@@ -428,50 +400,33 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
   </div>
 </section>
 
-<!-- CONTACT -->
+
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div>
-      <div class="contact-eye">Get Involved</div>
-      <div class="contact-title">If this<br>resonates —<br>be in touch.</div>
-      <p class="contact-body">We are not looking for people who agree with us. We are looking for people who care enough about the question to help make the answer more accurate, more credible, and more powerful.</p>
+      <div class="contact-eye">Report an error</div>
+      <div class="contact-title">Find what<br>we got wrong.</div>
+      <p class="contact-body">We are not looking for people who agree with us. We are looking for people who will check a number and tell us when it is wrong, with a better source if they have one.</p>
       <div class="contact-roles">
-        <div class="contact-role"><strong>Economists & researchers</strong> — challenge the data, improve the models</div>
-        <div class="contact-role"><strong>Journalists & communicators</strong> — help us reach the people who need to hear this</div>
-        <div class="contact-role"><strong>Former military & diplomatic</strong> — lend the credibility this argument needs</div>
-        <div class="contact-role"><strong>Technology & AI</strong> — help us build the next generation of tools</div>
-        <div class="contact-role"><strong>Anyone</strong> — if you found something wrong, tell us</div>
+        <div class="contact-role"><strong>Economists &amp; researchers</strong> — is this number defensible, and what is a better source?</div>
+        <div class="contact-role"><strong>Defence &amp; AI analysts</strong> — is there a defensible global comparison of military and humanitarian AI funding?</div>
+        <div class="contact-role"><strong>Journalists</strong> — tell us which claim will not survive an editor.</div>
       </div>
-      <div class="contact-email">hello@peacedividend.org</div>
-      <div class="contact-note">Prototype v0.1 — March 2026 — Emmen, Netherlands</div>
     </div>
     <div>
-      <div class="contact-form-title">Send a message</div>
-      <div id="contactForm">
-        <div class="form-field"><label>Your name</label><input type="text" id="fname" placeholder="How should we address you?"></div>
-        <div class="form-field"><label>Email address</label><input type="email" id="femail" placeholder="We will respond personally"></div>
-        <div class="form-field"><label>I am a...</label>
-          <select id="frole">
-            <option value="">— Select your background —</option>
-            <option>Economist / Researcher</option><option>Journalist / Writer</option>
-            <option>Policymaker / Government</option><option>Military / Security professional</option>
-            <option>Technology / AI professional</option><option>NGO / Civil society</option>
-            <option>Student</option><option>Interested citizen</option><option>Other</option>
-          </select>
-        </div>
-        <div class="form-field"><label>Message</label><textarea id="fmessage" rows="4" placeholder="What brought you here? What's wrong? What would you add?"></textarea></div>
-        <button class="form-submit" onclick="submitForm()">Send Message →</button>
-      </div>
-      <div class="form-success" id="formSuccess">Thank you. We read every message personally and respond to all of them. If you found an error, that is especially welcome — accuracy is the whole point.</div>
+      <div class="contact-form-title">How to reach us</div>
+      <p class="contact-body">The simplest way is a public issue on GitHub. It stays visible, so the correction helps everyone.</p>
+      <a class="contact-btn" id="issueBtn" href="https://github.com/SmartMeterHans/the-dividend/issues/new" target="_blank" rel="noopener">Open an issue on GitHub →</a>
+      <p class="contact-body" id="mailLine" style="display:none;">Prefer email? <a id="mailLink" href="#" style="color:var(--green3);"></a></p>
+      <div class="contact-note">Working draft v0.2 — November 2026 — Emmen, Netherlands</div>
     </div>
   </div>
 </section>
-
 <footer>
   <div class="foot-logo">The <span>Dividend</span></div>
   <div class="foot-links">
     <a class="foot-link" href="#tools">Tools</a>
-    <a class="foot-link" href="#numbers">Numbers</a>
+    <a class="foot-link" href="#verified">Verified</a><a class="foot-link" href="#corrections">Corrections</a><a class="foot-link" href="data/figures.json">Register</a>
     <a class="foot-link" href="#about">About</a>
     <a class="foot-link" href="#contact">Contact</a>
     <a class="foot-link" href="plain-truth.html">Plain Truth</a>
@@ -483,144 +438,13 @@ footer{background:#070d0a;padding:32px 48px;display:flex;align-items:center;just
   </div>
   <div class="foot-copy">© 2026 Peace Dividend Project — Open source, free to share</div>
 </footer>
-
+<script src="assets/config.js"></script>
 <script>
-// Form
-function submitForm(){
-  const n=document.getElementById('fname').value.trim();
-  const e=document.getElementById('femail').value.trim();
-  if(!n||!e){alert('Please enter your name and email.');return;}
-  document.getElementById('contactForm').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
-}
-
-// Tile entrance animation
-const tiles=document.querySelectorAll('.num-tile');
-const tileObs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform='translateY(0)';},i*40);tileObs.unobserve(e.target);}});
-},{threshold:0.05});
-tiles.forEach(t=>{t.style.opacity='0';t.style.transform='translateY(14px)';t.style.transition='opacity 0.5s ease,transform 0.5s ease';tileObs.observe(t);});
-
-// Chart defaults
-Chart.defaults.font.family = "'JetBrains Mono', monospace";
-Chart.defaults.font.size = 11;
-Chart.defaults.color = '#5a7060';
-
-// CHART 1 — AI Investment Gap (horizontal bar)
-new Chart(document.getElementById('chartAI'), {
-  type: 'bar',
-  data: {
-    labels: ['Military AI 2024', 'Humanitarian AI 2024', 'AlphaFold (total)'],
-    datasets: [{
-      data: [96, 2.2, 0.01],
-      backgroundColor: ['rgba(181,32,16,0.8)', 'rgba(13,122,64,0.8)', 'rgba(138,88,0,0.8)'],
-      borderColor: ['#b52010', '#0d7a40', '#8a5800'],
-      borderWidth: 2,
-      borderRadius: 8,
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true, maintainAspectRatio: false,
-    plugins: {legend:{display:false}, tooltip:{callbacks:{label:ctx=>' $'+ctx.raw+'B/year'}}},
-    scales: {
-      x: {grid:{color:'rgba(0,0,0,0.06)'}, ticks:{callback:v=>'$'+v+'B'}},
-      y: {grid:{display:false}}
-    }
-  }
-});
-
-// CHART 2 — Wealth by Country (bar)
-new Chart(document.getElementById('chartWealth'), {
-  type: 'bar',
-  data: {
-    labels: ['USA', 'China', 'Germany', 'UK', 'France', 'Russia', 'India', 'UAE'],
-    datasets: [{
-      label: 'Excess wealth above $100M ($T)',
-      data: [21.0, 6.2, 2.8, 2.4, 1.9, 1.4, 1.1, 0.9],
-      backgroundColor: 'rgba(13,122,64,0.75)',
-      borderColor: '#0d7a40',
-      borderWidth: 2,
-      borderRadius: 8,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {legend:{display:false}, tooltip:{callbacks:{label:ctx=>' $'+ctx.raw+'T excess wealth'}}},
-    scales: {
-      y: {grid:{color:'rgba(0,0,0,0.06)'}, ticks:{callback:v=>'$'+v+'T'}},
-      x: {grid:{display:false}}
-    }
-  }
-});
-
-// CHART 3 — Conflict daily costs (horizontal bar)
-new Chart(document.getElementById('chartConflicts'), {
-  type: 'bar',
-  data: {
-    labels: ['Ukraine War', 'Gaza Conflict', 'Sudan Civil War', 'Yemen War', 'DRC Conflict', 'Myanmar', 'Haiti Crisis', 'Sahel Region'],
-    datasets: [{
-      label: '$M per day',
-      data: [320, 280, 80, 95, 45, 28, 22, 35],
-      backgroundColor: [
-        'rgba(181,32,16,0.85)','rgba(181,32,16,0.75)','rgba(181,32,16,0.65)',
-        'rgba(181,32,16,0.6)','rgba(181,32,16,0.5)','rgba(181,32,16,0.45)',
-        'rgba(181,32,16,0.4)','rgba(181,32,16,0.38)',
-      ],
-      borderColor: '#b52010', borderWidth: 1.5, borderRadius: 6,
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true, maintainAspectRatio: false,
-    plugins: {legend:{display:false}, tooltip:{callbacks:{label:ctx=>' $'+ctx.raw+'M per day'}}},
-    scales: {
-      x: {grid:{color:'rgba(0,0,0,0.06)'}, ticks:{callback:v=>'$'+v+'M'}},
-      y: {grid:{display:false}}
-    }
-  }
-});
-
-// CHART 4 — Projection 2020-2030 (line chart)
-const years = ['2020','2021','2022','2023','2024','2025','2026','2027','2028','2029','2030'];
-const milData = [40, 50, 62, 77, 96, 119, 148, 183, 227, 282, 340];
-const humData = [1.3, 1.5, 1.7, 1.9, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 3.4];
-new Chart(document.getElementById('chartProjection'), {
-  type: 'line',
-  data: {
-    labels: years,
-    datasets: [
-      {
-        label: 'Military AI ($B)',
-        data: milData,
-        borderColor: '#b52010', backgroundColor: 'rgba(181,32,16,0.08)',
-        borderWidth: 3, fill: true, tension: 0.4,
-        pointBackgroundColor: '#b52010', pointRadius: 4, pointHoverRadius: 7,
-      },
-      {
-        label: 'Humanitarian AI ($B)',
-        data: humData,
-        borderColor: '#0d7a40', backgroundColor: 'rgba(13,122,64,0.08)',
-        borderWidth: 3, fill: true, tension: 0.4,
-        pointBackgroundColor: '#0d7a40', pointRadius: 4, pointHoverRadius: 7,
-      }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend:{display:true, position:'top', labels:{usePointStyle:true,pointStyleWidth:12,padding:20}},
-      tooltip:{mode:'index', intersect:false, callbacks:{label:ctx=>' '+ctx.dataset.label+': $'+ctx.raw+'B'}}
-    },
-    scales: {
-      y: {grid:{color:'rgba(0,0,0,0.06)'}, ticks:{callback:v=>'$'+v+'B'}},
-      x: {grid:{display:false}}
-    },
-    interaction:{mode:'index', intersect:false}
-  }
-});
-
-// Annotate NOW on projection chart
+(function () {
+  var c = window.PD_CONFIG || {};
+  if (c.issuesUrl) document.getElementById('issueBtn').href = c.issuesUrl;
+  if (c.email) { var a = document.getElementById('mailLink'); a.href = 'mailto:' + c.email; a.textContent = c.email; document.getElementById('mailLine').style.display = 'block'; }
+})();
 </script>
 </body>
 </html>

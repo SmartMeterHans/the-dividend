@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "project": "The Dividend / Peace Dividend Project",
+    "retrieved": "2026-11-22",
+    "classes": {
+      "A": "primary source opened and checked",
+      "B": "secondary source checked, primary still to be linked",
+      "C": "estimate or indicative only"
+    }
+  },
+  "figures": [
+    {
+      "id": "mil_spend_2025",
+      "claim": "World military expenditure 2025",
+      "value": 2887,
+      "unit": "USD bn",
+      "period": "2025",
+      "cls": "A",
+      "note": "+2.9% in real terms vs 2024",
+      "source": "SIPRI press release, 27 Apr 2026: Global military spending rise continues as European and Asian expenditures surge",
+      "url": "https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025"
+    },
+    {
+      "id": "us_dod_ai_autonomy_fy26",
+      "claim": "US DoD FY2026 budget request for AI and autonomy",
+      "value": 13.4,
+      "unit": "USD bn",
+      "period": "FY2026 request",
+      "cls": "B",
+      "note": "Of which aerial drones 9.4; maritime 1.7; software/integration 1.2; underwater 0.734; ground 0.21; AI and automation technologies 0.2. Request, not outlay.",
+      "source": "CDO Magazine, citing the defense.gov 'Background Briefing on FY 2026 Defense Budget' (primary to be linked)",
+      "url": "https://www.cdomagazine.tech/us-federal-news-bureau/pentagon-seeks-13-4-bn-for-ai-and-autonomy-fy-2026-budget-request"
+    },
+    {
+      "id": "centi_millionaires_2025",
+      "claim": "People with net worth above $100 million",
+      "value": 117000,
+      "unit": "people (more than)",
+      "period": "2025",
+      "cls": "A",
+      "note": "Report gives no combined net worth for this group",
+      "source": "Altrata, World Ultra Wealth Report 2026, key findings p.1 and section 03 p.4",
+      "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
+    },
+    {
+      "id": "uhnw_count_2025",
+      "claim": "People with net worth of $30 million or more (UHNW)",
+      "value": 556850,
+      "unit": "people",
+      "period": "2025",
+      "cls": "A",
+      "note": "",
+      "source": "Altrata, World Ultra Wealth Report 2026, key findings p.1 and section 04 p.7",
+      "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
+    },
+    {
+      "id": "uhnw_wealth_2025",
+      "claim": "Combined net worth of the UHNW class ($30M+)",
+      "value": 63.8,
+      "unit": "USD trillion",
+      "period": "2025",
+      "cls": "A",
+      "note": "Whole net worth, not wealth above a threshold",
+      "source": "Altrata, World Ultra Wealth Report 2026, key findings p.1",
+      "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
+    },
+    {
+      "id": "propublica_true_rate_top25",
+      "claim": "'True tax rate' of the 25 richest Americans",
+      "value": 3.4,
+      "unit": "percent",
+      "period": "2014-2018",
+      "cls": "A",
+      "note": "Taxes paid $13.6B vs wealth growth $401B (true tax rate = taxes / wealth growth)",
+      "source": "ProPublica, The Secret IRS Files (2021)",
+      "url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax"
+    },
+    {
+      "id": "propublica_true_rate_buffett",
+      "claim": "'True tax rate' of Warren Buffett",
+      "value": 0.1,
+      "unit": "percent",
+      "period": "2014-2018",
+      "cls": "A",
+      "note": "'less than 10 cents for every $100 he added to his wealth'",
+      "source": "ProPublica, The Secret IRS Files (2021)",
+      "url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax"
+    },
+    {
+      "id": "sudan_idp_iom_oct2026",
+      "claim": "Internally displaced people in Sudan",
+      "value": 8594507,
+      "unit": "people",
+      "period": "Oct 2026",
+      "cls": "B",
+      "note": "Down 26% from a peak of about 11.58M in Jan 2025",
+      "source": "IOM displacement tracking, reported by allAfrica 18 Nov 2026 (primary IOM DTM to be linked)",
+      "url": "https://allafrica.com/stories/202611180008.html"
+    },
+    {
+      "id": "sudan_displaced_unhcr_apr2026",
+      "claim": "Forcibly displaced from Sudan incl. refugees/returnees",
+      "value": 12000000,
+      "unit": "people (nearly)",
+      "period": "Apr 2026",
+      "cls": "B",
+      "note": ">6.8M internally displaced; close to 4.5M refugees, asylum seekers or returnees. Figures vary by source (IOM vs UNHCR).",
+      "source": "UNHCR Operational Data Portal, as cited by Council on Foreign Relations (updated 14 Apr 2026)",
+      "url": "https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis"
+    },
+    {
+      "id": "sudan_deaths",
+      "claim": "Death toll of the Sudan war",
+      "value": null,
+      "unit": "unknown",
+      "period": "Apr 2026",
+      "cls": "B",
+      "note": "'Unknown due to restricted media access'; estimates range from tens of thousands to hundreds of thousands",
+      "source": "Council on Foreign Relations (updated 14 Apr 2026)",
+      "url": "https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis"
+    },
+    {
+      "id": "sudan_acute_food_insecurity",
+      "claim": "People facing high levels of acute food insecurity in Sudan",
+      "value": 21200000,
+      "unit": "people (at least)",
+      "period": "IPC Sep 2025",
+      "cls": "B",
+      "note": "6.3M in Phase 4 (emergency), 375,000 in Phase 5 (famine)",
+      "source": "Al Jazeera, citing UN/IPC (15 Dec 2025)",
+      "url": "https://www.aljazeera.com/news/2025/12/15/tracking-sudans-humanitarian-crisis-by-the-numbers"
+    },
+    {
+      "id": "sudan_reconstruction_estimate",
+      "claim": "Sudan government estimate of reconstruction need",
+      "value": 200,
+      "unit": "USD bn",
+      "period": "Dec 2024",
+      "cls": "B",
+      "note": "A reconstruction estimate for areas regained by the army, not a total cost of the war",
+      "source": "Africanews, 14 Jan 2026",
+      "url": "https://www.africanews.com/2026/01/14/sudans-war-has-left-the-countrys-economy-shattered/"
+    },
+    {
+      "id": "spain_population_2026",
+      "claim": "Population of Spain",
+      "value": 49801559,
+      "unit": "people",
+      "period": "1 Jul 2026",
+      "cls": "B",
+      "note": "Provisional (INE); used to retract the 'more than the population of Spain' claim",
+      "source": "INE, as reported by idealista (7 Aug 2026)",
+      "url": "https://www.idealista.com/en/news/lifestyle-in-spain/2026/08/07/909455-spain-s-population-hits-a-record-49-8-million-as-foreign-residents-drive-growth"
+    },
+    {
+      "id": "idmc_idp_end2024",
+      "claim": "People internally displaced worldwide (all causes)",
+      "value": 82200000,
+      "unit": "people",
+      "period": "end 2024",
+      "cls": "B",
+      "note": "Conflict-only stock not stated on the page we read; end-2025 global stock not shown there",
+      "source": "IDMC, Global Report on Internal Displacement 2026 (web page)",
+      "url": "https://www.internal-displacement.org/global-report/grid2026/"
+    },
+    {
+      "id": "military_ai_market_2024",
+      "claim": "Global military AI market (market-research estimate)",
+      "value": 15.3,
+      "unit": "USD bn",
+      "period": "2024",
+      "cls": "C",
+      "note": "Publisher of the underlying estimate not named; forecast $35B by 2035. Indicative only; a market size is not government spending.",
+      "source": "eWeek",
+      "url": "https://www.eweek.com/news/military-ai-market/"
+    },
+    {
+      "id": "alphafold2_training_compute",
+      "claim": "Training compute of AlphaFold2 (independent estimate)",
+      "value": 200000,
+      "unit": "USD (approx.)",
+      "period": "n/a",
+      "cls": "C",
+      "note": "Compute only, based on OpenFold at ~50,000 A100 GPU-hours; total project cost not published",
+      "source": "Personal blog estimate (miangoaren.github.io)",
+      "url": "https://miangoaren.github.io/proteins/00030_af2"
+    }
+  ],
+  "retracted": [
+    {
+      "id": "x_sudan_cost_693B",
+      "earlier": "Sudan conflict cost $693B since April 2023",
+      "finding": "No source found. It also contradicts the page's own $80M/day: 1,316 days x $80M is about $105B. Sudan's government puts reconstruction need at $200B (Dec 2024).",
+      "action": "Removed from home page; draft pages flagged",
+      "pages": "index, true-cost-v4"
+    },
+    {
+      "id": "x_sudan_80M_day",
+      "earlier": "Sudan war costs $80M per day",
+      "finding": "No source found.",
+      "action": "Draft pages flagged",
+      "pages": "ai-crossroads, pt-war, true-cost-v4"
+    },
+    {
+      "id": "x_sudan_150k_dead",
+      "earlier": "150,000+ dead in Sudan",
+      "finding": "CFR (Apr 2026): death toll unknown; estimates range from tens of thousands to hundreds of thousands.",
+      "action": "Home page says 'unknown'; draft pages flagged",
+      "pages": "pt-war, true-cost-v4"
+    },
+    {
+      "id": "x_sudan_idp_11M",
+      "earlier": "11 million internally displaced in Sudan",
+      "finding": "IOM: 8.59M in Oct 2026 (peak 11.58M in Jan 2025). UNHCR (Apr 2026): more than 6.8M.",
+      "action": "Home page updated; draft pages flagged",
+      "pages": "pt-war"
+    },
+    {
+      "id": "x_displaced_46M_spain",
+      "earlier": "46M+ displaced by conflict, more than the population of Spain",
+      "finding": "Spain has 49.8M (INE, Jul 2026), so 46M is less. The 46M itself has no source.",
+      "action": "Removed",
+      "pages": "index"
+    },
+    {
+      "id": "x_mil_spend_2_3T",
+      "earlier": "Global military spending $2.3T per year",
+      "finding": "SIPRI: $2,887B in 2025.",
+      "action": "Home page updated; draft pages flagged",
+      "pages": "index, pt-war, true-cost-v4"
+    },
+    {
+      "id": "x_ai_ratio_43",
+      "earlier": "Military AI $96B/yr vs humanitarian AI $2.2B (43:1), attributed to SIPRI",
+      "finding": "SIPRI publishes no such figure and we found no other source. Closest: a $15.3B military-AI market estimate for 2024 (publisher unnamed) and a $13.4B US request for AI and autonomy. No humanitarian comparator found.",
+      "action": "Removed from home page and AI Crossroads section 2 (now an open question); charts removed",
+      "pages": "index, ai-crossroads, expert-hub, pt-ai, true-cost-v4"
+    },
+    {
+      "id": "x_dod_ai_17_9B",
+      "earlier": "US DoD AI budget 2024: $17.9B (1,790 AlphaFolds)",
+      "finding": "FY2026 request for AI and autonomy is $13.4B, of which $9.4B is aerial drones. No source for $17.9B.",
+      "action": "pt-ai text replaced",
+      "pages": "pt-ai"
+    },
+    {
+      "id": "x_alphafold_10M",
+      "earlier": "AlphaFold cost $10M in total",
+      "finding": "No published total. One independent estimate puts training compute alone at roughly $200K.",
+      "action": "Removed from home page and AI Crossroads; draft pages flagged",
+      "pages": "index, ai-crossroads, pt-ai, pt-sell"
+    },
+    {
+      "id": "x_12_minutes",
+      "earlier": "US DoD spends $10M on military AI in 12 minutes",
+      "finding": "Arithmetic error: at $17.9B/yr it takes about 4.9 hours; at $13.4B/yr about 6.5 hours.",
+      "action": "Removed",
+      "pages": "ai-crossroads"
+    },
+    {
+      "id": "x_36970_42T",
+      "earlier": "36,970 people hold $42T above the $100M threshold",
+      "finding": "Altrata counts more than 117,000 people above $100M. Wealth above $100M is not published, so $42T cannot be checked.",
+      "action": "Home page uses Altrata figures; wealth pages flagged as draft",
+      "pages": "index, pt-wealth, wealth-threshold, sell-mandate, plain-truth"
+    },
+    {
+      "id": "x_842B_112k_derived",
+      "earlier": "$842B/yr from a 2% tax; 112,000 hospitals",
+      "finding": "Derived from the unsupported $42T and $693B.",
+      "action": "Draft pages flagged",
+      "pages": "index, pt-sell, pt-wealth, true-cost-v4, wealth-threshold, pt-war"
+    },
+    {
+      "id": "x_sipri_attribution",
+      "earlier": "'Investment data from SIPRI, the World Bank, and the OECD'",
+      "finding": "Attribution to SIPRI/World Bank/OECD for the 43:1 ratio could not be confirmed.",
+      "action": "Sentence replaced",
+      "pages": "ai-crossroads, expert-hub"
+    }
+  ]
+}
