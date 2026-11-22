@@ -1,0 +1,5 @@
+# Overal LF, op Windows, Linux en in GitHub Actions. Voorkomt "gewijzigde" bestanden door regeleindes.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
