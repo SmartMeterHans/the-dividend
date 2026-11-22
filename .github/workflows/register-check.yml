@@ -1,0 +1,15 @@
+# Bij elke push en pull request: register valideren en controleren dat
+# figures.csv, retracted.csv en sources.html bij figures.json/sources.csv horen.
+name: register-check
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Validate register (fails if a page shows a non-compliant figure)
+        run: python scripts/register.py
+      - name: Generated files up to date
+        run: git diff --exit-code || (echo "::error::Run python scripts/register.py and commit the generated files" && exit 1)
