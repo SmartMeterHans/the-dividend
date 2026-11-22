@@ -15,6 +15,10 @@
     if (/^percent/.test(u)) return fmt(v) + '%';
     return fmt(v);
   }
+  function withUnit(f) {           // "people (more than)" -> "more than 46,000 people"
+    var m = /^(.*?)\s*\((more than|at least|approx\.)\)$/.exec(f.unit || '');
+    return m ? m[2] + ' ' + fmt(f.value) + (m[1] ? ' ' + m[1] : '') : fmt(f.value) + (f.unit ? ' ' + f.unit : '');
+  }
   function title(f) { return (f.source_short || f.source) + (f.locator ? ' — ' + f.locator : '') + (f.period ? ' (' + f.period + ')' : ''); }
   if (!document.getElementById('fig-style')) {   // cijferlinks erven de opmaak van de pagina
     var st = document.createElement('style'); st.id = 'fig-style';
@@ -26,7 +30,7 @@
     document.querySelectorAll('[data-fig]').forEach(function (el) {
       var f = F[el.dataset.fig], show = el.dataset.show || 'value';
       if (!f) { el.textContent = '[missing: ' + el.dataset.fig + ']'; el.classList.add('fig-missing'); return; }
-      var txt = show === 'value' ? fmt(f.value) + (el.dataset.suffix || ' ' + f.unit) : show === 'compact' ? compact(f) : show === 'source' ? f.source : (f[show] || '');
+      var txt = show === 'value' ? (el.dataset.suffix ? fmt(f.value) + el.dataset.suffix : withUnit(f)) : show === 'compact' ? compact(f) : show === 'source' ? f.source : (f[show] || '');
       el.innerHTML = '<a class="fig" href="' + esc(f.deep_url || f.url) + '" title="' + esc(title(f)) + '">' + esc(txt) + '</a>';
     });
     document.querySelectorAll('[data-fig-tiles]').forEach(function (el) {
