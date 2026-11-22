@@ -6,7 +6,8 @@
       "A": "primary source opened and checked",
       "B": "secondary source checked, primary still to be linked",
       "C": "estimate or indicative only"
-    }
+    },
+    "policy": "Only figures from official or institutional primary sources, opened and located (page/table/paragraph). See data/sources.csv."
   },
   "figures": [
     {
@@ -18,7 +19,10 @@
       "cls": "A",
       "note": "+2.9% in real terms vs 2024",
       "source": "SIPRI press release, 27 Apr 2026: Global military spending rise continues as European and Asian expenditures surge",
-      "url": "https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025"
+      "url": "https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025",
+      "source_id": "sipri_milex_2025",
+      "locator": "",
+      "deep_url": "https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025"
     },
     {
       "id": "us_dod_ai_autonomy_fy26",
@@ -29,7 +33,10 @@
       "cls": "B",
       "note": "Of which aerial drones 9.4; maritime 1.7; software/integration 1.2; underwater 0.734; ground 0.21; AI and automation technologies 0.2. Request, not outlay.",
       "source": "CDO Magazine, citing the defense.gov 'Background Briefing on FY 2026 Defense Budget' (primary to be linked)",
-      "url": "https://www.cdomagazine.tech/us-federal-news-bureau/pentagon-seeks-13-4-bn-for-ai-and-autonomy-fy-2026-budget-request"
+      "url": "https://www.cdomagazine.tech/us-federal-news-bureau/pentagon-seeks-13-4-bn-for-ai-and-autonomy-fy-2026-budget-request",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
     },
     {
       "id": "centi_millionaires_2025",
@@ -40,7 +47,10 @@
       "cls": "A",
       "note": "Report gives no combined net worth for this group",
       "source": "Altrata, World Ultra Wealth Report 2026, key findings p.1 and section 03 p.4",
-      "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
+      "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf",
+      "source_id": "altrata_wuwr_2026",
+      "locator": "",
+      "deep_url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
     },
     {
       "id": "uhnw_count_2025",
@@ -51,7 +61,10 @@
       "cls": "A",
       "note": "",
       "source": "Altrata, World Ultra Wealth Report 2026, key findings p.1 and section 04 p.7",
-      "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
+      "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf",
+      "source_id": "altrata_wuwr_2026",
+      "locator": "",
+      "deep_url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
     },
     {
       "id": "uhnw_wealth_2025",
@@ -62,7 +75,10 @@
       "cls": "A",
       "note": "Whole net worth, not wealth above a threshold",
       "source": "Altrata, World Ultra Wealth Report 2026, key findings p.1",
-      "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
+      "url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf",
+      "source_id": "altrata_wuwr_2026",
+      "locator": "",
+      "deep_url": "https://altrata.com/wp-content/uploads/2026/06/Altrata_World-Ultra-Wealth-Report-2026_FINAL.pdf"
     },
     {
       "id": "propublica_true_rate_top25",
@@ -73,7 +89,10 @@
       "cls": "A",
       "note": "Taxes paid $13.6B vs wealth growth $401B (true tax rate = taxes / wealth growth)",
       "source": "ProPublica, The Secret IRS Files (2021)",
-      "url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax"
+      "url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax",
+      "source_id": "propublica_irs_2021",
+      "locator": "",
+      "deep_url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax"
     },
     {
       "id": "propublica_true_rate_buffett",
@@ -84,7 +103,10 @@
       "cls": "A",
       "note": "'less than 10 cents for every $100 he added to his wealth'",
       "source": "ProPublica, The Secret IRS Files (2021)",
-      "url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax"
+      "url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax",
+      "source_id": "propublica_irs_2021",
+      "locator": "",
+      "deep_url": "https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax"
     },
     {
       "id": "sudan_idp_iom_oct2026",
@@ -95,7 +117,10 @@
       "cls": "B",
       "note": "Down 26% from a peak of about 11.58M in Jan 2025",
       "source": "IOM displacement tracking, reported by allAfrica 18 Nov 2026 (primary IOM DTM to be linked)",
-      "url": "https://allafrica.com/stories/202611180008.html"
+      "url": "https://allafrica.com/stories/202611180008.html",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
     },
     {
       "id": "sudan_displaced_unhcr_apr2026",
@@ -106,7 +131,10 @@
       "cls": "B",
       "note": ">6.8M internally displaced; close to 4.5M refugees, asylum seekers or returnees. Figures vary by source (IOM vs UNHCR).",
       "source": "UNHCR Operational Data Portal, as cited by Council on Foreign Relations (updated 14 Apr 2026)",
-      "url": "https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis"
+      "url": "https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
     },
     {
       "id": "sudan_deaths",
@@ -117,7 +145,10 @@
       "cls": "B",
       "note": "'Unknown due to restricted media access'; estimates range from tens of thousands to hundreds of thousands",
       "source": "Council on Foreign Relations (updated 14 Apr 2026)",
-      "url": "https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis"
+      "url": "https://www.cfr.org/in-brief/what-extent-sudans-humanitarian-crisis",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
     },
     {
       "id": "sudan_acute_food_insecurity",
@@ -128,7 +159,10 @@
       "cls": "B",
       "note": "6.3M in Phase 4 (emergency), 375,000 in Phase 5 (famine)",
       "source": "Al Jazeera, citing UN/IPC (15 Dec 2025)",
-      "url": "https://www.aljazeera.com/news/2025/12/15/tracking-sudans-humanitarian-crisis-by-the-numbers"
+      "url": "https://www.aljazeera.com/news/2025/12/15/tracking-sudans-humanitarian-crisis-by-the-numbers",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
     },
     {
       "id": "sudan_reconstruction_estimate",
@@ -139,7 +173,10 @@
       "cls": "B",
       "note": "A reconstruction estimate for areas regained by the army, not a total cost of the war",
       "source": "Africanews, 14 Jan 2026",
-      "url": "https://www.africanews.com/2026/01/14/sudans-war-has-left-the-countrys-economy-shattered/"
+      "url": "https://www.africanews.com/2026/01/14/sudans-war-has-left-the-countrys-economy-shattered/",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
     },
     {
       "id": "spain_population_2026",
@@ -150,7 +187,10 @@
       "cls": "B",
       "note": "Provisional (INE); used to retract the 'more than the population of Spain' claim",
       "source": "INE, as reported by idealista (7 Aug 2026)",
-      "url": "https://www.idealista.com/en/news/lifestyle-in-spain/2026/08/07/909455-spain-s-population-hits-a-record-49-8-million-as-foreign-residents-drive-growth"
+      "url": "https://www.idealista.com/en/news/lifestyle-in-spain/2026/08/07/909455-spain-s-population-hits-a-record-49-8-million-as-foreign-residents-drive-growth",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
     },
     {
       "id": "idmc_idp_end2024",
@@ -161,7 +201,10 @@
       "cls": "B",
       "note": "Conflict-only stock not stated on the page we read; end-2025 global stock not shown there",
       "source": "IDMC, Global Report on Internal Displacement 2026 (web page)",
-      "url": "https://www.internal-displacement.org/global-report/grid2026/"
+      "url": "https://www.internal-displacement.org/global-report/grid2026/",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
     },
     {
       "id": "military_ai_market_2024",
@@ -172,7 +215,10 @@
       "cls": "C",
       "note": "Publisher of the underlying estimate not named; forecast $35B by 2035. Indicative only; a market size is not government spending.",
       "source": "eWeek",
-      "url": "https://www.eweek.com/news/military-ai-market/"
+      "url": "https://www.eweek.com/news/military-ai-market/",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
     },
     {
       "id": "alphafold2_training_compute",
@@ -183,7 +229,122 @@
       "cls": "C",
       "note": "Compute only, based on OpenFold at ~50,000 A100 GPU-hours; total project cost not published",
       "source": "Personal blog estimate (miangoaren.github.io)",
-      "url": "https://miangoaren.github.io/proteins/00030_af2"
+      "url": "https://miangoaren.github.io/proteins/00030_af2",
+      "source_id": "",
+      "locator": "",
+      "deep_url": ""
+    },
+    {
+      "id": "ua_damage_2025",
+      "claim": "Ukraine: total direct damage to buildings and infrastructure",
+      "value": 195.1,
+      "unit": "USD bn",
+      "period": "24 Feb 2022 - 31 Dec 2025",
+      "cls": "A",
+      "note": "",
+      "source": "World Bank, Government of Ukraine, European Union, United Nations, Ukraine Fifth Rapid Damage and Needs Assessment (RDNA5) February 2022 - December 2025",
+      "url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf",
+      "source_id": "wb_rdna5_ukraine",
+      "locator": "printed p. 19; Table 1 p. 16",
+      "deep_url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf"
+    },
+    {
+      "id": "ua_losses_2025",
+      "claim": "Ukraine: socioeconomic losses",
+      "value": 666.7,
+      "unit": "USD bn",
+      "period": "24 Feb 2022 - 31 Dec 2025",
+      "cls": "A",
+      "note": "",
+      "source": "World Bank, Government of Ukraine, European Union, United Nations, Ukraine Fifth Rapid Damage and Needs Assessment (RDNA5) February 2022 - December 2025",
+      "url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf",
+      "source_id": "wb_rdna5_ukraine",
+      "locator": "printed p. 20; Table 1 p. 16",
+      "deep_url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf"
+    },
+    {
+      "id": "ua_needs_2026_35",
+      "claim": "Ukraine: recovery and reconstruction needs",
+      "value": 587.7,
+      "unit": "USD bn",
+      "period": "10-year horizon 2026-2035",
+      "cls": "A",
+      "note": "The assessment puts these needs at almost three times Ukraine's 2025 GDP",
+      "source": "World Bank, Government of Ukraine, European Union, United Nations, Ukraine Fifth Rapid Damage and Needs Assessment (RDNA5) February 2022 - December 2025",
+      "url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf",
+      "source_id": "wb_rdna5_ukraine",
+      "locator": "printed p. 22; Table 1 p. 16",
+      "deep_url": "https://ukraine.un.org/sites/default/files/2026-02/P514499-22f93f3a-4278-42bc-b907-db9553d12069.pdf"
+    },
+    {
+      "id": "gaza_damage_2024",
+      "claim": "Gaza: physical damage",
+      "value": 29.9,
+      "unit": "USD bn",
+      "period": "8 Oct 2023 - 8 Oct 2024",
+      "cls": "A",
+      "note": "Gaza only",
+      "source": "World Bank, European Union, United Nations, Gaza and West Bank Interim Rapid Damage and Needs Assessment (IRDNA)",
+      "url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf",
+      "source_id": "wb_irdna_gaza",
+      "locator": "printed p. 3 para 8; Table 1 p. 4 (29,880 USD m)",
+      "deep_url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf"
+    },
+    {
+      "id": "gaza_losses_2024",
+      "claim": "Gaza: economic and social losses",
+      "value": 19.1,
+      "unit": "USD bn",
+      "period": "8 Oct 2023 - 8 Oct 2024",
+      "cls": "A",
+      "note": "Gaza only",
+      "source": "World Bank, European Union, United Nations, Gaza and West Bank Interim Rapid Damage and Needs Assessment (IRDNA)",
+      "url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf",
+      "source_id": "wb_irdna_gaza",
+      "locator": "printed p. 3 para 8; Table 1 p. 4 (19,059 USD m)",
+      "deep_url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf"
+    },
+    {
+      "id": "gaza_needs",
+      "claim": "Gaza: recovery and reconstruction needs",
+      "value": 53.2,
+      "unit": "USD bn",
+      "period": "next decade (assessed Feb 2025)",
+      "cls": "A",
+      "note": "Gaza only",
+      "source": "World Bank, European Union, United Nations, Gaza and West Bank Interim Rapid Damage and Needs Assessment (IRDNA)",
+      "url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf",
+      "source_id": "wb_irdna_gaza",
+      "locator": "printed p. 3 para 8; p. 5 para 11; Table 3 p. 6",
+      "deep_url": "https://thedocs.worldbank.org/en/doc/133c3304e29086819c1119fe8e85366b-0280012025/original/Gaza-RDNA-final-med.pdf"
+    },
+    {
+      "id": "sd_idp_end2025",
+      "claim": "Sudan: internally displaced people",
+      "value": 9.1,
+      "unit": "million people",
+      "period": "end 2025",
+      "cls": "A",
+      "note": "",
+      "source": "UNHCR, UNHCR Global Report 2025 - Sudan situation overview",
+      "url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf",
+      "source_id": "unhcr_gr2025_sudan",
+      "locator": "p. 1, 2025 year-end population figures",
+      "deep_url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf"
+    },
+    {
+      "id": "sd_fled_neighbours_end2025",
+      "claim": "Sudan situation: people who had fled to neighbouring countries",
+      "value": 3.6,
+      "unit": "million people",
+      "period": "end 2025",
+      "cls": "A",
+      "note": "Includes over 837,000 Sudanese refugees displaced before April 2023",
+      "source": "UNHCR, UNHCR Global Report 2025 - Sudan situation overview",
+      "url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf",
+      "source_id": "unhcr_gr2025_sudan",
+      "locator": "p. 1, Context",
+      "deep_url": "https://www.unhcr.org/sites/default/files/2026-06/global-report-2025-situation-overview-sudan.pdf"
     }
   ],
   "retracted": [
@@ -277,6 +438,69 @@
       "finding": "Attribution to SIPRI/World Bank/OECD for the 43:1 ratio could not be confirmed.",
       "action": "Sentence replaced",
       "pages": "ai-crossroads, expert-hub"
+    },
+    {
+      "id": "x_tc_daily_cost",
+      "earlier": "true-cost-v4: war cost per day per conflict (Sudan $80M, Ukraine $900M, Gaza $350M, and 5 others)",
+      "finding": "No source for any daily figure. Ukraine $900M/day gives $1.32T; RDNA5 puts direct damage at $195.1B. Gaza $350M/day gives $308B; IRDNA puts physical damage at $29.9B.",
+      "action": "Page true-cost-v4 withdrawn",
+      "pages": "true-cost-v4"
+    },
+    {
+      "id": "x_tc_gdp_paths",
+      "earlier": "true-cost-v4: war vs peace GDP paths 2026-2035 for 8 conflicts",
+      "finding": "Invented scenarios, no source or method.",
+      "action": "Page true-cost-v4 withdrawn",
+      "pages": "true-cost-v4"
+    },
+    {
+      "id": "x_tc_human_multiplier",
+      "earlier": "true-cost-v4: human impact multipliers",
+      "finding": "No source or definition.",
+      "action": "Page true-cost-v4 withdrawn",
+      "pages": "true-cost-v4"
+    },
+    {
+      "id": "x_tc_hospitals",
+      "earlier": "true-cost-v4: 112,000 500-bed hospitals",
+      "finding": "Off by a factor 1000 versus the page's own formula; no unit cost source.",
+      "action": "Page true-cost-v4 withdrawn",
+      "pages": "true-cost-v4"
+    },
+    {
+      "id": "x_tc_eu_sudan_asylum",
+      "earlier": "true-cost-v4: 87,645 Sudanese asylum seekers in 30 European countries (Germany 18,420)",
+      "finding": "EUAA: just over 10,000 Sudanese applications in EU+ in 2024, France main receiver.",
+      "action": "Page true-cost-v4 withdrawn",
+      "pages": "true-cost-v4"
+    },
+    {
+      "id": "x_tc_sudan_border",
+      "earlier": "true-cost-v4: 1.73M people crossed Sudan's borders",
+      "finding": "UNHCR Global Report 2025: 3.6 million had fled to neighbouring countries by end 2025.",
+      "action": "Page true-cost-v4 withdrawn",
+      "pages": "true-cost-v4"
+    },
+    {
+      "id": "x_tc_ukraine_rest_europe",
+      "earlier": "true-cost-v4: Ukraine \"Rest of Europe 8,145,000\"",
+      "finding": "Balancing figure chosen so the regions add up to 14.6M; mixes IDPs and refugees.",
+      "action": "Page true-cost-v4 withdrawn",
+      "pages": "true-cost-v4"
+    },
+    {
+      "id": "x_tc_regional_costs",
+      "earlier": "true-cost-v4: host-country costs per conflict (~50 values)",
+      "finding": "Generic source list, no source per figure.",
+      "action": "Page true-cost-v4 withdrawn",
+      "pages": "true-cost-v4"
+    },
+    {
+      "id": "x_tc_ai_custom",
+      "earlier": "true-cost-v4: \"custom conflict\" figures generated by AI",
+      "finding": "AI-generated figures presented as database-backed. Feature removed.",
+      "action": "Page true-cost-v4 withdrawn",
+      "pages": "true-cost-v4"
     }
   ]
 }
